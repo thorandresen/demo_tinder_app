@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:fit_image/fit_image.dart';
+import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
@@ -37,7 +39,8 @@ class HomePageState extends State<HomePage>{
                   child: new Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      new Column(
+                      DecoratedBox(
+                        child: new Column(
                         children: <Widget>[
                           new Container(
                               margin: EdgeInsets.all(10),
@@ -63,7 +66,15 @@ class HomePageState extends State<HomePage>{
                               fontSize: 15,
                             ),
                           ),
+
                         ],
+                      ),
+             decoration: BoxDecoration(
+               image: DecorationImage(
+                image: NetworkImage(
+                  "https://i.imgur.com/9eQ5xIV.png"),
+                      fit: BoxFit.fill)
+                      ),
                       ),
                       new Column( // Politiske præfferencer
                         children: <Widget>[
