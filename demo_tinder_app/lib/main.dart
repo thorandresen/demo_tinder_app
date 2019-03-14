@@ -25,7 +25,7 @@ class HomePageState extends State<HomePage>{
   Widget build(BuildContext context) {
     return Scaffold(
     backgroundColor: Colors.white,
-      body: Container(
+      body: SingleChildScrollView(
                   child: new Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -160,36 +160,41 @@ class HomePageState extends State<HomePage>{
                             ],
                           ),
 
-                        ],
-                      ),
-                      Text(''),
-                      new Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Container(
-                            height: 70,
-                            width: 70,
-                            child: FloatingActionButton(
-                              onPressed: () {},
-                              backgroundColor: Colors.white,
-                              child: Icon(Icons.favorite, color: Colors.green,size: 35.0),
-                            ),
-                          ),
-                          Container(
-                              height: 70,
-                              width: 70,
-                              child:
-                              FloatingActionButton(
-                                onPressed: () {},
-                                backgroundColor: Colors.white,
-                                child: Icon(Icons.cancel, color: Colors.red,size: 35.0),
-                              )
-                          ),
+                          /// INDSÆT FLERE TING HER XD
+
                         ],
                       ),
                     ],
                   ),
                 ),
+      floatingActionButton:
+
+      new Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Text(''),
+          Container(
+            height: 70,
+            width: 70,
+            child: FloatingActionButton(
+              onPressed: () {},
+              backgroundColor: Colors.white,
+              child: Icon(Icons.favorite, color: Colors.green,size: 35.0),
+            ),
+          ),
+          Text(''),
+          Container(
+              height: 70,
+              width: 70,
+              child:
+              FloatingActionButton(
+                onPressed: () {},
+                backgroundColor: Colors.white,
+                child: Icon(Icons.cancel, color: Colors.red,size: 35.0),
+              )
+          ),
+        ],
+      ),
     );
   }
 
