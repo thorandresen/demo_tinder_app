@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Tinder demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
       ),
       home: HomePage(),
     );
@@ -24,19 +24,13 @@ class HomePageState extends State<HomePage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('HomePage'),
-      ),
+    backgroundColor: Colors.white,
       body:
       FlipCard(
                 direction: FlipDirection.HORIZONTAL, // default
                 front: Container(
-                  decoration: new BoxDecoration(
-                    border: new Border.all(color: Colors.black),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  margin: EdgeInsets.all(10.0),
                   child: new Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       DecoratedBox(
@@ -48,7 +42,6 @@ class HomePageState extends State<HomePage>{
                               height: 190.0,
                               decoration: new BoxDecoration(
                                   shape: BoxShape.circle,
-                                  border: new Border.all(color: Colors.black),
                                   image: new DecorationImage(
                                       fit: BoxFit.fill,
                                       image: new NetworkImage(
@@ -66,27 +59,25 @@ class HomePageState extends State<HomePage>{
                               fontSize: 15,
                             ),
                           ),
-
+                          Text(''),
                         ],
                       ),
              decoration: BoxDecoration(
                image: DecorationImage(
                 image: NetworkImage(
-                  "https://i.imgur.com/9eQ5xIV.png"),
+                  "https://i.imgur.com/ijQ7mNU.png"),
                       fit: BoxFit.fill)
                       ),
                       ),
                       new Column( // Politiske præfferencer
                         children: <Widget>[
-                          Divider(
-                            color: Colors.black,
-                          ),
+                          Text(''),
                           new Text('Kerne principper',
                             style: new TextStyle(
                               fontSize: 20.0,
                             ),
                           ),
-                          new Text('Miljøpolitik',
+                          new Text('Politik',
                             style: new TextStyle(
                               fontSize: 15,
                             ),
@@ -97,21 +88,20 @@ class HomePageState extends State<HomePage>{
                             animation: true,
                             lineHeight: 20.0,
                             animationDuration: 2500,
-                            percent: 0.7,
-                            center: Text("7/10"),
+                            percent: 0.9,
+                            center: Text("9/10"),
                             linearStrokeCap: LinearStrokeCap.roundAll,
                             padding: EdgeInsets.symmetric(),
-                            progressColor: Colors.green,
+                            progressColor: Colors.blue,
                           ),
                           new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              new Flexible(child: Text('Kul')),
+                              new Flexible(child: Text('Socialisme')),
                               new Flexible(child: Text('')),
+                              new Flexible(child: Text('Sociallib.')),
                               new Flexible(child: Text('')),
-                              new Flexible(child: Text('')),
-                              new Flexible(child: Text('')),
-                              new Flexible(child: Text('Grøn')),
+                              new Flexible(child: Text('Liberalisme')),
                             ],
                           ),
                           Text(''),
@@ -142,18 +132,68 @@ class HomePageState extends State<HomePage>{
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('Stram')),
                             ],
-                          )
+                          ),
+                          Text(''),
+                          new Text('Miljøpolitik',
+                            style: new TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+                          new LinearPercentIndicator(
+                            width: MediaQuery.of(context).size.width - 100,
+                            alignment: MainAxisAlignment.center,
+                            animation: true,
+                            lineHeight: 20.0,
+                            animationDuration: 2500,
+                            percent: 0.7,
+                            center: Text("7/10"),
+                            linearStrokeCap: LinearStrokeCap.roundAll,
+                            padding: EdgeInsets.symmetric(),
+                            progressColor: Colors.lightGreen,
+                          ),
+                          new Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              new Flexible(child: Text('Kul')),
+                              new Flexible(child: Text('')),
+                              new Flexible(child: Text('')),
+                              new Flexible(child: Text('')),
+                              new Flexible(child: Text('')),
+                              new Flexible(child: Text('Grøn')),
+                            ],
+                          ),
+
                         ],
+                      ),
+                      Text(''),
+                      new Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Container(
+                            height: 70,
+                            width: 70,
+                      child: FloatingActionButton(
+                        onPressed: () {},
+                        backgroundColor: Colors.white,
+                        child: Icon(Icons.favorite, color: Colors.green,size: 35.0),
+                      ),
+                          ),
+                  Container(
+                      height: 70,
+                      width: 70,
+                      child:
+                      FloatingActionButton(
+                        onPressed: () {},
+                        backgroundColor: Colors.white,
+                        child: Icon(Icons.cancel, color: Colors.red,size: 35.0),
                       )
+                       ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
                 back: Container(
-                  decoration: new BoxDecoration(
-                    border: new Border.all(color: Colors.black),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  margin: EdgeInsets.all(10.0),
                   child: Text('Back'),
                 ),
               ),
