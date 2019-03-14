@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:flutter/rendering.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:fit_image/fit_image.dart';
 import 'package:flutter/material.dart';
@@ -21,11 +22,23 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePageState extends State<HomePage>{
+  ScrollController _controller;
+  bool _hideTop;
+
+  @override
+  void initState(){
+    _controller = ScrollController();
+    _controller.addListener(_scrollListener);
+    _hideTop = false;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
     backgroundColor: Colors.white,
       body: SingleChildScrollView(
+        controller: _controller,
                   child: new Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -128,7 +141,7 @@ class HomePageState extends State<HomePage>{
                           new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              new Flexible(child: Text('Åben')),
+                              new Flexible(child: Text('Lempelig')),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
@@ -159,7 +172,7 @@ class HomePageState extends State<HomePage>{
                           new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              new Flexible(child: Text('Kul')),
+                              new Flexible(child: Text('Fossil')),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
@@ -167,47 +180,109 @@ class HomePageState extends State<HomePage>{
                               new Flexible(child: Text('Grøn')),
                             ],
                           ),
-<<<<<<< HEAD
 
-                          /// INDSÆT FLERE TING HER XD
-
-=======
-                        ],
-                      ),
-                      Text(''),
-
-                      // FAB
-                      new Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Container(
-                            height: 70,
-                            width: 70,
-                            child: FloatingActionButton(
-                              onPressed: () {},
-                              backgroundColor: Colors.white,
-                              child: Icon(Icons.favorite, color: Colors.green,size: 35.0),
+                          // MILJØ
+                          Text(''),
+                          new Text('Miljøpolitik',
+                            style: new TextStyle(
+                              fontSize: 15,
                             ),
                           ),
-                          Container(
-                              height: 70,
-                              width: 70,
-                              child:
-                              FloatingActionButton(
-                                onPressed: () {},
-                                backgroundColor: Colors.white,
-                                child: Icon(Icons.cancel, color: Colors.red,size: 35.0),
-                              )
+                          new LinearPercentIndicator(
+                            width: MediaQuery.of(context).size.width - 100,
+                            alignment: MainAxisAlignment.center,
+                            animation: true,
+                            lineHeight: 20.0,
+                            animationDuration: 2500,
+                            percent: 0.7,
+                            center: Text("7/10"),
+                            linearStrokeCap: LinearStrokeCap.roundAll,
+                            padding: EdgeInsets.symmetric(),
+                            progressColor: Colors.lightGreen,
                           ),
->>>>>>> refs/remotes/origin/master
+                          new Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              new Flexible(child: Text('Fossil')),
+                              new Flexible(child: Text('')),
+                              new Flexible(child: Text('')),
+                              new Flexible(child: Text('')),
+                              new Flexible(child: Text('')),
+                              new Flexible(child: Text('Grøn')),
+                            ],
+                          ),
+
+                          // MILJØ
+                          Text(''),
+                          new Text('Miljøpolitik',
+                            style: new TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+                          new LinearPercentIndicator(
+                            width: MediaQuery.of(context).size.width - 100,
+                            alignment: MainAxisAlignment.center,
+                            animation: true,
+                            lineHeight: 20.0,
+                            animationDuration: 2500,
+                            percent: 0.7,
+                            center: Text("7/10"),
+                            linearStrokeCap: LinearStrokeCap.roundAll,
+                            padding: EdgeInsets.symmetric(),
+                            progressColor: Colors.lightGreen,
+                          ),
+                          new Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              new Flexible(child: Text('Fossil')),
+                              new Flexible(child: Text('')),
+                              new Flexible(child: Text('')),
+                              new Flexible(child: Text('')),
+                              new Flexible(child: Text('')),
+                              new Flexible(child: Text('Grøn')),
+                            ],
+                          ),
+
+                          // MILJØ
+                          Text(''),
+                          new Text('Miljøpolitik',
+                            style: new TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+                          new LinearPercentIndicator(
+                            width: MediaQuery.of(context).size.width - 100,
+                            alignment: MainAxisAlignment.center,
+                            animation: true,
+                            lineHeight: 20.0,
+                            animationDuration: 2500,
+                            percent: 0.7,
+                            center: Text("7/10"),
+                            linearStrokeCap: LinearStrokeCap.roundAll,
+                            padding: EdgeInsets.symmetric(),
+                            progressColor: Colors.lightGreen,
+                          ),
+                          new Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              new Flexible(child: Text('Fossil')),
+                              new Flexible(child: Text('')),
+                              new Flexible(child: Text('')),
+                              new Flexible(child: Text('')),
+                              new Flexible(child: Text('')),
+                              new Flexible(child: Text('Grøn')),
+                            ],
+                          ),
+
                         ],
                       ),
                     ],
                   ),
                 ),
       floatingActionButton:
-
-      new Row(
+          new AnimatedOpacity(opacity: _hideTop ? 0.0 : 1.0,
+          duration: Duration(milliseconds: 200),
+          child: new Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Text(''),
@@ -217,25 +292,42 @@ class HomePageState extends State<HomePage>{
             child: FloatingActionButton(
               onPressed: () {},
               backgroundColor: Colors.white,
-              child: Icon(Icons.favorite, color: Colors.green,size: 35.0),
+              child: Icon(Icons.thumb_down, color: Colors.red,size: 35.0),
             ),
           ),
           Text(''),
           Container(
               height: 70,
               width: 70,
-              child:
-              FloatingActionButton(
+              child: FloatingActionButton(
                 onPressed: () {},
                 backgroundColor: Colors.white,
-                child: Icon(Icons.cancel, color: Colors.red,size: 35.0),
+                child: Icon(Icons.thumb_up, color: Colors.green,size: 35.0),
+
               )
           ),
         ],
       ),
+              ),
     );
   }
 
+
+  void _scrollListener() {
+    if(_controller.position.userScrollDirection == ScrollDirection.reverse){
+      setState(() {
+        _hideTop = true;
+        print(_hideTop);
+      });
+    }
+
+    if(_controller.position.userScrollDirection == ScrollDirection.forward){
+      setState((){
+        _hideTop = false;
+        print(_hideTop);
+      });
+    }
+  }
 }
 
 class HomePage extends StatefulWidget {
