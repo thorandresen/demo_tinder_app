@@ -66,7 +66,9 @@ class HomePageState extends State<HomePage>{
                       fit: BoxFit.fill)
                       ),
                       ),
-                      new Column( // Politiske præfferencer
+
+                      // Politiske præfferencer
+                      new Column(
                         children: <Widget>[
                           Text(''),
                           new Text('Kerne principper',
@@ -74,6 +76,8 @@ class HomePageState extends State<HomePage>{
                               fontSize: 20.0,
                             ),
                           ),
+
+                          // Politik
                           new Text('Politik',
                             style: new TextStyle(
                               fontSize: 15,
@@ -101,6 +105,8 @@ class HomePageState extends State<HomePage>{
                               new Flexible(child: Text('Liberalisme')),
                             ],
                           ),
+
+                          // Udlændinge politik
                           Text(''),
                           new Text('Udlændinge politik',
                             style: new TextStyle(
@@ -130,6 +136,8 @@ class HomePageState extends State<HomePage>{
                               new Flexible(child: Text('Stram')),
                             ],
                           ),
+
+                          // MILJØ
                           Text(''),
                           new Text('Miljøpolitik',
                             style: new TextStyle(
@@ -159,9 +167,39 @@ class HomePageState extends State<HomePage>{
                               new Flexible(child: Text('Grøn')),
                             ],
                           ),
+<<<<<<< HEAD
 
                           /// INDSÆT FLERE TING HER XD
 
+=======
+                        ],
+                      ),
+                      Text(''),
+
+                      // FAB
+                      new Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Container(
+                            height: 70,
+                            width: 70,
+                            child: FloatingActionButton(
+                              onPressed: () {},
+                              backgroundColor: Colors.white,
+                              child: Icon(Icons.favorite, color: Colors.green,size: 35.0),
+                            ),
+                          ),
+                          Container(
+                              height: 70,
+                              width: 70,
+                              child:
+                              FloatingActionButton(
+                                onPressed: () {},
+                                backgroundColor: Colors.white,
+                                child: Icon(Icons.cancel, color: Colors.red,size: 35.0),
+                              )
+                          ),
+>>>>>>> refs/remotes/origin/master
                         ],
                       ),
                     ],
