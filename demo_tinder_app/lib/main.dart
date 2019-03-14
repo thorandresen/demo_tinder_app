@@ -25,10 +25,7 @@ class HomePageState extends State<HomePage>{
   Widget build(BuildContext context) {
     return Scaffold(
     backgroundColor: Colors.white,
-      body:
-      FlipCard(
-                direction: FlipDirection.HORIZONTAL, // default
-                front: Container(
+      body: Container(
                   child: new Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -172,31 +169,27 @@ class HomePageState extends State<HomePage>{
                           Container(
                             height: 70,
                             width: 70,
-                      child: FloatingActionButton(
-                        onPressed: () {},
-                        backgroundColor: Colors.white,
-                        child: Icon(Icons.favorite, color: Colors.green,size: 35.0),
-                      ),
+                            child: FloatingActionButton(
+                              onPressed: () {},
+                              backgroundColor: Colors.white,
+                              child: Icon(Icons.favorite, color: Colors.green,size: 35.0),
+                            ),
                           ),
-                  Container(
-                      height: 70,
-                      width: 70,
-                      child:
-                      FloatingActionButton(
-                        onPressed: () {},
-                        backgroundColor: Colors.white,
-                        child: Icon(Icons.cancel, color: Colors.red,size: 35.0),
-                      )
-                       ),
+                          Container(
+                              height: 70,
+                              width: 70,
+                              child:
+                              FloatingActionButton(
+                                onPressed: () {},
+                                backgroundColor: Colors.white,
+                                child: Icon(Icons.cancel, color: Colors.red,size: 35.0),
+                              )
+                          ),
                         ],
                       ),
                     ],
                   ),
                 ),
-                back: Container(
-                  child: Text('Back'),
-                ),
-              ),
     );
   }
 
