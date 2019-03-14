@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Tinder demo',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        primarySwatch: Colors.grey,
       ),
       home: HomePage(),
     );
@@ -43,7 +43,7 @@ class HomePageState extends State<HomePage>{
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      DecoratedBox(
+                     DecoratedBox(
                         child: new Column(
                         children: <Widget>[
                           new Container(
@@ -79,6 +79,7 @@ class HomePageState extends State<HomePage>{
                       fit: BoxFit.fill)
                       ),
                       ),
+
 
                       // Politiske præfferencer
                       new Column(
@@ -183,7 +184,7 @@ class HomePageState extends State<HomePage>{
 
                           // MILJØ
                           Text(''),
-                          new Text('Miljøpolitik',
+                          new Text('Privat skattepolitik',
                             style: new TextStyle(
                               fontSize: 15,
                             ),
@@ -194,58 +195,28 @@ class HomePageState extends State<HomePage>{
                             animation: true,
                             lineHeight: 20.0,
                             animationDuration: 2500,
-                            percent: 0.7,
-                            center: Text("7/10"),
+                            percent: 0.3,
+                            center: Text("3/10"),
                             linearStrokeCap: LinearStrokeCap.roundAll,
                             padding: EdgeInsets.symmetric(),
-                            progressColor: Colors.lightGreen,
+                            progressColor: Colors.blue,
                           ),
                           new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              new Flexible(child: Text('Fossil')),
+                              new Flexible(child: Text('Lav')),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
-                              new Flexible(child: Text('Grøn')),
+                              new Flexible(child: Text('Høj')),
                             ],
                           ),
 
-                          // MILJØ
-                          Text(''),
-                          new Text('Miljøpolitik',
-                            style: new TextStyle(
-                              fontSize: 15,
-                            ),
-                          ),
-                          new LinearPercentIndicator(
-                            width: MediaQuery.of(context).size.width - 100,
-                            alignment: MainAxisAlignment.center,
-                            animation: true,
-                            lineHeight: 20.0,
-                            animationDuration: 2500,
-                            percent: 0.7,
-                            center: Text("7/10"),
-                            linearStrokeCap: LinearStrokeCap.roundAll,
-                            padding: EdgeInsets.symmetric(),
-                            progressColor: Colors.lightGreen,
-                          ),
-                          new Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              new Flexible(child: Text('Fossil')),
-                              new Flexible(child: Text('')),
-                              new Flexible(child: Text('')),
-                              new Flexible(child: Text('')),
-                              new Flexible(child: Text('')),
-                              new Flexible(child: Text('Grøn')),
-                            ],
-                          ),
 
                           // MILJØ
                           Text(''),
-                          new Text('Miljøpolitik',
+                          new Text('Skattelettelser for erhverv',
                             style: new TextStyle(
                               fontSize: 15,
                             ),
@@ -256,26 +227,68 @@ class HomePageState extends State<HomePage>{
                             animation: true,
                             lineHeight: 20.0,
                             animationDuration: 2500,
-                            percent: 0.7,
-                            center: Text("7/10"),
+                            percent: 1,
+                            center: Text("10/10"),
                             linearStrokeCap: LinearStrokeCap.roundAll,
                             padding: EdgeInsets.symmetric(),
-                            progressColor: Colors.lightGreen,
+                            progressColor: Colors.blue,
                           ),
                           new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              new Flexible(child: Text('Fossil')),
+                              new Flexible(child: Text('Imod')),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
-                              new Flexible(child: Text('Grøn')),
+                              new Flexible(child: Text('For')),
                             ],
+                          ),
+
+                          Text(''),
+                          new Text('Mere information',
+                          style: new TextStyle(
+                            fontSize: 20
+                          ),
                           ),
 
                         ],
                       ),
+                     new GridView.count(
+                         crossAxisCount: 2,
+                         shrinkWrap: true,
+                         childAspectRatio: 1.0,
+                         padding: const EdgeInsets.all(4.0),
+                         mainAxisSpacing: 4.0,
+                         crossAxisSpacing: 4.0,
+                         physics: ScrollPhysics(),
+                         children: <Widget>[
+                           GestureDetector(
+                             onTap: () {
+                               /// TODO: ADD INFO
+                             },
+                             child:  new Image(image: NetworkImage('https://i.imgur.com/ijQ7mNU.png'),fit: BoxFit.fill),
+                           ),
+                           GestureDetector(
+                             onTap: () {
+                               /// TODO: ADD INFO
+                             },
+                             child:  new Image(image: NetworkImage('https://i.imgur.com/ijQ7mNU.png'),fit: BoxFit.fill),
+                           ),
+                           GestureDetector(
+                             onTap: () {
+                               /// TODO: ADD INFO
+                             },
+                             child:  new Image(image: NetworkImage('https://i.imgur.com/ijQ7mNU.png'),fit: BoxFit.fill),
+                           ),
+                           GestureDetector(
+                             onTap: () {
+                               /// TODO: ADD INFO
+                             },
+                             child:  new Image(image: NetworkImage('https://i.imgur.com/ijQ7mNU.png'),fit: BoxFit.fill),
+                           ),
+                         ],
+                     )
                     ],
                   ),
                 ),
@@ -287,22 +300,22 @@ class HomePageState extends State<HomePage>{
         children: <Widget>[
           Text(''),
           Container(
-            height: 70,
-            width: 70,
+            height: 80,
+            width: 80,
             child: FloatingActionButton(
               onPressed: () {},
               backgroundColor: Colors.white,
-              child: Icon(Icons.thumb_down, color: Colors.red,size: 35.0),
+              child: Icon(Icons.thumb_down, color: Colors.red,size: 40.0),
             ),
           ),
           Text(''),
           Container(
-              height: 70,
-              width: 70,
+              height: 80,
+              width: 80,
               child: FloatingActionButton(
                 onPressed: () {},
                 backgroundColor: Colors.white,
-                child: Icon(Icons.thumb_up, color: Colors.green,size: 35.0),
+                child: Icon(Icons.thumb_up, color: Colors.green,size: 40.0),
 
               )
           ),
