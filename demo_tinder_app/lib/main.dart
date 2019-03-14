@@ -66,7 +66,9 @@ class HomePageState extends State<HomePage>{
                       fit: BoxFit.fill)
                       ),
                       ),
-                      new Column( // Politiske præfferencer
+
+                      // Politiske præfferencer
+                      new Column(
                         children: <Widget>[
                           Text(''),
                           new Text('Kerne principper',
@@ -74,6 +76,8 @@ class HomePageState extends State<HomePage>{
                               fontSize: 20.0,
                             ),
                           ),
+
+                          // Politik
                           new Text('Politik',
                             style: new TextStyle(
                               fontSize: 15,
@@ -101,6 +105,8 @@ class HomePageState extends State<HomePage>{
                               new Flexible(child: Text('Liberalisme')),
                             ],
                           ),
+
+                          // Udlændinge politik
                           Text(''),
                           new Text('Udlændinge politik',
                             style: new TextStyle(
@@ -130,6 +136,8 @@ class HomePageState extends State<HomePage>{
                               new Flexible(child: Text('Stram')),
                             ],
                           ),
+
+                          // MILJØ
                           Text(''),
                           new Text('Miljøpolitik',
                             style: new TextStyle(
@@ -159,10 +167,11 @@ class HomePageState extends State<HomePage>{
                               new Flexible(child: Text('Grøn')),
                             ],
                           ),
-
                         ],
                       ),
                       Text(''),
+
+                      // FAB
                       new Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
