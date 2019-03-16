@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
 
 class HomePageState extends State<HomePage>{
   ScrollController _controller; // Scroll controller
+  ScrollController _SCcontroller;
   bool _hideFAB; //
 
   @override
@@ -40,7 +41,6 @@ class HomePageState extends State<HomePage>{
     backgroundColor: Colors.white,
         resizeToAvoidBottomPadding: false,
         body: NestedScrollView(
-        physics: ScrollPhysics(),
         controller: _controller,
                   headerSliverBuilder: (BuildContext context, bool innerBoxScrolled){
                       return <Widget>[
@@ -87,6 +87,7 @@ class HomePageState extends State<HomePage>{
                       ];
                   },
                   body:SingleChildScrollView(
+                    /// TODO: FIX SO THAT FAB SHOWS WHEN SCROLLING BOTH VIEWS.
                   child: new Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -278,19 +279,7 @@ class HomePageState extends State<HomePage>{
                              onTap: () {
                                /// TODO: ADD INFO BANNER AND WHEN TOUCHED FOR ALL BELOW ALSO
                              },
-                             child:  new Image(image: NetworkImage('https://i.imgur.com/ijQ7mNU.png'),fit: BoxFit.fill),
-                           ),
-                           GestureDetector(
-                             onTap: () {
-                               /// TODO: ADD INFO
-                             },
-                             child:  new Image(image: NetworkImage('https://i.imgur.com/ijQ7mNU.png'),fit: BoxFit.fill),
-                           ),
-                           GestureDetector(
-                             onTap: () {
-                               /// TODO: ADD INFO
-                             },
-                             child:  new Image(image: NetworkImage('https://i.imgur.com/ijQ7mNU.png'),fit: BoxFit.fill),
+                             child:  new Image(image: NetworkImage('https://i.imgur.com/SBP6bFe.png'),fit: BoxFit.fill),
                            ),
                            GestureDetector(
                              onTap: () {
