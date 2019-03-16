@@ -38,49 +38,59 @@ class HomePageState extends State<HomePage>{
   Widget build(BuildContext context) {
     return Scaffold(
     backgroundColor: Colors.white,
-      body: SingleChildScrollView(
+        resizeToAvoidBottomPadding: false,
+        body: NestedScrollView(
+        physics: ScrollPhysics(),
         controller: _controller,
-                  child:
-                  new Column(
+                  headerSliverBuilder: (BuildContext context, bool innerBoxScrolled){
+                      return <Widget>[
+                        SliverAppBar(
+                          floating: false,
+                          pinned: true,
+                          expandedHeight: 235,
+                          backgroundColor: Colors.blue,
+                          centerTitle: true,
+                          flexibleSpace: FlexibleSpaceBar(
+                              title:  new Text('Lars Løkke (V)',
+                                style: new TextStyle(
+                                  fontSize: 20.0,
+                                ),
+                              ),
+                            centerTitle: true,
+                            background: DecoratedBox(
+                              child: new Column(
+                                children: <Widget>[
+                                  new Container(
+                                      margin: EdgeInsets.all(10),
+                                      width: 190.0,
+                                      height: 190.0,
+                                      decoration: new BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: new DecorationImage(
+                                              fit: BoxFit.fill,
+                                              image: new NetworkImage(
+                                                  "https://pbs.twimg.com/profile_images/610120554738266112/I4pl2ygE_400x400.jpg")
+                                          )
+                                      )
+                                  ),
+                                ],
+                              ),
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                          "https://i.imgur.com/ijQ7mNU.png"),
+                                      fit: BoxFit.fill)
+                              ),
+                            ),
+                          )
+                        ),
+                      ];
+                  },
+                  body:SingleChildScrollView(
+                  child: new Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      DecoratedBox(
-                        child: new Column(
-                          children: <Widget>[
-                            new Container(
-                                margin: EdgeInsets.all(10),
-                                width: 190.0,
-                                height: 190.0,
-                                decoration: new BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: new DecorationImage(
-                                        fit: BoxFit.fill,
-                                        image: new NetworkImage(
-                                            "https://pbs.twimg.com/profile_images/610120554738266112/I4pl2ygE_400x400.jpg")
-                                    )
-                                )
-                            ),
-                            new Text('Lars Løkke',
-                              style: new TextStyle(
-                                fontSize: 20.0,
-                              ),
-                            ),
-                            new Text('Venstre',
-                              style: new TextStyle(
-                                fontSize: 15,
-                              ),
-                            ),
-                            Text(''),
-                          ],
-                        ),
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(
-                                    "https://i.imgur.com/ijQ7mNU.png"),
-                                fit: BoxFit.fill)
-                        ),
-                      ),
 
                       // Politiske præfferencer
                       new Column(
@@ -292,7 +302,9 @@ class HomePageState extends State<HomePage>{
                      )
                     ],
                   ),
+                  ),
                 ),
+
 
       /// FAB
       floatingActionButton:
@@ -334,14 +346,12 @@ class HomePageState extends State<HomePage>{
     if(_controller.position.userScrollDirection == ScrollDirection.reverse){
       setState(() {
         _hideFAB = true;
-        print(_hideFAB);
       });
     }
 
     if(_controller.position.userScrollDirection == ScrollDirection.forward){
       setState((){
         _hideFAB = false;
-        print(_hideFAB);
       });
     }
   }
