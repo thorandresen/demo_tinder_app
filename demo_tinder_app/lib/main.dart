@@ -48,7 +48,7 @@ class HomePageState extends State<HomePage>{
                           floating: false,
                           pinned: true,
                           expandedHeight: 235,
-                          backgroundColor: Colors.blue,
+                          backgroundColor: Color.fromARGB(255, 74, 104, 153),
                           centerTitle: true,
                           flexibleSpace: FlexibleSpaceBar(
                               title:  new Text('Lars Løkke (V)',
@@ -337,6 +337,7 @@ class HomePageState extends State<HomePage>{
         ],
       ),
           ),
+      
     );
   }
 
