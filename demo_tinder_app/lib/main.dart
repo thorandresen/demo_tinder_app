@@ -22,64 +22,65 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePageState extends State<HomePage>{
-  ScrollController _controller;
-  bool _hideTop;
+  ScrollController _controller; // Scroll controller
+  bool _hideFAB; //
 
   @override
   void initState(){
     _controller = ScrollController();
     _controller.addListener(_scrollListener);
-    _hideTop = false;
+    _hideFAB = false;
     super.initState();
   }
 
+  /// The widget for building the whole card.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
     backgroundColor: Colors.white,
       body: SingleChildScrollView(
         controller: _controller,
-                  child: new Column(
+                  child:
+                  new Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                     DecoratedBox(
+                      DecoratedBox(
                         child: new Column(
-                        children: <Widget>[
-                          new Container(
-                              margin: EdgeInsets.all(10),
-                              width: 190.0,
-                              height: 190.0,
-                              decoration: new BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: new DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image: new NetworkImage(
-                                          "https://pbs.twimg.com/profile_images/610120554738266112/I4pl2ygE_400x400.jpg")
-                                  )
-                              )
-                          ),
-                          new Text('Lars Løkke',
-                            style: new TextStyle(
-                              fontSize: 20.0,
+                          children: <Widget>[
+                            new Container(
+                                margin: EdgeInsets.all(10),
+                                width: 190.0,
+                                height: 190.0,
+                                decoration: new BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: new DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: new NetworkImage(
+                                            "https://pbs.twimg.com/profile_images/610120554738266112/I4pl2ygE_400x400.jpg")
+                                    )
+                                )
                             ),
-                          ),
-                          new Text('Venstre',
-                            style: new TextStyle(
-                              fontSize: 15,
+                            new Text('Lars Løkke',
+                              style: new TextStyle(
+                                fontSize: 20.0,
+                              ),
                             ),
-                          ),
-                          Text(''),
-                        ],
+                            new Text('Venstre',
+                              style: new TextStyle(
+                                fontSize: 15,
+                              ),
+                            ),
+                            Text(''),
+                          ],
+                        ),
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                    "https://i.imgur.com/ijQ7mNU.png"),
+                                fit: BoxFit.fill)
+                        ),
                       ),
-             decoration: BoxDecoration(
-               image: DecorationImage(
-                image: NetworkImage(
-                  "https://i.imgur.com/ijQ7mNU.png"),
-                      fit: BoxFit.fill)
-                      ),
-                      ),
-
 
                       // Politiske præfferencer
                       new Column(
@@ -182,7 +183,7 @@ class HomePageState extends State<HomePage>{
                             ],
                           ),
 
-                          // MILJØ
+                          // SKATTEPOLITIK
                           Text(''),
                           new Text('Privat skattepolitik',
                             style: new TextStyle(
@@ -214,7 +215,7 @@ class HomePageState extends State<HomePage>{
                           ),
 
 
-                          // MILJØ
+                          // SKATTELETTELSER
                           Text(''),
                           new Text('Skattelettelser for erhverv',
                             style: new TextStyle(
@@ -265,7 +266,7 @@ class HomePageState extends State<HomePage>{
                          children: <Widget>[
                            GestureDetector(
                              onTap: () {
-                               /// TODO: ADD INFO
+                               /// TODO: ADD INFO BANNER AND WHEN TOUCHED FOR ALL BELOW ALSO
                              },
                              child:  new Image(image: NetworkImage('https://i.imgur.com/ijQ7mNU.png'),fit: BoxFit.fill),
                            ),
@@ -292,8 +293,10 @@ class HomePageState extends State<HomePage>{
                     ],
                   ),
                 ),
+
+      /// FAB
       floatingActionButton:
-          new AnimatedOpacity(opacity: _hideTop ? 0.0 : 1.0,
+          new AnimatedOpacity(opacity: _hideFAB ? 0.0 : 1.0,
           duration: Duration(milliseconds: 200),
           child: new Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -321,23 +324,24 @@ class HomePageState extends State<HomePage>{
           ),
         ],
       ),
-              ),
+          ),
     );
   }
 
 
+  /// Method for listening to scroll by the user.
   void _scrollListener() {
     if(_controller.position.userScrollDirection == ScrollDirection.reverse){
       setState(() {
-        _hideTop = true;
-        print(_hideTop);
+        _hideFAB = true;
+        print(_hideFAB);
       });
     }
 
     if(_controller.position.userScrollDirection == ScrollDirection.forward){
       setState((){
-        _hideTop = false;
-        print(_hideTop);
+        _hideFAB = false;
+        print(_hideFAB);
       });
     }
   }
