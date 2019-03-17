@@ -1,11 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/rendering.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:fit_image/fit_image.dart';
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 void main() => runApp(MyApp());
+
+String selectedUrl = 'https://flutter.io';
+const kAndroidUserAgent =
+    'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Mobile Safari/537.36';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -16,14 +24,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: HomePage(),
+      home: WebViewPage(),
     );
   }
 }
 
 class HomePageState extends State<HomePage>{
   ScrollController _controller; // Scroll controller
-  ScrollController _SCcontroller;
   bool _hideFAB; //
 
   @override
@@ -279,13 +286,13 @@ class HomePageState extends State<HomePage>{
                              onTap: () {
                                /// TODO: ADD INFO BANNER AND WHEN TOUCHED FOR ALL BELOW ALSO
                              },
-                             child:  new Image(image: NetworkImage('https://i.imgur.com/SBP6bFe.png'),fit: BoxFit.fill),
+                             child:  new Image(image: AssetImage('graphics/about_male_version_4.png'),fit: BoxFit.fill),
                            ),
                            GestureDetector(
                              onTap: () {
                                /// TODO: ADD INFO
                              },
-                             child:  new Image(image: NetworkImage('https://i.imgur.com/ijQ7mNU.png'),fit: BoxFit.fill),
+                             child:  new Image(image: AssetImage('graphics/website_thumbnail.png'),fit: BoxFit.fill),
                            ),
                          ],
                      )
@@ -350,4 +357,32 @@ class HomePageState extends State<HomePage>{
 class HomePage extends StatefulWidget {
   HomePageState createState() => new HomePageState();
 }
+
+
+/// WEBVIEW PAGE
+///
+class WebViewPageState extends State<WebViewPage>{
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+        routes: {
+          "/": (_) => new WebviewScaffold(
+            url: 'https://stackoverflow.com/jobs/239220/senior-java-kotlin-engineer-retail-operations-zalando-se?med=clc',
+            appBar: new AppBar(
+              title: new Text("Widget webview"),
+              centerTitle: true,
+              backgroundColor: Color.fromARGB(255, 74, 104, 153),
+            ),
+            withJavascript: true,
+            withZoom: true,
+          ),
+        },
+      );
+  }
+}
+
+class WebViewPage extends StatefulWidget{
+  WebViewPageState createState() => new WebViewPageState();
+}
+
 
