@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: WebViewPage(),
+      home: HomePage(),
     );
   }
 }
@@ -232,7 +232,6 @@ class HomePageState extends State<HomePage>{
                             ],
                           ),
 
-
                           // SKATTELETTELSER
                           Text(''),
                           new Text('Skattelettelser for erhverv',
@@ -288,11 +287,80 @@ class HomePageState extends State<HomePage>{
                              },
                              child:  new Image(image: AssetImage('graphics/about_male_version_4.png'),fit: BoxFit.fill),
                            ),
+
                            GestureDetector(
                              onTap: () {
                                /// TODO: ADD INFO
                              },
                              child:  new Image(image: AssetImage('graphics/website_thumbnail.png'),fit: BoxFit.fill),
+                           ),
+
+                           GestureDetector(
+                             onTap: () {
+                               showDialog(
+                                 context: context,
+                                 builder: (BuildContext context) {
+                                   return AlertDialog(
+                                     title: new Text('Vælg medie', textAlign: TextAlign.center,),
+                                     content: new Row(
+                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                       children: <Widget>[
+                                         new Container(
+                                             margin: EdgeInsets.all(10),
+                                             width: 50.0,
+                                             height: 50.0,
+                                             decoration: new BoxDecoration(
+                                                 image: new DecorationImage(
+                                                     fit: BoxFit.fill,
+                                                     image: new NetworkImage(
+                                                         "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Facebook_logo_%28square%29.png/600px-Facebook_logo_%28square%29.png")
+                                                 )
+                                             )
+                                         ),
+
+
+                                         new Container(
+                                             margin: EdgeInsets.all(10),
+                                             width: 50.0,
+                                             height: 50.0,
+                                             decoration: new BoxDecoration(
+                                                 image: new DecorationImage(
+                                                     fit: BoxFit.fill,
+                                                     image: new NetworkImage(
+                                                         "https://cdn1.iconfinder.com/data/icons/logotypes/32/square-twitter-512.png")
+                                                 )
+                                             )
+                                         ),
+
+                                         new Container(
+                                             margin: EdgeInsets.all(10),
+                                             width: 50.0,
+                                             height: 50.0,
+                                             decoration: new BoxDecoration(
+                                                 image: new DecorationImage(
+                                                     fit: BoxFit.fill,
+                                                     image: new NetworkImage(
+                                                         "https://instagram-brand.com/wp-content/uploads/2016/11/Instagram_AppIcon_Aug2017.png?w=300")
+                                                 )
+                                             )
+                                         ),
+
+
+                                       ],
+                                     ),
+                                   );
+                                 },
+                               );
+                             },
+                             child:  new Image(image: AssetImage('graphics/sociale_medier.png'),fit: BoxFit.fill),
+                           ),
+
+
+                           GestureDetector(
+                             onTap: () {
+
+                             },
+                             child:  new Image(image: AssetImage('graphics/placeholder.png'),fit: BoxFit.fill),
                            ),
                          ],
                      )
