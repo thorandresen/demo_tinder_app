@@ -33,6 +33,47 @@ class HomePageState extends State<HomePage>{
   ScrollController _controller; // Scroll controller
   bool _hideFAB; //
 
+  // Variable strings used.
+  String _name = 'Lars Løkke (V)';
+  String _partyName = 'Venstre';
+  String _kernePrincipper = 'Kerne principper';
+  String _aboutURL = 'https://www.venstre.dk/personer/formanden';
+  String _partyURL = 'https://www.venstre.dk/';
+  // -- FØRSTE KERNEPRINCIP --
+  String _politikPrincip = 'Politik';
+  static double _politikPrincipPercent = 0.9;
+  String _politikPrincipPercentText = (_politikPrincipPercent*10).toStringAsFixed(0)+"/10";
+  Color _politikColor = Colors.blue;
+  // -- ANDET KERNEPRINCIP --
+  String _andetPrincipName = 'Udlændinge politik';
+  static double _andetPrincipPercent = 0.9;
+  String _andetPrincipPercentText = (_andetPrincipPercent*10).toStringAsFixed(0)+"/10";
+  String _andetPrincipLeft = 'Lempelig';
+  String _andetPrincipRight = 'Stram';
+  Color _andetColor = Colors.red;
+  // -- TREDJE KERNEPRINCIP --
+  String _trejdePrincipName = 'Miljøpolitik';
+  static double _tredjePrincipPercent = 0.7;
+  String _tredjePrincipPercentText = (_tredjePrincipPercent*10).toStringAsFixed(0)+"/10";
+  String _tredjePrincipLeft = 'Fossil';
+  String _tredjePrincipRight = 'Grøn';
+  Color _trejdeColor = Colors.green;
+  // -- FJERDE KERNEPRINCIP --
+  String _fjerdePrincipName = 'Privat skattepolitik';
+  static double _fjerdePrincipPercent = 0.3;
+  String _fjerdePrincipPercentText = (_fjerdePrincipPercent*10).toStringAsFixed(0)+"/10";
+  String _fjerdePrincipLeft = 'Lav';
+  String _fjerdePrincipRight = 'Høj';
+  Color _fjerdeColor = Colors.blue;
+  // -- FEMTE KERNEPRINCIP --
+  String _femtePrincipName = 'Skattelettelser for erhverv';
+  static double _femtePrincipPercent = 0;
+  String _femtePrincipPercentText = (_femtePrincipPercent*10).toStringAsFixed(0)+"/10";
+  String _femtePrincipLeft = 'Lav';
+  String _femtePrincipRight = 'Høj';
+  Color _femteColor = Colors.blue;
+
+
   @override
   void initState(){
     _controller = ScrollController();
@@ -47,7 +88,8 @@ class HomePageState extends State<HomePage>{
     return Scaffold(
     backgroundColor: Colors.white,
         resizeToAvoidBottomPadding: false,
-        body: NestedScrollView(
+        body: Card(
+        child: NestedScrollView(
         controller: _controller,
                   headerSliverBuilder: (BuildContext context, bool innerBoxScrolled){
                       return <Widget>[
@@ -58,7 +100,7 @@ class HomePageState extends State<HomePage>{
                           backgroundColor: Color.fromARGB(255, 74, 104, 153),
                           centerTitle: true,
                           flexibleSpace: FlexibleSpaceBar(
-                              title:  new Text('Lars Løkke (V)',
+                              title:  new Text(_name,
                                 style: new TextStyle(
                                   fontSize: 20.0,
                                 ),
@@ -93,7 +135,7 @@ class HomePageState extends State<HomePage>{
                         ),
                       ];
                   },
-                  body:SingleChildScrollView(
+                  body: SingleChildScrollView(
                     /// TODO: FIX SO THAT FAB SHOWS WHEN SCROLLING BOTH VIEWS.
                   child: new Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -104,14 +146,14 @@ class HomePageState extends State<HomePage>{
                       new Column(
                         children: <Widget>[
                           Text(''),
-                          new Text('Kerne principper',
+                          new Text(_kernePrincipper,
                             style: new TextStyle(
                               fontSize: 20.0,
                             ),
                           ),
 
-                          // Politik
-                          new Text('Politik',
+                          /// Politik
+                          new Text(_politikPrincip,
                             style: new TextStyle(
                               fontSize: 15,
                             ),
@@ -122,11 +164,11 @@ class HomePageState extends State<HomePage>{
                             animation: true,
                             lineHeight: 20.0,
                             animationDuration: 2500,
-                            percent: 0.9,
-                            center: Text("9/10"),
+                            percent: _politikPrincipPercent,
+                            center: Text(_politikPrincipPercentText),
                             linearStrokeCap: LinearStrokeCap.roundAll,
                             padding: EdgeInsets.symmetric(),
-                            progressColor: Colors.blue,
+                            progressColor: _politikColor,
                           ),
                           new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -139,9 +181,9 @@ class HomePageState extends State<HomePage>{
                             ],
                           ),
 
-                          // Udlændinge politik
+                          /// ANDET PRNCIP
                           Text(''),
-                          new Text('Udlændinge politik',
+                          new Text(_andetPrincipName,
                             style: new TextStyle(
                               fontSize: 15,
                             ),
@@ -152,27 +194,27 @@ class HomePageState extends State<HomePage>{
                             animation: true,
                             lineHeight: 20.0,
                             animationDuration: 2500,
-                            percent: 0.9,
-                            center: Text("9/10"),
+                            percent: _andetPrincipPercent,
+                            center: Text(_andetPrincipPercentText),
                             linearStrokeCap: LinearStrokeCap.roundAll,
                             padding: EdgeInsets.symmetric(),
-                            progressColor: Colors.red,
+                            progressColor: _andetColor,
                           ),
                           new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              new Flexible(child: Text('Lempelig')),
+                              new Flexible(child: Text(_andetPrincipLeft)),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
-                              new Flexible(child: Text('Stram')),
+                              new Flexible(child: Text(_andetPrincipRight)),
                             ],
                           ),
 
-                          // MILJØ
+                          /// TREDJE PRINCIP
                           Text(''),
-                          new Text('Miljøpolitik',
+                          new Text(_trejdePrincipName,
                             style: new TextStyle(
                               fontSize: 15,
                             ),
@@ -183,27 +225,27 @@ class HomePageState extends State<HomePage>{
                             animation: true,
                             lineHeight: 20.0,
                             animationDuration: 2500,
-                            percent: 0.7,
-                            center: Text("7/10"),
+                            percent: _tredjePrincipPercent,
+                            center: Text(_tredjePrincipPercentText),
                             linearStrokeCap: LinearStrokeCap.roundAll,
                             padding: EdgeInsets.symmetric(),
-                            progressColor: Colors.lightGreen,
+                            progressColor: _trejdeColor,
                           ),
                           new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              new Flexible(child: Text('Fossil')),
+                              new Flexible(child: Text(_tredjePrincipLeft)),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
-                              new Flexible(child: Text('Grøn')),
+                              new Flexible(child: Text(_tredjePrincipRight)),
                             ],
                           ),
 
-                          // SKATTEPOLITIK
+                          /// FJERDE PRINCIP
                           Text(''),
-                          new Text('Privat skattepolitik',
+                          new Text(_fjerdePrincipName,
                             style: new TextStyle(
                               fontSize: 15,
                             ),
@@ -214,27 +256,27 @@ class HomePageState extends State<HomePage>{
                             animation: true,
                             lineHeight: 20.0,
                             animationDuration: 2500,
-                            percent: 0.3,
-                            center: Text("3/10"),
+                            percent: _fjerdePrincipPercent,
+                            center: Text(_fjerdePrincipPercentText),
                             linearStrokeCap: LinearStrokeCap.roundAll,
                             padding: EdgeInsets.symmetric(),
-                            progressColor: Colors.blue,
+                            progressColor: _fjerdeColor,
                           ),
                           new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              new Flexible(child: Text('Lav')),
+                              new Flexible(child: Text(_fjerdePrincipLeft)),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
-                              new Flexible(child: Text('Høj')),
+                              new Flexible(child: Text(_fjerdePrincipRight)),
                             ],
                           ),
 
-                          // SKATTELETTELSER
+                          /// FEMTE PRINCIP
                           Text(''),
-                          new Text('Skattelettelser for erhverv',
+                          new Text(_femtePrincipName,
                             style: new TextStyle(
                               fontSize: 15,
                             ),
@@ -245,21 +287,21 @@ class HomePageState extends State<HomePage>{
                             animation: true,
                             lineHeight: 20.0,
                             animationDuration: 2500,
-                            percent: 1,
-                            center: Text("10/10"),
+                            percent: _femtePrincipPercent,
+                            center: Text(_femtePrincipPercentText),
                             linearStrokeCap: LinearStrokeCap.roundAll,
                             padding: EdgeInsets.symmetric(),
-                            progressColor: Colors.blue,
+                            progressColor: _femteColor,
                           ),
                           new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              new Flexible(child: Text('Imod')),
+                              new Flexible(child: Text(_femtePrincipLeft)),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
                               new Flexible(child: Text('')),
-                              new Flexible(child: Text('For')),
+                              new Flexible(child: Text(_femtePrincipRight)),
                             ],
                           ),
 
@@ -283,14 +325,20 @@ class HomePageState extends State<HomePage>{
                          children: <Widget>[
                            GestureDetector(
                              onTap: () {
-                               /// TODO: ADD INFO BANNER AND WHEN TOUCHED FOR ALL BELOW ALSO
+                               Navigator.push(
+                                 context,
+                                 MaterialPageRoute(builder: (context) => WebViewPage(_name, _aboutURL)),
+                               );
                              },
                              child:  new Image(image: AssetImage('graphics/about_male_version_4.png'),fit: BoxFit.fill),
                            ),
 
                            GestureDetector(
                              onTap: () {
-                               /// TODO: ADD INFO
+                               Navigator.push(
+                                 context,
+                                 MaterialPageRoute(builder: (context) => WebViewPage(_partyName, _partyURL)),
+                               );
                              },
                              child:  new Image(image: AssetImage('graphics/website_thumbnail.png'),fit: BoxFit.fill),
                            ),
@@ -312,8 +360,8 @@ class HomePageState extends State<HomePage>{
                                              decoration: new BoxDecoration(
                                                  image: new DecorationImage(
                                                      fit: BoxFit.fill,
-                                                     image: new NetworkImage(
-                                                         "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Facebook_logo_%28square%29.png/600px-Facebook_logo_%28square%29.png")
+                                                     image: new AssetImage(
+                                                         "graphics/fb_logo.png")
                                                  )
                                              )
                                          ),
@@ -326,8 +374,8 @@ class HomePageState extends State<HomePage>{
                                              decoration: new BoxDecoration(
                                                  image: new DecorationImage(
                                                      fit: BoxFit.fill,
-                                                     image: new NetworkImage(
-                                                         "https://cdn1.iconfinder.com/data/icons/logotypes/32/square-twitter-512.png")
+                                                     image: new AssetImage(
+                                                         "graphics/twitter_logo.png")
                                                  )
                                              )
                                          ),
@@ -339,8 +387,8 @@ class HomePageState extends State<HomePage>{
                                              decoration: new BoxDecoration(
                                                  image: new DecorationImage(
                                                      fit: BoxFit.fill,
-                                                     image: new NetworkImage(
-                                                         "https://instagram-brand.com/wp-content/uploads/2016/11/Instagram_AppIcon_Aug2017.png?w=300")
+                                                     image: new AssetImage(
+                                                         "graphics/instagram_logo.png")
                                                  )
                                              )
                                          ),
@@ -368,6 +416,7 @@ class HomePageState extends State<HomePage>{
                   ),
                   ),
                 ),
+        ),
 
 
       /// FAB
@@ -382,6 +431,7 @@ class HomePageState extends State<HomePage>{
             height: 80,
             width: 80,
             child: FloatingActionButton(
+              heroTag: "btn1",
               onPressed: () {},
               backgroundColor: Colors.white,
               child: Icon(Icons.thumb_down, color: Colors.red,size: 40.0),
@@ -392,6 +442,7 @@ class HomePageState extends State<HomePage>{
               height: 80,
               width: 80,
               child: FloatingActionButton(
+                heroTag: "btn2",
                 onPressed: () {},
                 backgroundColor: Colors.white,
                 child: Icon(Icons.thumb_up, color: Colors.green,size: 40.0),
@@ -404,7 +455,6 @@ class HomePageState extends State<HomePage>{
       
     );
   }
-
 
   /// Method for listening to scroll by the user.
   void _scrollListener() {
@@ -420,6 +470,8 @@ class HomePageState extends State<HomePage>{
       });
     }
   }
+
+
 }
 
 class HomePage extends StatefulWidget {
@@ -430,27 +482,47 @@ class HomePage extends StatefulWidget {
 /// WEBVIEW PAGE
 ///
 class WebViewPageState extends State<WebViewPage>{
+
+  final String _information;
+  final String _URL;
+
+  WebViewPageState(this._information, this._URL);
+
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return Scaffold(
+      body: new MaterialApp(
         routes: {
           "/": (_) => new WebviewScaffold(
-            url: 'https://stackoverflow.com/jobs/239220/senior-java-kotlin-engineer-retail-operations-zalando-se?med=clc',
             appBar: new AppBar(
-              title: new Text("Widget webview"),
+              title: new Text(_information),
               centerTitle: true,
               backgroundColor: Color.fromARGB(255, 74, 104, 153),
+              leading: IconButton(icon: Icon(Icons.arrow_back),
+                  onPressed: ()=>goHomeScreen(),
+              ),
             ),
+            url: _URL,
             withJavascript: true,
-            withZoom: true,
           ),
         },
-      );
+      ),
+    );
+  }
+
+  void goHomeScreen(){
+    Navigator.pop(context);
   }
 }
 
 class WebViewPage extends StatefulWidget{
-  WebViewPageState createState() => new WebViewPageState();
+
+  final String _information;
+  final String _URL;
+
+  WebViewPage(this._information, this._URL);
+
+  WebViewPageState createState() => new WebViewPageState(_information, _URL);
 }
 
 
