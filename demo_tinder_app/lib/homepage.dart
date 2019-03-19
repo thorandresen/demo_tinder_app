@@ -70,10 +70,9 @@ class HomePageState extends State<HomePage>{
       backgroundColor: Colors.white,
       resizeToAvoidBottomPadding: false,
       body: Card(
-        child: NestedScrollView(
+        child: CustomScrollView(
           controller: _controller,
-          headerSliverBuilder: (BuildContext context, bool innerBoxScrolled){
-            return <Widget>[
+          slivers: <Widget>[
               SliverAppBar(
                   floating: false,
                   pinned: true,
@@ -114,292 +113,293 @@ class HomePageState extends State<HomePage>{
                     ),
                   )
               ),
-            ];
-          },
-          body: SingleChildScrollView(
-            /// TODO: FIX SO THAT FAB SHOWS WHEN SCROLLING BOTH VIEWS.
-            child: new Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
 
-                // Politiske præfferencer
+              SliverList(
+                delegate: SliverChildListDelegate(
+                  [
                 new Column(
-                  children: <Widget>[
-                    Text(''),
-                    new Text(_kernePrincipper,
-                      style: new TextStyle(
-                        fontSize: 20.0,
-                      ),
-                    ),
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
 
-                    /// Politik
-                    new Text(_politikPrincip,
-                      style: new TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                    new LinearPercentIndicator(
-                      width: MediaQuery.of(context).size.width - 100,
-                      alignment: MainAxisAlignment.center,
-                      animation: true,
-                      lineHeight: 20.0,
-                      animationDuration: 2500,
-                      percent: _politikPrincipPercent,
-                      center: Text(_politikPrincipPercentText),
-                      linearStrokeCap: LinearStrokeCap.roundAll,
-                      padding: EdgeInsets.symmetric(),
-                      progressColor: _politikColor,
-                    ),
-                    new Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    // Politiske præfferencer
+                    new Column(
                       children: <Widget>[
-                        new Flexible(child: Text('Socialisme')),
-                        new Flexible(child: Text('')),
-                        new Flexible(child: Text('Sociallib.')),
-                        new Flexible(child: Text('')),
-                        new Flexible(child: Text('Liberalisme')),
+                        Text(''),
+                        new Text(_kernePrincipper,
+                          style: new TextStyle(
+                            fontSize: 20.0,
+                          ),
+                        ),
+
+                        /// Politik
+                        new Text(_politikPrincip,
+                          style: new TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                        new LinearPercentIndicator(
+                          width: MediaQuery.of(context).size.width - 100,
+                          alignment: MainAxisAlignment.center,
+                          animation: true,
+                          lineHeight: 20.0,
+                          animationDuration: 2500,
+                          percent: _politikPrincipPercent,
+                          center: Text(_politikPrincipPercentText),
+                          linearStrokeCap: LinearStrokeCap.roundAll,
+                          padding: EdgeInsets.symmetric(),
+                          progressColor: _politikColor,
+                        ),
+                        new Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            new Flexible(child: Text('Socialisme')),
+                            new Flexible(child: Text('')),
+                            new Flexible(child: Text('Sociallib.')),
+                            new Flexible(child: Text('')),
+                            new Flexible(child: Text('Liberalisme')),
+                          ],
+                        ),
+
+                        /// ANDET PRNCIP
+                        Text(''),
+                        new Text(_andetPrincipName,
+                          style: new TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                        new LinearPercentIndicator(
+                          width: MediaQuery.of(context).size.width - 100,
+                          alignment: MainAxisAlignment.center,
+                          animation: true,
+                          lineHeight: 20.0,
+                          animationDuration: 2500,
+                          percent: _andetPrincipPercent,
+                          center: Text(_andetPrincipPercentText),
+                          linearStrokeCap: LinearStrokeCap.roundAll,
+                          padding: EdgeInsets.symmetric(),
+                          progressColor: _andetColor,
+                        ),
+                        new Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            new Flexible(child: Text(_andetPrincipLeft)),
+                            new Flexible(child: Text('')),
+                            new Flexible(child: Text('')),
+                            new Flexible(child: Text('')),
+                            new Flexible(child: Text('')),
+                            new Flexible(child: Text(_andetPrincipRight)),
+                          ],
+                        ),
+
+                        /// TREDJE PRINCIP
+                        Text(''),
+                        new Text(_trejdePrincipName,
+                          style: new TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                        new LinearPercentIndicator(
+                          width: MediaQuery.of(context).size.width - 100,
+                          alignment: MainAxisAlignment.center,
+                          animation: true,
+                          lineHeight: 20.0,
+                          animationDuration: 2500,
+                          percent: _tredjePrincipPercent,
+                          center: Text(_tredjePrincipPercentText),
+                          linearStrokeCap: LinearStrokeCap.roundAll,
+                          padding: EdgeInsets.symmetric(),
+                          progressColor: _trejdeColor,
+                        ),
+                        new Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            new Flexible(child: Text(_tredjePrincipLeft)),
+                            new Flexible(child: Text('')),
+                            new Flexible(child: Text('')),
+                            new Flexible(child: Text('')),
+                            new Flexible(child: Text('')),
+                            new Flexible(child: Text(_tredjePrincipRight)),
+                          ],
+                        ),
+
+                        /// FJERDE PRINCIP
+                        Text(''),
+                        new Text(_fjerdePrincipName,
+                          style: new TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                        new LinearPercentIndicator(
+                          width: MediaQuery.of(context).size.width - 100,
+                          alignment: MainAxisAlignment.center,
+                          animation: true,
+                          lineHeight: 20.0,
+                          animationDuration: 2500,
+                          percent: _fjerdePrincipPercent,
+                          center: Text(_fjerdePrincipPercentText),
+                          linearStrokeCap: LinearStrokeCap.roundAll,
+                          padding: EdgeInsets.symmetric(),
+                          progressColor: _fjerdeColor,
+                        ),
+                        new Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            new Flexible(child: Text(_fjerdePrincipLeft)),
+                            new Flexible(child: Text('')),
+                            new Flexible(child: Text('')),
+                            new Flexible(child: Text('')),
+                            new Flexible(child: Text('')),
+                            new Flexible(child: Text(_fjerdePrincipRight)),
+                          ],
+                        ),
+
+                        /// FEMTE PRINCIP
+                        Text(''),
+                        new Text(_femtePrincipName,
+                          style: new TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                        new LinearPercentIndicator(
+                          width: MediaQuery.of(context).size.width - 100,
+                          alignment: MainAxisAlignment.center,
+                          animation: true,
+                          lineHeight: 20.0,
+                          animationDuration: 2500,
+                          percent: _femtePrincipPercent,
+                          center: Text(_femtePrincipPercentText),
+                          linearStrokeCap: LinearStrokeCap.roundAll,
+                          padding: EdgeInsets.symmetric(),
+                          progressColor: _femteColor,
+                        ),
+                        new Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            new Flexible(child: Text(_femtePrincipLeft)),
+                            new Flexible(child: Text('')),
+                            new Flexible(child: Text('')),
+                            new Flexible(child: Text('')),
+                            new Flexible(child: Text('')),
+                            new Flexible(child: Text(_femtePrincipRight)),
+                          ],
+                        ),
+
+                        Text(''),
+                        new Text('Mere information',
+                          style: new TextStyle(
+                              fontSize: 20
+                          ),
+                        ),
+
                       ],
                     ),
-
-                    /// ANDET PRNCIP
-                    Text(''),
-                    new Text(_andetPrincipName,
-                      style: new TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                    new LinearPercentIndicator(
-                      width: MediaQuery.of(context).size.width - 100,
-                      alignment: MainAxisAlignment.center,
-                      animation: true,
-                      lineHeight: 20.0,
-                      animationDuration: 2500,
-                      percent: _andetPrincipPercent,
-                      center: Text(_andetPrincipPercentText),
-                      linearStrokeCap: LinearStrokeCap.roundAll,
-                      padding: EdgeInsets.symmetric(),
-                      progressColor: _andetColor,
-                    ),
-                    new Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    new GridView.count(
+                      crossAxisCount: 2,
+                      shrinkWrap: true,
+                      childAspectRatio: 1.0,
+                      padding: const EdgeInsets.all(4.0),
+                      mainAxisSpacing: 4.0,
+                      crossAxisSpacing: 4.0,
+                      physics: ScrollPhysics(),
                       children: <Widget>[
-                        new Flexible(child: Text(_andetPrincipLeft)),
-                        new Flexible(child: Text('')),
-                        new Flexible(child: Text('')),
-                        new Flexible(child: Text('')),
-                        new Flexible(child: Text('')),
-                        new Flexible(child: Text(_andetPrincipRight)),
-                      ],
-                    ),
-
-                    /// TREDJE PRINCIP
-                    Text(''),
-                    new Text(_trejdePrincipName,
-                      style: new TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                    new LinearPercentIndicator(
-                      width: MediaQuery.of(context).size.width - 100,
-                      alignment: MainAxisAlignment.center,
-                      animation: true,
-                      lineHeight: 20.0,
-                      animationDuration: 2500,
-                      percent: _tredjePrincipPercent,
-                      center: Text(_tredjePrincipPercentText),
-                      linearStrokeCap: LinearStrokeCap.roundAll,
-                      padding: EdgeInsets.symmetric(),
-                      progressColor: _trejdeColor,
-                    ),
-                    new Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        new Flexible(child: Text(_tredjePrincipLeft)),
-                        new Flexible(child: Text('')),
-                        new Flexible(child: Text('')),
-                        new Flexible(child: Text('')),
-                        new Flexible(child: Text('')),
-                        new Flexible(child: Text(_tredjePrincipRight)),
-                      ],
-                    ),
-
-                    /// FJERDE PRINCIP
-                    Text(''),
-                    new Text(_fjerdePrincipName,
-                      style: new TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                    new LinearPercentIndicator(
-                      width: MediaQuery.of(context).size.width - 100,
-                      alignment: MainAxisAlignment.center,
-                      animation: true,
-                      lineHeight: 20.0,
-                      animationDuration: 2500,
-                      percent: _fjerdePrincipPercent,
-                      center: Text(_fjerdePrincipPercentText),
-                      linearStrokeCap: LinearStrokeCap.roundAll,
-                      padding: EdgeInsets.symmetric(),
-                      progressColor: _fjerdeColor,
-                    ),
-                    new Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        new Flexible(child: Text(_fjerdePrincipLeft)),
-                        new Flexible(child: Text('')),
-                        new Flexible(child: Text('')),
-                        new Flexible(child: Text('')),
-                        new Flexible(child: Text('')),
-                        new Flexible(child: Text(_fjerdePrincipRight)),
-                      ],
-                    ),
-
-                    /// FEMTE PRINCIP
-                    Text(''),
-                    new Text(_femtePrincipName,
-                      style: new TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                    new LinearPercentIndicator(
-                      width: MediaQuery.of(context).size.width - 100,
-                      alignment: MainAxisAlignment.center,
-                      animation: true,
-                      lineHeight: 20.0,
-                      animationDuration: 2500,
-                      percent: _femtePrincipPercent,
-                      center: Text(_femtePrincipPercentText),
-                      linearStrokeCap: LinearStrokeCap.roundAll,
-                      padding: EdgeInsets.symmetric(),
-                      progressColor: _femteColor,
-                    ),
-                    new Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        new Flexible(child: Text(_femtePrincipLeft)),
-                        new Flexible(child: Text('')),
-                        new Flexible(child: Text('')),
-                        new Flexible(child: Text('')),
-                        new Flexible(child: Text('')),
-                        new Flexible(child: Text(_femtePrincipRight)),
-                      ],
-                    ),
-
-                    Text(''),
-                    new Text('Mere information',
-                      style: new TextStyle(
-                          fontSize: 20
-                      ),
-                    ),
-
-                  ],
-                ),
-                new GridView.count(
-                  crossAxisCount: 2,
-                  shrinkWrap: true,
-                  childAspectRatio: 1.0,
-                  padding: const EdgeInsets.all(4.0),
-                  mainAxisSpacing: 4.0,
-                  crossAxisSpacing: 4.0,
-                  physics: ScrollPhysics(),
-                  children: <Widget>[
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => WebViewPage(_name, _aboutURL)),
-                        );
-                      },
-                      child:  new Image(image: AssetImage('graphics/about_male_version_4.png'),fit: BoxFit.fill),
-                    ),
-
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => WebViewPage(_partyName, _partyURL)),
-                        );
-                      },
-                      child:  new Image(image: AssetImage('graphics/website_thumbnail.png'),fit: BoxFit.fill),
-                    ),
-
-                    GestureDetector(
-                      onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: new Text('Vælg medie', textAlign: TextAlign.center,),
-                              content: new Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  new Container(
-                                      margin: EdgeInsets.all(10),
-                                      width: 50.0,
-                                      height: 50.0,
-                                      decoration: new BoxDecoration(
-                                          image: new DecorationImage(
-                                              fit: BoxFit.fill,
-                                              image: new AssetImage(
-                                                  "graphics/fb_logo.png")
-                                          )
-                                      )
-                                  ),
-
-
-                                  new Container(
-                                      margin: EdgeInsets.all(10),
-                                      width: 50.0,
-                                      height: 50.0,
-                                      decoration: new BoxDecoration(
-                                          image: new DecorationImage(
-                                              fit: BoxFit.fill,
-                                              image: new AssetImage(
-                                                  "graphics/twitter_logo.png")
-                                          )
-                                      )
-                                  ),
-
-                                  new Container(
-                                      margin: EdgeInsets.all(10),
-                                      width: 50.0,
-                                      height: 50.0,
-                                      decoration: new BoxDecoration(
-                                          image: new DecorationImage(
-                                              fit: BoxFit.fill,
-                                              image: new AssetImage(
-                                                  "graphics/instagram_logo.png")
-                                          )
-                                      )
-                                  ),
-
-
-                                ],
-                              ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => WebViewPage(_name, _aboutURL)),
                             );
                           },
-                        );
-                      },
-                      child:  new Image(image: AssetImage('graphics/sociale_medier.png'),fit: BoxFit.fill),
-                    ),
+                          child:  new Image(image: AssetImage('graphics/about_male_version_4.png'),fit: BoxFit.fill),
+                        ),
+
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => WebViewPage(_partyName, _partyURL)),
+                            );
+                          },
+                          child:  new Image(image: AssetImage('graphics/website_thumbnail.png'),fit: BoxFit.fill),
+                        ),
+
+                        GestureDetector(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: new Text('Vælg medie', textAlign: TextAlign.center,),
+                                  content: new Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: <Widget>[
+                                      new Container(
+                                          margin: EdgeInsets.all(10),
+                                          width: 50.0,
+                                          height: 50.0,
+                                          decoration: new BoxDecoration(
+                                              image: new DecorationImage(
+                                                  fit: BoxFit.fill,
+                                                  image: new AssetImage(
+                                                      "graphics/fb_logo.png")
+                                              )
+                                          )
+                                      ),
 
 
-                    GestureDetector(
-                      onTap: () {
+                                      new Container(
+                                          margin: EdgeInsets.all(10),
+                                          width: 50.0,
+                                          height: 50.0,
+                                          decoration: new BoxDecoration(
+                                              image: new DecorationImage(
+                                                  fit: BoxFit.fill,
+                                                  image: new AssetImage(
+                                                      "graphics/twitter_logo.png")
+                                              )
+                                          )
+                                      ),
 
-                      },
-                      child:  new Image(image: AssetImage('graphics/placeholder.png'),fit: BoxFit.fill),
-                    ),
+                                      new Container(
+                                          margin: EdgeInsets.all(10),
+                                          width: 50.0,
+                                          height: 50.0,
+                                          decoration: new BoxDecoration(
+                                              image: new DecorationImage(
+                                                  fit: BoxFit.fill,
+                                                  image: new AssetImage(
+                                                      "graphics/instagram_logo.png")
+                                              )
+                                          )
+                                      ),
+
+
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child:  new Image(image: AssetImage('graphics/sociale_medier.png'),fit: BoxFit.fill),
+                        ),
+
+                        GestureDetector(
+                          onTap: () {
+
+                          },
+                          child:  new Image(image: AssetImage('graphics/placeholder.png'),fit: BoxFit.fill),
+                        ),
+                      ],
+                    )
                   ],
-                )
+                ),
+               ],
+              ),
+              ),
               ],
-            ),
+
           ),
         ),
-      ),
-
-
       /// FAB
       floatingActionButton:
       new AnimatedOpacity(opacity: _hideFAB ? 0.0 : 1.0,
@@ -433,8 +433,7 @@ class HomePageState extends State<HomePage>{
           ],
         ),
       ),
-
-    );
+      );
   }
 
   /// Method for listening to scroll by the user.
