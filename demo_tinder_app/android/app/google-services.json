@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "491444741215",
+    "firebase_url": "https://politiciantinder.firebaseio.com",
+    "project_id": "politiciantinder",
+    "storage_bucket": "politiciantinder.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491444741215:android:7498801952359387",
+        "android_client_info": {
+          "package_name": "com.testdomain.demo_tinder_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "491444741215-rllpr6n8b634f15oso6d14knekasabq2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBT8n05Eu1lphQXdYFklgQFZuipr2fyr4U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

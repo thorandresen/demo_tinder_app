@@ -56,6 +56,7 @@ class HomePageState extends State<HomePage>{
   /// Method that inits shit when starting.
   @override
   void initState(){
+    retrieveFireStore();
     _controller = ScrollController();
     _controller.addListener(_scrollListener);
     _hideFAB = false;
@@ -451,6 +452,9 @@ class HomePageState extends State<HomePage>{
     }
   }
 
+  void retrieveFireStore(){
+
+  }
 
 }
 
