@@ -17,7 +17,6 @@ class HomePageState extends State<HomePage>{
   // Variable strings used.
   String _name = 'Lars Løkke (V)';
   String _partyName = 'Venstre';
-  String _kernePrincipper = 'Kerne principper';
   String _aboutURL = 'https://www.venstre.dk/personer/formanden';
   String _partyURL = 'https://www.venstre.dk/';
   // -- FØRSTE KERNEPRINCIP --
@@ -54,7 +53,7 @@ class HomePageState extends State<HomePage>{
   String _femtePrincipRight = 'Høj';
   Color _femteColor = Colors.blue;
 
-
+  /// Method that inits shit when starting.
   @override
   void initState(){
     _controller = ScrollController();
@@ -70,6 +69,7 @@ class HomePageState extends State<HomePage>{
       backgroundColor: Colors.white,
       resizeToAvoidBottomPadding: false,
       body: Card(
+        elevation: 10,
         child: CustomScrollView(
           controller: _controller,
           slivers: <Widget>[
@@ -126,7 +126,7 @@ class HomePageState extends State<HomePage>{
                     new Column(
                       children: <Widget>[
                         Text(''),
-                        new Text(_kernePrincipper,
+                        new Text('Kerne principper',
                           style: new TextStyle(
                             fontSize: 20.0,
                           ),
