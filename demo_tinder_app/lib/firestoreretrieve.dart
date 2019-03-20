@@ -3,14 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flip_card/flip_card.dart';
-import 'package:flutter/rendering.dart';
-import 'package:percent_indicator/percent_indicator.dart';
-import 'package:fit_image/fit_image.dart';
-import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-import 'webview.dart';
 
 class FirestoreRetrieveState extends State<FirestoreRetrieve> {
   String _document = 'LarsLøkke';
@@ -22,11 +14,14 @@ class FirestoreRetrieveState extends State<FirestoreRetrieve> {
         stream: Firestore.instance.collection('Venstre').snapshots(),
         builder: (context, snapshot) {
     if (!snapshot.hasData){
-    return Text('Loading...');
+      return new CircularProgressIndicator(
+        backgroundColor: Colors.red,
+      );
     }
-
-    List<DocumentSnapshot> item = snapshot.data.documents;
-    return Text(item[0]['name']);
+    else {
+      List<DocumentSnapshot> item = snapshot.data.documents;
+      return Text(item[0]['name']);
+    }
     },
     ),
     );
