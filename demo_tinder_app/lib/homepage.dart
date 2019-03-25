@@ -15,50 +15,13 @@ class HomePageState extends State<HomePage>{
   ScrollController _controller; // Scroll controller
   bool _hideFAB; //
   int _politicianNo = 0;
-
-  // Variable strings used.
-  String _name = 'Lars Løkke (V)';
+  String _collectionName = 'Venstre';
   String _partyName = 'Venstre';
-  String _aboutURL = 'https://www.venstre.dk/personer/formanden';
-  String _partyURL = 'https://www.venstre.dk/';
-  // -- FØRSTE KERNEPRINCIP --
   String _politikPrincip = 'Politik';
-  static double _politikPrincipPercent = 0.9;
-  String _politikPrincipPercentText = (_politikPrincipPercent*10).toStringAsFixed(0)+"/10";
-  Color _politikColor = Colors.blue;
-  // -- ANDET KERNEPRINCIP --
-  String _andetPrincipName = 'Udlændinge politik';
-  static double _andetPrincipPercent = 0.9;
-  String _andetPrincipPercentText = (_andetPrincipPercent*10).toStringAsFixed(0)+"/10";
-  String _andetPrincipLeft = 'Lempelig';
-  String _andetPrincipRight = 'Stram';
-  Color _andetColor = Colors.red;
-  // -- TREDJE KERNEPRINCIP --
-  String _trejdePrincipName = 'Miljøpolitik';
-  static double _tredjePrincipPercent = 0.7;
-  String _tredjePrincipPercentText = (_tredjePrincipPercent*10).toStringAsFixed(0)+"/10";
-  String _tredjePrincipLeft = 'Fossil';
-  String _tredjePrincipRight = 'Grøn';
-  Color _trejdeColor = Colors.green;
-  // -- FJERDE KERNEPRINCIP --
-  String _fjerdePrincipName = 'Privat skattepolitik';
-  static double _fjerdePrincipPercent = 0.3;
-  String _fjerdePrincipPercentText = (_fjerdePrincipPercent*10).toStringAsFixed(0)+"/10";
-  String _fjerdePrincipLeft = 'Lav';
-  String _fjerdePrincipRight = 'Høj';
-  Color _fjerdeColor = Colors.blue;
-  // -- FEMTE KERNEPRINCIP --
-  String _femtePrincipName = 'Skattelettelser for erhverv';
-  static double _femtePrincipPercent = 0;
-  String _femtePrincipPercentText = (_femtePrincipPercent*10).toStringAsFixed(0)+"/10";
-  String _femtePrincipLeft = 'Lav';
-  String _femtePrincipRight = 'Høj';
-  Color _femteColor = Colors.blue;
 
   /// Method that inits shit when starting.
   @override
   void initState(){
-    retrieveFireStore();
     _controller = ScrollController();
     _controller.addListener(_scrollListener);
     _hideFAB = false;
@@ -72,7 +35,7 @@ class HomePageState extends State<HomePage>{
       backgroundColor: Colors.white,
       resizeToAvoidBottomPadding: false,
       body: StreamBuilder(
-          stream: Firestore.instance.collection('Venstre').snapshots(),
+          stream: Firestore.instance.collection(_collectionName).snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
                      return new LinearProgressIndicator(
@@ -80,9 +43,7 @@ class HomePageState extends State<HomePage>{
             }
             else {
               List<DocumentSnapshot> item = snapshot.data.documents; // Gets the item for the given snapshot.
-              return Card(
-                elevation: 10,
-                child: CustomScrollView(
+              return CustomScrollView(
                   controller: _controller,
                   slivers: <Widget>[
                     SliverAppBar(
@@ -159,11 +120,11 @@ class HomePageState extends State<HomePage>{
                                     animation: true,
                                     lineHeight: 20.0,
                                     animationDuration: 2500,
-                                    percent: _politikPrincipPercent,
-                                    center: Text(_politikPrincipPercentText),
+                                    percent: item[_politicianNo]['politikPrincipPercent'].toDouble(),
+                                    center: Text((item[_politicianNo]['politikPrincipPercent']*10).toStringAsFixed(0)+"/10"),
                                     linearStrokeCap: LinearStrokeCap.roundAll,
                                     padding: EdgeInsets.symmetric(),
-                                    progressColor: _politikColor,
+                                    progressColor: Color(int.parse(item[_politicianNo]['politikColor'])),
                                   ),
                                   new Row(
                                     mainAxisAlignment: MainAxisAlignment
@@ -193,30 +154,29 @@ class HomePageState extends State<HomePage>{
                                     animation: true,
                                     lineHeight: 20.0,
                                     animationDuration: 2500,
-                                    percent: item[_politicianNo]['andetPrincipPercent'],
+                                    percent: item[_politicianNo]['andetPrincipPercent'].toDouble(),
                                     center: Text((item[_politicianNo]['andetPrincipPercent']*10).toStringAsFixed(0)+"/10"),
                                     linearStrokeCap: LinearStrokeCap.roundAll,
                                     padding: EdgeInsets.symmetric(),
-                                    progressColor: _andetColor,
+                                    progressColor: Color(int.parse(item[_politicianNo]['andetPrincipColor'])),
                                   ),
                                   new Row(
-                                    mainAxisAlignment: MainAxisAlignment
-                                        .spaceEvenly,
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: <Widget>[
                                       new Flexible(
-                                          child: Text(_andetPrincipLeft)),
+                                          child: Text(item[_politicianNo]['andetPrincipLeft'])),
                                       new Flexible(child: Text('')),
                                       new Flexible(child: Text('')),
                                       new Flexible(child: Text('')),
                                       new Flexible(child: Text('')),
                                       new Flexible(
-                                          child: Text(_andetPrincipRight)),
+                                          child: Text(item[_politicianNo]['andetPrincipRight'])),
                                     ],
                                   ),
 
                                   /// TREDJE PRINCIP
                                   Text(''),
-                                  new Text(_trejdePrincipName,
+                                  new Text(item[_politicianNo]['tredjePrincipName'],
                                     style: new TextStyle(
                                       fontSize: 15,
                                     ),
@@ -230,30 +190,30 @@ class HomePageState extends State<HomePage>{
                                     animation: true,
                                     lineHeight: 20.0,
                                     animationDuration: 2500,
-                                    percent: _tredjePrincipPercent,
-                                    center: Text(_tredjePrincipPercentText),
+                                    percent: item[_politicianNo]['tredjePrincipPercent'].toDouble(),
+                                    center: Text((item[_politicianNo]['tredjePrincipPercent']*10).toStringAsFixed(0)+"/10"),
                                     linearStrokeCap: LinearStrokeCap.roundAll,
                                     padding: EdgeInsets.symmetric(),
-                                    progressColor: _trejdeColor,
+                                    progressColor: Color(int.parse(item[_politicianNo]['tredjePrincipColor'])),
                                   ),
                                   new Row(
                                     mainAxisAlignment: MainAxisAlignment
                                         .spaceEvenly,
                                     children: <Widget>[
                                       new Flexible(
-                                          child: Text(_tredjePrincipLeft)),
+                                          child: Text(item[_politicianNo]['tredjePrincipLeft'])),
                                       new Flexible(child: Text('')),
                                       new Flexible(child: Text('')),
                                       new Flexible(child: Text('')),
                                       new Flexible(child: Text('')),
                                       new Flexible(
-                                          child: Text(_tredjePrincipRight)),
+                                          child: Text(item[_politicianNo]['tredjePrincipRight'])),
                                     ],
                                   ),
 
                                   /// FJERDE PRINCIP
                                   Text(''),
-                                  new Text(_fjerdePrincipName,
+                                  new Text(item[_politicianNo]['fjerdePrincipName'],
                                     style: new TextStyle(
                                       fontSize: 15,
                                     ),
@@ -267,30 +227,30 @@ class HomePageState extends State<HomePage>{
                                     animation: true,
                                     lineHeight: 20.0,
                                     animationDuration: 2500,
-                                    percent: _fjerdePrincipPercent,
-                                    center: Text(_fjerdePrincipPercentText),
+                                    percent: item[_politicianNo]['fjerdePrincipPercent'].toDouble(),
+                                    center: Text((item[_politicianNo]['fjerdePrincipPercent']*10).toStringAsFixed(0)+"/10"),
                                     linearStrokeCap: LinearStrokeCap.roundAll,
                                     padding: EdgeInsets.symmetric(),
-                                    progressColor: _fjerdeColor,
+                                    progressColor: Color(int.parse(item[_politicianNo]['fjerdePrincipColor'])),
                                   ),
                                   new Row(
                                     mainAxisAlignment: MainAxisAlignment
                                         .spaceEvenly,
                                     children: <Widget>[
                                       new Flexible(
-                                          child: Text(_fjerdePrincipLeft)),
+                                          child: Text(item[_politicianNo]['fjerdePrincipLeft'])),
                                       new Flexible(child: Text('')),
                                       new Flexible(child: Text('')),
                                       new Flexible(child: Text('')),
                                       new Flexible(child: Text('')),
                                       new Flexible(
-                                          child: Text(_fjerdePrincipRight)),
+                                          child: Text(item[_politicianNo]['fjerdePrincipRight'])),
                                     ],
                                   ),
 
                                   /// FEMTE PRINCIP
                                   Text(''),
-                                  new Text(_femtePrincipName,
+                                  new Text(item[_politicianNo]['femtePrincipName'],
                                     style: new TextStyle(
                                       fontSize: 15,
                                     ),
@@ -304,24 +264,24 @@ class HomePageState extends State<HomePage>{
                                     animation: true,
                                     lineHeight: 20.0,
                                     animationDuration: 2500,
-                                    percent: _femtePrincipPercent,
-                                    center: Text(_femtePrincipPercentText),
+                                    percent: item[_politicianNo]['femtePrincipPercent'].toDouble(),
+                                    center: Text((item[_politicianNo]['femtePrincipPercent']*10).toStringAsFixed(0)+"/10"),
                                     linearStrokeCap: LinearStrokeCap.roundAll,
                                     padding: EdgeInsets.symmetric(),
-                                    progressColor: _femteColor,
+                                    progressColor: Color(int.parse(item[_politicianNo]['femtePrincipColor'])),
                                   ),
                                   new Row(
                                     mainAxisAlignment: MainAxisAlignment
                                         .spaceEvenly,
                                     children: <Widget>[
                                       new Flexible(
-                                          child: Text(_femtePrincipLeft)),
+                                          child: Text(item[_politicianNo]['femtePrincipLeft'])),
                                       new Flexible(child: Text('')),
                                       new Flexible(child: Text('')),
                                       new Flexible(child: Text('')),
                                       new Flexible(child: Text('')),
                                       new Flexible(
-                                          child: Text(_femtePrincipRight)),
+                                          child: Text(item[_politicianNo]['femtePrincipRight'])),
                                     ],
                                   ),
 
@@ -438,7 +398,7 @@ class HomePageState extends State<HomePage>{
 
                                     },
                                     child: new Image(image: AssetImage(
-                                        'graphics/placeholder.png'),
+                                        'graphics/About_cases.png'),
                                         fit: BoxFit.fill),
                                   ),
                                 ],
@@ -450,8 +410,8 @@ class HomePageState extends State<HomePage>{
                     ),
                   ],
 
-                ),
-              );
+                );
+
             }
           }
   ),
@@ -505,11 +465,6 @@ class HomePageState extends State<HomePage>{
       });
     }
   }
-
-  void retrieveFireStore(){
-
-  }
-
 }
 
 class HomePage extends StatefulWidget {
