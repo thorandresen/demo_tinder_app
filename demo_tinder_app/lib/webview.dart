@@ -29,7 +29,7 @@ class WebViewPageState extends State<WebViewPage>{
               centerTitle: true,
               backgroundColor: Color.fromARGB(255, 74, 104, 153),
               leading: IconButton(icon: Icon(Icons.arrow_back),
-                onPressed: ()=>goHomeScreen(),
+                onPressed: ()=> goHomeScreen(),
               ),
             ),
             url: _URL,

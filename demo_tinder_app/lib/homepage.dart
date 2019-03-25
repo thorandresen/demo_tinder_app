@@ -28,13 +28,35 @@ class HomePageState extends State<HomePage>{
     super.initState();
   }
 
+  /// The method for changing politician after like/dislike.
+  void _changePolitician(bool isLiked)
+  {
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext _context) => HomePage()));
+  }
+
   /// The widget for building the whole card.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomPadding: false,
-      body: StreamBuilder(
+      body: Dismissible(
+        key: ValueKey(_politicianNo.toString()+_collectionName),
+        background: Container(color: Colors.red),
+        secondaryBackground: Container(color: Colors.green),
+        onDismissed: (direction) {
+          if(direction == DismissDirection.endToStart){
+            setState(() {
+              _changePolitician(true);
+            });
+          }
+          else{
+            setState(() {
+              _changePolitician(false);
+            });
+          }
+        },
+        child: StreamBuilder(
           stream: Firestore.instance.collection(_collectionName).snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
@@ -412,8 +434,10 @@ class HomePageState extends State<HomePage>{
 
                 );
 
+
             }
           }
+        ),
   ),
       /// FAB
       floatingActionButton:
