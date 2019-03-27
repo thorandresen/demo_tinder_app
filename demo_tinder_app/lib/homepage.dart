@@ -10,15 +10,17 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'webview.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'newpolitician.dart';
 
 class HomePageState extends State<HomePage>{
   ScrollController _controller; // Scroll controller
   bool _hideFAB; //
   int _politicianNo = 0;
-  String _collectionName = 'SocialDemokraterne';
+  String _collectionName;
   String _partyName;
   String _politikPrincip = 'Politik';
   List<String> _backgroundList = new List(2);
+  NewPolitician _newPoltician = new NewPolitician();
 
   /// Method that inits shit when starting.
   @override
@@ -28,6 +30,7 @@ class HomePageState extends State<HomePage>{
     _hideFAB = false;
     _backgroundList[0] = "graphics/Venstre_background.png";
     _backgroundList[1] = "graphics/SD_background.png";
+    _collectionName = _newPoltician.collection();
     super.initState();
   }
 
