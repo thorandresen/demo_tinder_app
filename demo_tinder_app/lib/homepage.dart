@@ -15,9 +15,10 @@ class HomePageState extends State<HomePage>{
   ScrollController _controller; // Scroll controller
   bool _hideFAB; //
   int _politicianNo = 0;
-  String _collectionName = 'Venstre';
-  String _partyName = 'Venstre';
+  String _collectionName = 'SocialDemokraterne';
+  String _partyName;
   String _politikPrincip = 'Politik';
+  List<String> _backgroundList = new List(2);
 
   /// Method that inits shit when starting.
   @override
@@ -25,6 +26,8 @@ class HomePageState extends State<HomePage>{
     _controller = ScrollController();
     _controller.addListener(_scrollListener);
     _hideFAB = false;
+    _backgroundList[0] = "graphics/Venstre_background.png";
+    _backgroundList[1] = "graphics/SD_background.png";
     super.initState();
   }
 
@@ -65,6 +68,8 @@ class HomePageState extends State<HomePage>{
             }
             else {
               List<DocumentSnapshot> item = snapshot.data.documents; // Gets the item for the given snapshot.
+              _partyName = item[_politicianNo]['partiName'];
+
               return CustomScrollView(
                   controller: _controller,
                   slivers: <Widget>[
@@ -72,12 +77,13 @@ class HomePageState extends State<HomePage>{
                         floating: false,
                         pinned: true,
                         expandedHeight: 235,
-                        backgroundColor: Color.fromARGB(255, 74, 104, 153),
+                        backgroundColor: Color(int.parse(item[_politicianNo]['appBackgroundColor'])),
                         centerTitle: true,
                         flexibleSpace: FlexibleSpaceBar(
                           title: new Text(item[_politicianNo]['name'],
                             style: new TextStyle(
                               fontSize: 20.0,
+                              color: Colors.white,
                             ),
                           ),
                           centerTitle: true,
@@ -101,9 +107,8 @@ class HomePageState extends State<HomePage>{
                             ),
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: NetworkImage(
-                                        "https://i.imgur.com/ijQ7mNU.png"),
-                                    fit: BoxFit.fill)
+                                    image: AssetImage(_backgroundList.elementAt(item[_politicianNo]['backgroundImage'])),
+                                    fit: BoxFit.fitHeight)
                             ),
                           ),
                         )
@@ -330,7 +335,7 @@ class HomePageState extends State<HomePage>{
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(builder: (context) =>
-                                            WebViewPage(item[_politicianNo]['name'], item[_politicianNo]['aboutURL'])),
+                                            WebViewPage(item[_politicianNo]['name'], item[_politicianNo]['aboutURL'], item[_politicianNo]['appBackgroundColor'])),
                                       );
                                     },
                                     child: new Image(image: AssetImage(
@@ -343,7 +348,7 @@ class HomePageState extends State<HomePage>{
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(builder: (context) =>
-                                            WebViewPage(_partyName, item[_politicianNo]['partiURL'])),
+                                            WebViewPage(_partyName, item[_politicianNo]['partiURL'], item[_politicianNo]['appBackgroundColor'])),
                                       );
                                     },
                                     child: new Image(image: AssetImage(

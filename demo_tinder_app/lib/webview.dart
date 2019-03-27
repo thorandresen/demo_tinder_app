@@ -15,8 +15,9 @@ class WebViewPageState extends State<WebViewPage>{
 
   final String _information;
   final String _URL;
+  final String _color;
 
-  WebViewPageState(this._information, this._URL);
+  WebViewPageState(this._information, this._URL, this._color);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class WebViewPageState extends State<WebViewPage>{
             appBar: new AppBar(
               title: new Text(_information),
               centerTitle: true,
-              backgroundColor: Color.fromARGB(255, 74, 104, 153),
+              backgroundColor: Color(int.parse(_color)),
               leading: IconButton(icon: Icon(Icons.arrow_back),
                 onPressed: ()=> goHomeScreen(),
               ),
@@ -49,8 +50,9 @@ class WebViewPage extends StatefulWidget{
 
   final String _information;
   final String _URL;
+  final String _color;
 
-  WebViewPage(this._information, this._URL);
+  WebViewPage(this._information, this._URL, this._color);
 
-  WebViewPageState createState() => new WebViewPageState(_information, _URL);
+  WebViewPageState createState() => new WebViewPageState(_information, _URL, _color);
 }

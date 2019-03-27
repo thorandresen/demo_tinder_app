@@ -49,6 +49,8 @@ flutter:
     - graphics/twitter_logo.png
     - graphics/instagram_logo.png
     - graphics/About_cases.png
+    - graphics/Venstre_background.png
+    - graphics/SD_background.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
