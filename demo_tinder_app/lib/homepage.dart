@@ -79,7 +79,17 @@ class HomePageState extends State<HomePage> {
             stream: Firestore.instance.collection(_collectionName).snapshots(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
-                return new LinearProgressIndicator();
+                return new Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        CircularProgressIndicator(),
+                      ],
+                    )
+                  ],
+                );
               } else {
                 List<DocumentSnapshot> item = snapshot
                     .data.documents; // Gets the item for the given snapshot.
