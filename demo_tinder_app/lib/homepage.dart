@@ -513,7 +513,7 @@ class HomePageState extends State<HomePage> {
               width: 80,
               child: FloatingActionButton(
                 heroTag: "btn1",
-                onPressed: () {},
+                onPressed: () {_changePolitician(false);},
                 backgroundColor: Colors.white,
                 child: Icon(Icons.thumb_down, color: Colors.red, size: 40.0),
               ),
@@ -524,7 +524,7 @@ class HomePageState extends State<HomePage> {
                 width: 80,
                 child: FloatingActionButton(
                   heroTag: "btn2",
-                  onPressed: () {},
+                  onPressed: () {_changePolitician(true);},
                   backgroundColor: Colors.white,
                   child: Icon(Icons.thumb_up, color: Colors.green, size: 40.0),
                 )),
