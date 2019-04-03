@@ -34,11 +34,7 @@ class HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  /// The method for changing politician after like/dislike.
-  void _changePolitician(bool isLiked) {
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (BuildContext _context) => HomePage()));
-  }
+
 
   /// The widget for building the whole card.
   @override
@@ -67,11 +63,11 @@ class HomePageState extends State<HomePage> {
         onDismissed: (direction) {
           if (direction == DismissDirection.endToStart) {
             setState(() {
-              _changePolitician(true);
+              _newPoltician.changePolitician(true, context);
             });
           } else {
             setState(() {
-              _changePolitician(false);
+              _newPoltician.changePolitician(false, context);
             });
           }
         },
@@ -513,7 +509,7 @@ class HomePageState extends State<HomePage> {
               width: 80,
               child: FloatingActionButton(
                 heroTag: "btn1",
-                onPressed: () {_changePolitician(false);},
+                onPressed: () { _newPoltician.changePolitician(false, context);;},
                 backgroundColor: Colors.white,
                 child: Icon(Icons.thumb_down, color: Colors.red, size: 40.0),
               ),
@@ -524,7 +520,7 @@ class HomePageState extends State<HomePage> {
                 width: 80,
                 child: FloatingActionButton(
                   heroTag: "btn2",
-                  onPressed: () {_changePolitician(true);},
+                  onPressed: () { _newPoltician.changePolitician(true, context);},
                   backgroundColor: Colors.white,
                   child: Icon(Icons.thumb_up, color: Colors.green, size: 40.0),
                 )),
