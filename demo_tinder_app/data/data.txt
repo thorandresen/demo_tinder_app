@@ -1,0 +1,15 @@
+{
+"SocialDemokraterne": [
+    {"name": "1MetteFrederiksen", "info": 0}, 
+    {"name": "2Test", "info": 0},
+    {"name": "3Test", "info": 0}
+], 
+"Venstre": [
+    {"name": "1LarsLøkke", "info": 0}, 
+    {"name": "2AnniMatthiesen", "info": 0},
+    {"name": "3Test", "info": 0}
+    ], 
+"SF": [], 
+"RadikaleVenstre": [], 
+"LiberaleAlliance": []
+}
