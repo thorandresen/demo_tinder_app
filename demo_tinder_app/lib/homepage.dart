@@ -12,6 +12,10 @@ import 'webview.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'newpolitician.dart';
 
+/// Homepage which has the swiping of politicians.
+/// @author Thor Garske Andresen
+///
+/// Date: 08/04/19
 class HomePageState extends State<HomePage> {
   ScrollController _controller; // Scroll controller
   bool _hideFAB; //
@@ -21,6 +25,7 @@ class HomePageState extends State<HomePage> {
   String _politikPrincip = 'Politik';
   List<String> _backgroundList = new List(2);
   NewPolitician _newPoltician = new NewPolitician();
+  List<DocumentSnapshot> item;
 
   /// Method that inits shit when starting.
   @override
@@ -33,8 +38,6 @@ class HomePageState extends State<HomePage> {
     _collectionName = _newPoltician.collection();
     super.initState();
   }
-
-
 
   /// The widget for building the whole card.
   @override
@@ -87,7 +90,7 @@ class HomePageState extends State<HomePage> {
                   ],
                 );
               } else {
-                List<DocumentSnapshot> item = snapshot
+                item = snapshot
                     .data.documents; // Gets the item for the given snapshot.
                 _partyName = item[_politicianNo]['partiName'];
 
@@ -390,92 +393,9 @@ class HomePageState extends State<HomePage> {
                                 crossAxisSpacing: 4.0,
                                 physics: ScrollPhysics(),
                                 children: <Widget>[
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => WebViewPage(
-                                                item[_politicianNo]['name'],
-                                                item[_politicianNo]['aboutURL'],
-                                                item[_politicianNo]
-                                                    ['appBackgroundColor'])),
-                                      );
-                                    },
-                                    child: new Image(
-                                        image: AssetImage(
-                                            'graphics/about_male_version_4.png'),
-                                        fit: BoxFit.fill),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => WebViewPage(
-                                                _partyName,
-                                                item[_politicianNo]['partiURL'],
-                                                item[_politicianNo]
-                                                    ['appBackgroundColor'])),
-                                      );
-                                    },
-                                    child: new Image(
-                                        image: AssetImage(
-                                            'graphics/website_thumbnail.png'),
-                                        fit: BoxFit.fill),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            title: new Text(
-                                              'Vælg medie',
-                                              textAlign: TextAlign.center,
-                                            ),
-                                            content: new Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: <Widget>[
-                                                new Container(
-                                                    margin: EdgeInsets.all(10),
-                                                    width: 50.0,
-                                                    height: 50.0,
-                                                    decoration: new BoxDecoration(
-                                                        image: new DecorationImage(
-                                                            fit: BoxFit.fill,
-                                                            image: new AssetImage(
-                                                                "graphics/fb_logo.png")))),
-                                                new Container(
-                                                    margin: EdgeInsets.all(10),
-                                                    width: 50.0,
-                                                    height: 50.0,
-                                                    decoration: new BoxDecoration(
-                                                        image: new DecorationImage(
-                                                            fit: BoxFit.fill,
-                                                            image: new AssetImage(
-                                                                "graphics/twitter_logo.png")))),
-                                                new Container(
-                                                    margin: EdgeInsets.all(10),
-                                                    width: 50.0,
-                                                    height: 50.0,
-                                                    decoration: new BoxDecoration(
-                                                        image: new DecorationImage(
-                                                            fit: BoxFit.fill,
-                                                            image: new AssetImage(
-                                                                "graphics/instagram_logo.png")))),
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    },
-                                    child: new Image(
-                                        image: AssetImage(
-                                            'graphics/sociale_medier.png'),
-                                        fit: BoxFit.fill),
-                                  ),
+                                  _moreInfGestureDetector(),
+                                  _aboutPartyGestureDetector(),
+                                  _socialMediaGestureDetector(),
                                   GestureDetector(
                                     onTap: () {},
                                     child: new Image(
@@ -509,7 +429,11 @@ class HomePageState extends State<HomePage> {
               width: 80,
               child: FloatingActionButton(
                 heroTag: "btn1",
-                onPressed: () { _newPoltician.changePolitician(false, context);;},
+                onPressed: () {
+                  if (!_hideFAB) {
+                    _newPoltician.changePolitician(false, context);
+                  }
+                },
                 backgroundColor: Colors.white,
                 child: Icon(Icons.thumb_down, color: Colors.red, size: 40.0),
               ),
@@ -520,13 +444,109 @@ class HomePageState extends State<HomePage> {
                 width: 80,
                 child: FloatingActionButton(
                   heroTag: "btn2",
-                  onPressed: () { _newPoltician.changePolitician(true, context);},
+                  onPressed: () {
+                    if (!_hideFAB) {
+                      _newPoltician.changePolitician(true, context);
+                    }
+                  },
                   backgroundColor: Colors.white,
                   child: Icon(Icons.thumb_up, color: Colors.green, size: 40.0),
                 )),
           ],
         ),
       ),
+    );
+  }
+
+  /// ## ---- WIDGETS ---- ## ///
+
+  /// Widget with the gesturedetector for getting more info on the politician.
+  Widget _moreInfGestureDetector() {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => WebViewPage(
+                  item[_politicianNo]['name'],
+                  item[_politicianNo]['aboutURL'],
+                  item[_politicianNo]['appBackgroundColor'])),
+        );
+      },
+      child: new Image(
+          image: AssetImage('graphics/about_male_version_4.png'),
+          fit: BoxFit.fill),
+    );
+  }
+
+  /// Widget with the GestureDetector for getting WebView about party.
+  Widget _aboutPartyGestureDetector() {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => WebViewPage(
+                  _partyName,
+                  item[_politicianNo]['partiURL'],
+                  item[_politicianNo]['appBackgroundColor'])),
+        );
+      },
+      child: new Image(
+          image: AssetImage('graphics/website_thumbnail.png'),
+          fit: BoxFit.fill),
+    );
+  }
+
+  /// Widget for showing the GestureDetector that shows social media logos.
+  Widget _socialMediaGestureDetector() {
+    return GestureDetector(
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Text(
+                'Vælg medie',
+                textAlign: TextAlign.center,
+              ),
+              content: new Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  new Container(
+                      margin: EdgeInsets.all(10),
+                      width: 50.0,
+                      height: 50.0,
+                      decoration: new BoxDecoration(
+                          image: new DecorationImage(
+                              fit: BoxFit.fill,
+                              image: new AssetImage("graphics/fb_logo.png")))),
+                  new Container(
+                      margin: EdgeInsets.all(10),
+                      width: 50.0,
+                      height: 50.0,
+                      decoration: new BoxDecoration(
+                          image: new DecorationImage(
+                              fit: BoxFit.fill,
+                              image: new AssetImage(
+                                  "graphics/twitter_logo.png")))),
+                  new Container(
+                      margin: EdgeInsets.all(10),
+                      width: 50.0,
+                      height: 50.0,
+                      decoration: new BoxDecoration(
+                          image: new DecorationImage(
+                              fit: BoxFit.fill,
+                              image: new AssetImage(
+                                  "graphics/instagram_logo.png")))),
+                ],
+              ),
+            );
+          },
+        );
+      },
+      child: new Image(
+          image: AssetImage('graphics/sociale_medier.png'), fit: BoxFit.fill),
     );
   }
 
