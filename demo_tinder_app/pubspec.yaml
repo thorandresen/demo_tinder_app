@@ -51,6 +51,7 @@ flutter:
     - graphics/About_cases.png
     - graphics/Venstre_background.png
     - graphics/SD_background.png
+    - graphics/linkedIn_logo.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
