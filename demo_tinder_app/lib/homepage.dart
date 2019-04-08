@@ -24,7 +24,7 @@ class HomePageState extends State<HomePage> {
   String _collectionName;
   String _partyName;
   String _politikPrincip = 'Politik';
-  NewPolitician _newPoltician = new NewPolitician();
+  NewPolitician _newPolitician = new NewPolitician();
   List<DocumentSnapshot> item;
 
   /// Method that inits shit when starting.
@@ -33,7 +33,7 @@ class HomePageState extends State<HomePage> {
     _controller = ScrollController();
     _controller.addListener(_scrollListener);
     _hideFAB = false;
-    _collectionName = _newPoltician.collection();
+    _collectionName = _newPolitician.collection();
     super.initState();
   }
 
@@ -64,11 +64,11 @@ class HomePageState extends State<HomePage> {
         onDismissed: (direction) {
           if (direction == DismissDirection.endToStart) {
             setState(() {
-              _newPoltician.changePolitician(true, context);
+              _newPolitician.changePolitician(true, context);
             });
           } else {
             setState(() {
-              _newPoltician.changePolitician(false, context);
+              _newPolitician.changePolitician(false, context);
             });
           }
         },
@@ -186,7 +186,7 @@ class HomePageState extends State<HomePage> {
             ),
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage(_newPoltician.background(item[_politicianNo]['backgroundImage'])),
+                    image: AssetImage(_newPolitician.background(item[_politicianNo]['backgroundImage'])),
                     fit: BoxFit.fill)),
           ),
         )
@@ -586,7 +586,7 @@ class HomePageState extends State<HomePage> {
               heroTag: "btn1",
               onPressed: () {
                 if (!_hideFAB) {
-                  _newPoltician.changePolitician(false, context);
+                  _newPolitician.changePolitician(false, context);
                 }
               },
               backgroundColor: Colors.white,
@@ -601,7 +601,7 @@ class HomePageState extends State<HomePage> {
                 heroTag: "btn2",
                 onPressed: () {
                   if (!_hideFAB) {
-                    _newPoltician.changePolitician(true, context);
+                    _newPolitician.changePolitician(true, context);
                   }
                 },
                 backgroundColor: Colors.white,
