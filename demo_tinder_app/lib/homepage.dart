@@ -64,11 +64,11 @@ class HomePageState extends State<HomePage> {
         onDismissed: (direction) {
           if (direction == DismissDirection.endToStart) {
             setState(() {
-              _newPolitician.changePolitician(true, context);
+              _newPolitician.performPolitician(true, context, item[_politicianNo]['id']);
             });
           } else {
             setState(() {
-              _newPolitician.changePolitician(false, context);
+              _newPolitician.performPolitician(false, context, item[_politicianNo]['id']);
             });
           }
         },
@@ -586,7 +586,7 @@ class HomePageState extends State<HomePage> {
               heroTag: "btn1",
               onPressed: () {
                 if (!_hideFAB) {
-                  _newPolitician.changePolitician(false, context);
+                  _newPolitician.performPolitician(false, context, item[_politicianNo]['id']);
                 }
               },
               backgroundColor: Colors.white,
@@ -601,7 +601,7 @@ class HomePageState extends State<HomePage> {
                 heroTag: "btn2",
                 onPressed: () {
                   if (!_hideFAB) {
-                    _newPolitician.changePolitician(true, context);
+                    _newPolitician.performPolitician(true, context, item[_politicianNo]['id']);
                   }
                 },
                 backgroundColor: Colors.white,
