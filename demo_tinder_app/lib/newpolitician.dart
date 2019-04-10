@@ -52,8 +52,6 @@ class NewPolitician {
     // Get the shared preference.
     final prefs = await SharedPreferences.getInstance();
 
-    /**/
-
     // IF DOESN'T EXIST
     if (prefs.getString("politicianMap") == null || prefs.getString("politicianMap") == "" || prefs.getString("politicianMap") == {}) {
       Map<String, dynamic> _politicianMapLocal = Map();
@@ -66,7 +64,7 @@ class NewPolitician {
       await prefs.setString("politicianMap", jsonEncode(_politicianMapLocal));
       print("POLITICIAN WAS FOUND IN SHAREDPREFERNECES: " +_politicianMapLocal.containsKey(id).toString());
     }
-    else {
+    else { // IF EXISTS.
       final _politicianMap = json.decode(
           prefs.getString("politicianMap") ?? "") ?? {};
       // Add the new politician to the map and to the shared preference.
