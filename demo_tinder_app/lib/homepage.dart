@@ -33,7 +33,7 @@ class HomePageState extends State<HomePage> {
     _controller = ScrollController();
     _controller.addListener(_scrollListener);
     _hideFAB = false;
-    _collectionName = _newPolitician.collection();
+    _collectionName = 'Venstre';
     super.initState();
   }
 
@@ -64,11 +64,11 @@ class HomePageState extends State<HomePage> {
         onDismissed: (direction) {
           if (direction == DismissDirection.endToStart) {
             setState(() {
-              _newPolitician.performPolitician(true, context, item[_politicianNo]['id']);
+              _newPolitician.performPolitician(true, context, item[_politicianNo]['id'], _collectionName);
             });
           } else {
             setState(() {
-              _newPolitician.performPolitician(false, context, item[_politicianNo]['id']);
+              _newPolitician.performPolitician(false, context, item[_politicianNo]['id'], _collectionName);
             });
           }
         },
@@ -586,7 +586,7 @@ class HomePageState extends State<HomePage> {
               heroTag: "btn1",
               onPressed: () {
                 if (!_hideFAB) {
-                  _newPolitician.performPolitician(false, context, item[_politicianNo]['id']);
+                  _newPolitician.performPolitician(false, context, item[_politicianNo]['id'],_collectionName);
                 }
               },
               backgroundColor: Colors.white,
@@ -601,7 +601,7 @@ class HomePageState extends State<HomePage> {
                 heroTag: "btn2",
                 onPressed: () {
                   if (!_hideFAB) {
-                    _newPolitician.performPolitician(true, context, item[_politicianNo]['id']);
+                    _newPolitician.performPolitician(true, context, item[_politicianNo]['id'],_collectionName);
                   }
                 },
                 backgroundColor: Colors.white,
