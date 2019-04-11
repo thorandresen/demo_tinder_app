@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: HomePage(),
+      home: HomePage('Venstre','1LarsLøkke'),
     );
   }
 }

@@ -27,13 +27,23 @@ class HomePageState extends State<HomePage> {
   NewPolitician _newPolitician = new NewPolitician();
   List<DocumentSnapshot> item;
 
+  final String _collection;
+  final String _politician;
+
+  HomePageState(this._collection,this._politician);
+
+
   /// Method that inits shit when starting.
   @override
   void initState() {
     _controller = ScrollController();
     _controller.addListener(_scrollListener);
     _hideFAB = false;
-    _collectionName = 'Venstre';
+    _collectionName = _collection;
+
+    String localPoli = _politician.substring(0,1);
+    _politicianNo = int.parse(localPoli)-1;
+
     super.initState();
   }
 
@@ -633,5 +643,10 @@ class HomePageState extends State<HomePage> {
 
 /// The stateful class.
 class HomePage extends StatefulWidget {
-  HomePageState createState() => new HomePageState();
+  final String _collection;
+  final String _politician;
+
+  HomePage(this._collection,this._politician);
+
+  HomePageState createState() => new HomePageState(_collection,_politician);
 }
