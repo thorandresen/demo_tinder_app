@@ -41,7 +41,9 @@ class NewPolitician {
     _savePolitician(id, isLiked, collection);
 
     for(int i = 0 ; i < _collectionList.length; i++) {
-      _iteratePolitician();
+      _iteratePolitician(_collectionList[i]);
+
+
     }
 
     /// HERE WE HAVE TO CHANGE BACK TO HOMEPAGE WITH COLLECTION AND NUMBER OF POLITICIAN.
@@ -49,7 +51,7 @@ class NewPolitician {
         MaterialPageRoute(builder: (BuildContext _context) => HomePage()));
   }
 
-  /// Saves a politician when he is seen and liked/disliked, into shared preferences.
+  /// Saves a politician when he is seen and liked/disliked, into shared preferences. (REWRITE THIS CODE TO SAVE POLITICIANS IN THE CORRECT MAP. SO VENSTRE POLITICIANS GETS SAVED WITHIN A PREFERENCE CALLED VENSTRE)
   void _savePolitician(String id, bool isLiked, String collection) async {
     // Get the shared preference.
     final prefs = await SharedPreferences.getInstance();
@@ -81,7 +83,7 @@ class NewPolitician {
     }
   }
 
-  /// Used for populating
+  /// Used for populating (REWRITE THIS SO IT SAVES THE VENSTRE UNDER VESNTRELIST IN PREFS, SO I WILL KNOW WHO HAS WHAT AMOUNT OF POLITICIANS NAD CAN ITERATE.)
   void _populatePoliticians() async {
     // Get the shared preference.
     final prefs = await SharedPreferences.getInstance();
@@ -109,8 +111,8 @@ class NewPolitician {
     }
   }
 
-  /// THIS METHOD IS SUPPOSED TO ITERATE THROUGH THE MAP AND CHECK IT UP AGAINST
-  void _iteratePolitician() async{
+  /// THIS METHOD IS SUPPOSED TO ITERATE THROUGH THE MAP AND CHECK IT UP AGAINST (AFTER REFACOTRING THE TWO OTHER METHODS TO WORK WITH COLLECTIONS, ITERATE OVER A COLLECTION HERE).
+  void _iteratePolitician(String collection) async{
     // Get the shared preference.
     final prefs = await SharedPreferences.getInstance();
   }
