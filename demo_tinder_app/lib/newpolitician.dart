@@ -60,7 +60,7 @@ class NewPolitician {
     if (prefs.getString("politicianMap") == null || prefs.getString("politicianMap") == "" || prefs.getString("politicianMap") == {}) {
       Map<String, dynamic> _politicianMapLocal = Map();
       _politicianMapLocal.update(
-          id + " " + collection,
+          id,
               (update) => isLiked,
           ifAbsent: () => isLiked
       );
@@ -73,7 +73,7 @@ class NewPolitician {
           prefs.getString("politicianMap") ?? "") ?? {};
       // Add the new politician to the map and to the shared preference.
       _politicianMap.update(
-          id + " " + collection,
+          id,
               (update) => isLiked,
           ifAbsent: () => isLiked
       );
