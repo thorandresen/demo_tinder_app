@@ -11,6 +11,7 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'webview.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'newpolitician.dart';
+import 'package:uuid/uuid.dart';
 
 /// Homepage which has the swiping of politicians.
 /// @author Thor Garske Andresen
@@ -26,6 +27,7 @@ class HomePageState extends State<HomePage> {
   String _politikPrincip = 'Politik';
   NewPolitician _newPolitician = new NewPolitician();
   List<DocumentSnapshot> item;
+  var uuid = new Uuid();
 
   final String _collection;
   final String _politician;
@@ -54,7 +56,7 @@ class HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       resizeToAvoidBottomPadding: false,
       body: Dismissible(
-        key: ValueKey(_politicianNo.toString() + _collectionName),
+        key: ValueKey(uuid),
         background: Container(
           color: Colors.red,
           child: Icon(
@@ -160,7 +162,6 @@ class HomePageState extends State<HomePage> {
   }
 
   /// ## ---- WIDGETS ---- ## ///
-
   /// Widget for showing the SliverAppBar
   Widget _sliverAppWidget() {
     return SliverAppBar(
@@ -637,6 +638,9 @@ class HomePageState extends State<HomePage> {
         _hideFAB = false;
       });
     }
+  }
+
+  void dismissPolitician() {
   }
 }
 

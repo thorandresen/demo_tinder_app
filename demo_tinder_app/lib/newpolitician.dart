@@ -11,6 +11,8 @@ class NewPolitician {
   int newPoliticianInt;
   String newPoliticianCollection;
   String newPoliticianString;
+  bool waitBool;
+  BuildContext context;
 
   /// Constructor
   NewPolitician() {
@@ -23,9 +25,8 @@ class NewPolitician {
     _backgroundList[1] = "graphics/SD_background.png";
 
     // Populate politicians
-    for(int i = 0; i < _collectionList.length; i++){
-      _populatePoliticians(_collectionList[i]);
-    }
+      _populatePoliticians(_collectionList[0]);
+      _populatePoliticians(_collectionList[1]);
 
   }
 
@@ -42,15 +43,13 @@ class NewPolitician {
   /// The method for calculating what to do with liked politician
   void performPolitician(bool isLiked, BuildContext context, String id, String collection) {
     print("ID: " + id + " is liked : " + isLiked.toString());
+    this.context = context;
     _savePolitician(id, isLiked, collection);
 
     // Actually iterating over politicians and finding one.
-      _iteratePolitician(_collectionList[1]);
-
 
     /// HERE WE HAVE TO CHANGE BACK TO HOMEPAGE WITH COLLECTION AND NUMBER OF POLITICIAN.
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (BuildContext _context) => HomePage(_collectionList[0], newPoliticianString)));
+
   }
 
   /// PROBLEM! WE DON'T CREATE THE MAP FOR VENSTRE UNLESS WE WANT TO SAVE SOMEONE, THIS MEANS THAT THERE IS NO MAP FOR SOCIALDEMOKRATERNE YET!! A METHOD HAS TO BE CREATED TO CREATE BOTH OF THESE MAPS WITH FAKE INPUT:)
@@ -69,7 +68,7 @@ class NewPolitician {
       );
 
       await prefs.setString(collection + "Map", jsonEncode(_politicianMapLocal));
-      print("POLITICIAN WAS FOUND IN SHAREDPREFERNECES: " +_politicianMapLocal.containsKey(id).toString());
+      print("POLITICIAN WAS SAVED IN NEW MAP!: " +_politicianMapLocal.containsKey(id).toString());
     }
     else { // IF EXISTS.
       final _politicianMap = json.decode(
@@ -81,9 +80,17 @@ class NewPolitician {
           ifAbsent: () => isLiked
       );
 
-      await prefs.setString(collection + "Map", jsonEncode(_politicianMap));
-      print("POLITICIAN WAS FOUND IN SHAREDPREFERNECES ELSE: " +_politicianMap.containsKey(id).toString());
+     waitBool = await prefs.setString(collection + "Map", jsonEncode(_politicianMap));
+
+     // WHEN SHIT IS ACTUALLY SAVED, THEN GO FOR CHANGING!!
+     if(waitBool) {
+       _iteratePolitician(_collectionList[0]);
+     }
+
+     print('WAIT BOOL IS: ' + waitBool.toString());
+      print("POLITICIAN WAS SAVED IN OLD MAP: " +_politicianMap.containsKey(id).toString());
     }
+
   }
 
   /// Used for populating (REWRITE THIS SO IT SAVES THE VENSTRE UNDER VESNTRELIST IN PREFS, SO I WILL KNOW WHO HAS WHAT AMOUNT OF POLITICIANS NAD CAN ITERATE.)
@@ -96,14 +103,14 @@ class NewPolitician {
       List<String> _localHolder = [];
 
       switch(collection){
-        case 'Venstre':
+        case "Venstre":
           List<String> venstreList = new List(3);
           venstreList[0] = '1LarsLøkke';
           venstreList[1] = '2AnniMatthiesen';
           venstreList[2] = '3Test';
           _localHolder.addAll(venstreList);
           break;
-        case 'SocialDemokraterne':
+        case "SocialDemokraterne":
           List<String> sdList = new List(3);
           sdList[0] = '1MetteFrederiksen';
           sdList[1] = '2Test';
@@ -116,6 +123,7 @@ class NewPolitician {
       print('POLITICIANHOLDER HAS BEEN POPULATED BISH: ' + _localHolder.length.toString());
     }
     print('POLITICIANHOLDER WAS BEEN POPULATED BISH: ' + prefs.getString(collection+"Holder").length.toString());
+
   }
 
   /// THIS METHOD IS SUPPOSED TO ITERATE THROUGH THE MAP AND CHECK IT UP AGAINST (AFTER REFACOTRING THE TWO OTHER METHODS TO WORK WITH COLLECTIONS, ITERATE OVER A COLLECTION HERE).
@@ -124,10 +132,11 @@ class NewPolitician {
     final prefs = await SharedPreferences.getInstance();
     int localCounter;
 
-    if (prefs.getString(collection + "Map") == null ||
-        prefs.getString(collection + "Map") == "" ||
-        prefs.getString(collection + "Map") == {}) {
-      print('MAP IS NULL');
+    if (prefs.getString(collection + "Map") == null || prefs.getString(collection + "Map") == "" || prefs.getString(collection + "Map") == {}) {
+      Map<String, dynamic> _politicianMapLocal = Map();
+
+      await prefs.setString(collection + "Map", jsonEncode(_politicianMapLocal));
+      print("MAP DOES EXIST FRIENDS.: " +_politicianMapLocal.length.toString());
     }
     else {
       final _politicianMap = json.decode(
@@ -138,6 +147,8 @@ class NewPolitician {
 
       List<String> _mapList = _politicianMap.keys.toList();
 
+
+
       for (int i = 0; i < _politicianMap.length; i++) {
         if (_politicianHolder[i] != _mapList[i]) {
           print("THIS POLITICIAN WAS FOUND GOOD: " + _politicianHolder[i]);
@@ -145,10 +156,18 @@ class NewPolitician {
           return;
         }
         else {
+          print("LOCAL COUNTER WAS INCREMENTED!");
           localCounter = i;
         }
+        newPoliticianString = _politicianHolder[localCounter+1];
       }
-      newPoliticianString = _politicianHolder[localCounter+1];
+
+      if(_mapList.length == 0) {
+        newPoliticianString = _politicianHolder[0];
+      }
     }
+    // CHANGES THE ACTUAL ACTIVITY.
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (BuildContext _context) => HomePage(collection, newPoliticianString)));
   }
 }
