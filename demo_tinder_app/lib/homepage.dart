@@ -27,7 +27,8 @@ class HomePageState extends State<HomePage> {
   String _politikPrincip = 'Politik';
   NewPolitician _newPolitician = new NewPolitician();
   List<DocumentSnapshot> item;
-  var uuid = new Uuid();
+  static var uuid = new Uuid();
+  final dismissRemover = List<String>.generate(50, (i) => "item: '$uuid'");
 
   final String _collection;
   final String _politician;
@@ -42,10 +43,8 @@ class HomePageState extends State<HomePage> {
     _controller.addListener(_scrollListener);
     _hideFAB = false;
     _collectionName = _collection;
-
     String localPoli = _politician.substring(0,1);
     _politicianNo = int.parse(localPoli)-1;
-
     super.initState();
   }
 
@@ -56,7 +55,7 @@ class HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       resizeToAvoidBottomPadding: false,
       body: Dismissible(
-        key: ValueKey(uuid),
+        key: new Key(dismissRemover[0]),
         background: Container(
           color: Colors.red,
           child: Icon(
@@ -77,10 +76,12 @@ class HomePageState extends State<HomePage> {
           if (direction == DismissDirection.endToStart) {
             setState(() {
               _newPolitician.performPolitician(true, context, item[_politicianNo]['id'], _collectionName);
+              dismissRemover.removeAt(0);
             });
           } else {
             setState(() {
               _newPolitician.performPolitician(false, context, item[_politicianNo]['id'], _collectionName);
+              dismissRemover.removeAt(0);
             });
           }
         },
@@ -155,9 +156,9 @@ class HomePageState extends State<HomePage> {
               }
             }),
       ),
-
       /// FAB
       floatingActionButton: _fabWidget(),
+
     );
   }
 
