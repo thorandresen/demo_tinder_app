@@ -29,7 +29,6 @@ class HomePageState extends State<HomePage> {
   List<DocumentSnapshot> item;
   static var uuid = new Uuid();
   final dismissRemover = List<String>.generate(50, (i) => "item: '$uuid'");
-
   final String _collection;
   final String _politician;
 
@@ -45,6 +44,7 @@ class HomePageState extends State<HomePage> {
     _collectionName = _collection;
     String localPoli = _politician.substring(0,1);
     _politicianNo = int.parse(localPoli)-1;
+
     super.initState();
   }
 
@@ -519,9 +519,8 @@ class HomePageState extends State<HomePage> {
                 textAlign: TextAlign.center,
               ),
               content: new Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-
                   new Container(
                       margin: EdgeInsets.all(10),
                       width: 50.0,

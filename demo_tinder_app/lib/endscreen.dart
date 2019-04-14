@@ -3,44 +3,61 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
-class EndScreenPage extends StatelessWidget{
+class EndScreenPage extends StatefulWidget{
+  EndScreenPageState createState() => new EndScreenPageState();
+}
+
+class EndScreenPageState extends State<EndScreenPage> {
+  MediaQueryData queryData;
+  double devicePixelRatio;
+
+  @override
+  void initState(){
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    queryData = MediaQuery.of(context);
+    devicePixelRatio = queryData.devicePixelRatio;
     return Scaffold(
-      body: new Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new Flexible(
-                child: new Text(
-                  'No more politicians! :-(',
-                style: TextStyle(
-                  fontSize: 35,
-                  color: Colors.red,
+        body: new Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                new Icon(Icons.update,
+                    size: 15 * (queryData.size.width/100),
+                    color: Colors.red),
+                new Flexible(
+                  child: new Text(
+                    'Du har svipet igennem alle politikere!',
+                    style: TextStyle(
+                      fontSize: 6 * (queryData.size.width/100),
+                      color: Colors.red,
+                    ),
+                  ),
                 ),
-              ),
-              ),
-              new Flexible(
-                child: new Text(
-                'Check back later or reset your likes.',
-                style: TextStyle(
-                  fontSize: 15,
+                new Flexible(
+                  child: new Text(
+                    'Prøv igen senere eller reset dine likes.',
+                    style: TextStyle(
+                      fontSize: 4.5 * (queryData.size.width/100),
+                    ),
+                  ),
                 ),
-              ),
-              ),
-              new Flexible(
-                 child: new Text('Remember to check out your statistics in the drawer menu!',
-                style: TextStyle(
-                  fontSize: 15,
+                new Flexible(
+                  child: new Text('Husk at tjekke dine statistikker!',
+                    style: TextStyle(
+                      fontSize: 4.5 * (queryData.size.width/100),
+                    ),
+                  ),
                 ),
-              ),
-              ),
-            ],
-          )
-        ],
-      )
+              ],
+            )
+          ],
+        )
     );
   }
 }
