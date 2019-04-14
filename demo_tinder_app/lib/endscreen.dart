@@ -30,7 +30,7 @@ class EndScreenPageState extends State<EndScreenPage> {
                     color: Colors.red),
                 new Flexible(
                   child: new Text(
-                    'Du har svipet igennem alle politikere!',
+                    'Du har swipet igennem alle politikere!',
                     style: TextStyle(
                       fontSize: 6 * (queryData.size.width/100),
                       color: Colors.red,

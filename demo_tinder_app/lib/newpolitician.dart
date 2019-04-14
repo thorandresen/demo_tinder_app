@@ -33,7 +33,7 @@ class NewPolitician {
   }
 
   /// Method for chosing what collection to look into.
-  void _collection() async {
+  void collectionGenerator() async {
     prefs = await SharedPreferences.getInstance();
     List<String> _goodCollections = [];
 
@@ -44,7 +44,7 @@ class NewPolitician {
       }
       else if(prefs.getString(_collectionList[i] + "Holder") == null || prefs.getString(_collectionList[i] + "Holder") == "" || prefs.getString(_collectionList[i] + "Holder") == {}){
         _populatePoliticians(_collectionList[i]);
-        _collection();
+        collectionGenerator();
         return;
       }
       else {
@@ -119,7 +119,7 @@ class NewPolitician {
       waitBool = await prefs.setString(collection + "Map", json.encode(_politicianMapLocal));
 
       if(waitBool) {
-        _collection();
+        collectionGenerator();
       }
 
       print('WAIT BOOL IS: ' + waitBool.toString());
@@ -139,7 +139,7 @@ class NewPolitician {
 
      // WHEN SHIT IS ACTUALLY SAVED, THEN GO FOR CHANGING!!
      if(waitBool) {
-       _collection();
+       collectionGenerator();
      }
 
      print('WAIT BOOL IS: ' + waitBool.toString());

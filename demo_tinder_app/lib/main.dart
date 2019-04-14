@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:demo_tinder_app/startscreen.dart';
 import 'package:flutter/material.dart';
 import 'homepage.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: HomePage('Venstre','1LarsLøkke'),
+      home: StartScreenPage(),
     );
   }
 }

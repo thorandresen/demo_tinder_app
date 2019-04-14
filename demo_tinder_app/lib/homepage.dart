@@ -661,7 +661,8 @@ class HomePageState extends State<HomePage> {
     }
   }
 
-  void dismissPolitician() {
+  BuildContext getContext() {
+    return context;
   }
 }
 
