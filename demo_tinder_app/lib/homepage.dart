@@ -31,6 +31,7 @@ class HomePageState extends State<HomePage> {
   final dismissRemover = List<String>.generate(50, (i) => "item: '$uuid'");
   final String _collection;
   final String _politician;
+  MediaQueryData queryData;
 
   HomePageState(this._collection,this._politician);
 
@@ -51,6 +52,7 @@ class HomePageState extends State<HomePage> {
   /// The widget for building the whole card.
   @override
   Widget build(BuildContext context) {
+    queryData = MediaQuery.of(context);
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomPadding: false,
@@ -176,7 +178,7 @@ class HomePageState extends State<HomePage> {
           title: new Text(
             item[_politicianNo]['name'],
             style: new TextStyle(
-              fontSize: 20.0,
+              fontSize: 5 * (queryData.size.width/100),
               color: Colors.white,
             ),
           ),
@@ -186,8 +188,8 @@ class HomePageState extends State<HomePage> {
               children: <Widget>[
                 new Container(
                     margin: EdgeInsets.all(10),
-                    width: 190.0,
-                    height: 190.0,
+                    width: 45 * (queryData.size.width/100),
+                    height: 45 * (queryData.size.width/100),
                     decoration: new BoxDecoration(
                         shape: BoxShape.circle,
                         image: new DecorationImage(
@@ -213,7 +215,7 @@ class HomePageState extends State<HomePage> {
         new Text(
           'Kerne principper',
           style: new TextStyle(
-            fontSize: 25.0,
+            fontSize: 8 * (queryData.size.width/100),
           ),
         ),
 
@@ -221,7 +223,7 @@ class HomePageState extends State<HomePage> {
         new Text(
           _politikPrincip,
           style: new TextStyle(
-            fontSize: 18,
+            fontSize: 4.8 * (queryData.size.width/100),
           ),
         ),
         new LinearPercentIndicator(
@@ -248,11 +250,17 @@ class HomePageState extends State<HomePage> {
           mainAxisAlignment:
           MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            new Flexible(child: Text('Socialisme')),
+            new Flexible(child: Text('Socialisme',style: TextStyle(
+              fontSize: 3.8 * (queryData.size.width/100),
+            ),)),
             new Flexible(child: Text('')),
-            new Flexible(child: Text('Sociallib.')),
+            new Flexible(child: Text('Sociallib.',style: TextStyle(
+              fontSize: 3.8 * (queryData.size.width/100),
+            ),)),
             new Flexible(child: Text('')),
-            new Flexible(child: Text('Liberalisme')),
+            new Flexible(child: Text('Liberalisme',style: TextStyle(
+              fontSize: 3.8 * (queryData.size.width/100),
+            ),)),
           ],
         ),
       ],
@@ -267,7 +275,7 @@ class HomePageState extends State<HomePage> {
         new Text(
           item[_politicianNo]['andetPrincipName'],
           style: new TextStyle(
-            fontSize: 18,
+            fontSize: 4.8 * (queryData.size.width/100),
           ),
         ),
         new LinearPercentIndicator(
@@ -297,14 +305,18 @@ class HomePageState extends State<HomePage> {
           children: <Widget>[
             new Flexible(
                 child: Text(item[_politicianNo]
-                ['andetPrincipLeft'])),
+                ['andetPrincipLeft'],style: TextStyle(
+                  fontSize: 3.8 * (queryData.size.width/100),
+                ),)),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(
                 child: Text(item[_politicianNo]
-                ['andetPrincipRight'])),
+                ['andetPrincipRight'],style: TextStyle(
+                  fontSize: 3.8 * (queryData.size.width/100),
+                ),)),
           ],
         ),
       ],
@@ -319,7 +331,7 @@ class HomePageState extends State<HomePage> {
         new Text(
           item[_politicianNo]['tredjePrincipName'],
           style: new TextStyle(
-            fontSize: 18,
+            fontSize: 4.8 * (queryData.size.width/100),
           ),
         ),
         new LinearPercentIndicator(
@@ -349,14 +361,18 @@ class HomePageState extends State<HomePage> {
           children: <Widget>[
             new Flexible(
                 child: Text(item[_politicianNo]
-                ['tredjePrincipLeft'])),
+                ['tredjePrincipLeft'],style: TextStyle(
+                  fontSize: 3.8 * (queryData.size.width/100),
+                ),)),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(
                 child: Text(item[_politicianNo]
-                ['tredjePrincipRight'])),
+                ['tredjePrincipRight'],style: TextStyle(
+                  fontSize: 3.8 * (queryData.size.width/100),
+                ),)),
           ],
         ),
       ],
@@ -371,7 +387,7 @@ class HomePageState extends State<HomePage> {
         new Text(
           item[_politicianNo]['fjerdePrincipName'],
           style: new TextStyle(
-            fontSize: 18,
+            fontSize: 4.8 * (queryData.size.width/100),
           ),
         ),
         new LinearPercentIndicator(
@@ -401,14 +417,18 @@ class HomePageState extends State<HomePage> {
           children: <Widget>[
             new Flexible(
                 child: Text(item[_politicianNo]
-                ['fjerdePrincipLeft'])),
+                ['fjerdePrincipLeft'],style: TextStyle(
+                  fontSize: 3.8 * (queryData.size.width/100),
+                ),)),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(
                 child: Text(item[_politicianNo]
-                ['fjerdePrincipRight'])),
+                ['fjerdePrincipRight'],style: TextStyle(
+                  fontSize: 3.8 * (queryData.size.width/100),
+                ),)),
           ],
         ),
       ],
@@ -423,7 +443,7 @@ class HomePageState extends State<HomePage> {
         new Text(
           item[_politicianNo]['femtePrincipName'],
           style: new TextStyle(
-            fontSize: 18,
+            fontSize: 4.8 * (queryData.size.width/100),
           ),
         ),
         new LinearPercentIndicator(
@@ -453,14 +473,18 @@ class HomePageState extends State<HomePage> {
           children: <Widget>[
             new Flexible(
                 child: Text(item[_politicianNo]
-                ['femtePrincipLeft'])),
+                ['femtePrincipLeft'],style: TextStyle(
+                  fontSize: 3.8 * (queryData.size.width/100),
+                ),)),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(
                 child: Text(item[_politicianNo]
-                ['femtePrincipRight'])),
+                ['femtePrincipRight'],style: TextStyle(
+                  fontSize: 3.8 * (queryData.size.width/100),
+                ),)),
           ],
         ),
         Text(''),

@@ -9,7 +9,6 @@ class EndScreenPage extends StatefulWidget{
 
 class EndScreenPageState extends State<EndScreenPage> {
   MediaQueryData queryData;
-  double devicePixelRatio;
 
   @override
   void initState(){
@@ -19,7 +18,6 @@ class EndScreenPageState extends State<EndScreenPage> {
   @override
   Widget build(BuildContext context) {
     queryData = MediaQuery.of(context);
-    devicePixelRatio = queryData.devicePixelRatio;
     return Scaffold(
         body: new Row(
           mainAxisAlignment: MainAxisAlignment.center,
