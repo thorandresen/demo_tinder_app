@@ -162,14 +162,14 @@ class NewPolitician {
           List<String> venstreList = new List(3);
           venstreList[0] = '1LarsLøkke';
           venstreList[1] = '2AnniMatthiesen';
-          venstreList[2] = '3Test';
+          venstreList[2] = '3KristianJensen';
           _localHolder.addAll(venstreList);
           break;
         case "SocialDemokraterne":
           List<String> sdList = new List(3);
           sdList[0] = '1MetteFrederiksen';
-          sdList[1] = '2Test';
-          sdList[2] = '3Test';
+          sdList[1] = '2FrankJensen';
+          sdList[2] = '3JanJuulChristensen';
           _localHolder.addAll(sdList);
           break;
       }

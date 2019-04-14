@@ -213,7 +213,7 @@ class HomePageState extends State<HomePage> {
         new Text(
           'Kerne principper',
           style: new TextStyle(
-            fontSize: 20.0,
+            fontSize: 25.0,
           ),
         ),
 
@@ -221,7 +221,7 @@ class HomePageState extends State<HomePage> {
         new Text(
           _politikPrincip,
           style: new TextStyle(
-            fontSize: 15,
+            fontSize: 18,
           ),
         ),
         new LinearPercentIndicator(
@@ -267,7 +267,7 @@ class HomePageState extends State<HomePage> {
         new Text(
           item[_politicianNo]['andetPrincipName'],
           style: new TextStyle(
-            fontSize: 15,
+            fontSize: 18,
           ),
         ),
         new LinearPercentIndicator(
@@ -319,7 +319,7 @@ class HomePageState extends State<HomePage> {
         new Text(
           item[_politicianNo]['tredjePrincipName'],
           style: new TextStyle(
-            fontSize: 15,
+            fontSize: 18,
           ),
         ),
         new LinearPercentIndicator(
@@ -371,7 +371,7 @@ class HomePageState extends State<HomePage> {
         new Text(
           item[_politicianNo]['fjerdePrincipName'],
           style: new TextStyle(
-            fontSize: 15,
+            fontSize: 18,
           ),
         ),
         new LinearPercentIndicator(
@@ -423,7 +423,7 @@ class HomePageState extends State<HomePage> {
         new Text(
           item[_politicianNo]['femtePrincipName'],
           style: new TextStyle(
-            fontSize: 15,
+            fontSize: 18,
           ),
         ),
         new LinearPercentIndicator(
@@ -464,10 +464,6 @@ class HomePageState extends State<HomePage> {
           ],
         ),
         Text(''),
-        new Text(
-          'Mere information',
-          style: new TextStyle(fontSize: 20),
-        ),
       ],
     );
   }
@@ -525,6 +521,7 @@ class HomePageState extends State<HomePage> {
               content: new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
+
                   new Container(
                       margin: EdgeInsets.all(10),
                       width: 50.0,
