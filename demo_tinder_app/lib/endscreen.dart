@@ -1,3 +1,4 @@
+import 'package:demo_tinder_app/drawermenu.dart';
 import 'package:demo_tinder_app/webview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,10 @@ class EndScreenPageState extends State<EndScreenPage> {
   Widget build(BuildContext context) {
     queryData = MediaQuery.of(context);
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Kend Din Politiker'),
+        centerTitle: true,
+      ),
         body: new Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -55,7 +60,8 @@ class EndScreenPageState extends State<EndScreenPage> {
               ],
             )
           ],
-        )
+        ),
+            drawer: DrawerMenu().drawerMenu(context)
     );
   }
 }

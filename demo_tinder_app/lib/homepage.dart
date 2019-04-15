@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:demo_tinder_app/drawermenu.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/rendering.dart';
@@ -160,7 +161,7 @@ class HomePageState extends State<HomePage> {
       ),
       /// FAB
       floatingActionButton: _fabWidget(),
-
+      drawer: DrawerMenu().drawerMenu(context),
     );
   }
 
@@ -168,6 +169,7 @@ class HomePageState extends State<HomePage> {
   /// Widget for showing the SliverAppBar
   Widget _sliverAppWidget() {
     return SliverAppBar(
+      iconTheme: IconThemeData(color: Colors.white),
         floating: false,
         pinned: true,
         expandedHeight: 235,
