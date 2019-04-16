@@ -32,13 +32,13 @@ class EndScreenPageState extends State<EndScreenPage> {
               children: <Widget>[
                 new Icon(Icons.update,
                     size: 15 * (queryData.size.width/100),
-                    color: Colors.red),
+                    color: Colors.deepOrange),
                 new Flexible(
                   child: new Text(
                     'Du har swipet igennem alle politikere!',
                     style: TextStyle(
                       fontSize: 6 * (queryData.size.width/100),
-                      color: Colors.red,
+                      color: Colors.deepOrange,
                     ),
                   ),
                 ),
