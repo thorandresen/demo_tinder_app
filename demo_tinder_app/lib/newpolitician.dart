@@ -199,6 +199,17 @@ class NewPolitician {
       _iteratePolitician(collection);
       return;
     }
+    else if (prefs.getString(collection+"Holder") == null ||
+    prefs.getString(collection+"Holder") == "" ||
+    prefs.getString(collection+"Holder") == {}) {
+
+      List<String> _localHolder = [];
+      _localHolder.add('1gwa');
+
+      await prefs.setString(collection+"Holder", json.encode(_localHolder));
+      _iteratePolitician(collection);
+      return;
+    }
     else {
       final _politicianMap = await json.decode(
           prefs.getString(collection + "Map") ?? "") ?? {};
