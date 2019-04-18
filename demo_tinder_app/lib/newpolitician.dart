@@ -32,7 +32,7 @@ class NewPolitician {
       _populatePoliticians(_collectionList[1]);
   }
 
-  /// Method for chosing what collection to look into.
+  /// Method for chosing what collection to look into. This method takes finds a valid collection where there are still not seen politicians.
   void collectionGenerator() async {
     prefs = await SharedPreferences.getInstance();
     List<String> _goodCollections = [];
@@ -101,8 +101,7 @@ class NewPolitician {
 
   }
 
-  /// PROBLEM! WE DON'T CREATE THE MAP FOR VENSTRE UNLESS WE WANT TO SAVE SOMEONE, THIS MEANS THAT THERE IS NO MAP FOR SOCIALDEMOKRATERNE YET!! A METHOD HAS TO BE CREATED TO CREATE BOTH OF THESE MAPS WITH FAKE INPUT:)
-  /// THIS IS THE REASON THAT I GET MAP NULL EVERYTIME I GO FROM VENSTRE TO SOCIALDEMOKRATERNE, BECAUSE IT TRIES TO ITERATE BUT IT HAS ONLY SAVED LARS LØKKE SO THE OTHER MAP DOESNT EXSIST YET!!!!!
+  /// This method is for saving the politician that are just seen and either liked or disliked.
   void _savePolitician(String id, bool isLiked, String collection) async {
     // Get the shared preference.
     prefs = await SharedPreferences.getInstance();
@@ -148,7 +147,7 @@ class NewPolitician {
 
   }
 
-  /// Used for populating (REWRITE THIS SO IT SAVES THE VENSTRE UNDER VESNTRELIST IN PREFS, SO I WILL KNOW WHO HAS WHAT AMOUNT OF POLITICIANS NAD CAN ITERATE.)
+  /// Used for populating the different "Holders" which holds all the politicians in different parties, so that it can be used to be compared with already seen politicians.
   void _populatePoliticians(String collection) async {
     // Get the shared preference.
     prefs = await SharedPreferences.getInstance();
@@ -185,7 +184,7 @@ class NewPolitician {
     }
   }
 
-  /// THIS METHOD IS SUPPOSED TO ITERATE THROUGH THE MAP AND CHECK IT UP AGAINST (AFTER REFACOTRING THE TWO OTHER METHODS TO WORK WITH COLLECTIONS, ITERATE OVER A COLLECTION HERE).
+  /// Iterates over the valid politicians, and choses one to show the user, which the user has not seen before.
   void _iteratePolitician(String collection) async {
     // Get the shared preference.
     prefs = await SharedPreferences.getInstance();

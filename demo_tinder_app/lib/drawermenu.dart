@@ -1,3 +1,10 @@
+import 'dart:async';
+
+import 'package:demo_tinder_app/homepage.dart';
+import 'package:demo_tinder_app/newpolitician.dart';
+import 'package:demo_tinder_app/savedpoliticians.dart';
+import 'package:demo_tinder_app/settings.dart';
+import 'package:demo_tinder_app/statistics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -43,10 +50,24 @@ class DrawerMenu {
               ],
             ),
             onTap: () {
-              // Update the state of the app
-              // ...
-              // Close navigator menu after press.
+              NewPolitician np = new NewPolitician();
+              new Timer(const Duration(seconds: 1), ()=> np.performPolitician(false, context, 'gwa', 'gwa'));
               Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            title: new Row(
+              children: <Widget>[
+                new Icon(Icons.account_circle),
+                Text('   '),
+                Text('Gemte politikere', style: TextStyle(
+                    fontSize: 15
+                ),),
+              ],
+            ),
+            onTap: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (BuildContext _context) => SavedPoliticiansPage()));
             },
           ),
           ListTile(
@@ -60,10 +81,8 @@ class DrawerMenu {
               ],
             ),
             onTap: () {
-              // Update the state of the app
-              // ...
-              // Close navigator menu after press.
-              Navigator.pop(context);
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (BuildContext _context) => StatisticsPage()));
             },
           ),
           ListTile(
@@ -77,10 +96,8 @@ class DrawerMenu {
               ],
             ),
             onTap: () {
-              // Update the state of the app
-              // ...
-              // Close navigator menu after press.
-              Navigator.pop(context);
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (BuildContext _context) => SettingsPage()));
             },
           ),
         ],

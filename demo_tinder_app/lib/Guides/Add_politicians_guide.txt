@@ -1,0 +1,17 @@
+// A guide to adding politicians to the application //
+
+
+
+Follow the steps below:
+
+1. Start by making a new background for the party, and find the correct colors etc. needed.
+    1a. Upload the background to the project and add it in the pubspec.yaml file.
+
+2. Use the Python script to add a new politician to a new collection.
+    1a. Remember always to call them 1-2-3 etc. infront of the names.
+
+3. Go into the newpolitician.dart file and remember to add the background and the new party to the lists.
+
+4. Make sure the new party gets populated with correct politicians within the populatePolitician method.
+
+5. Test that it works, then add more politicians.
