@@ -1,3 +1,4 @@
+import 'package:demo_tinder_app/drawermenu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,8 +12,9 @@ class SavedPoliticiansPageState extends State<SavedPoliticiansPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Saved politicians'),
+        title: Text('Gemte politikere'),
       ),
+      drawer: DrawerMenu().drawerMenu(context),
     );
   }
 }

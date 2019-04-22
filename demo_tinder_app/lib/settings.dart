@@ -1,3 +1,4 @@
+import 'package:demo_tinder_app/drawermenu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,7 @@ class SettingsPageState extends State<SettingsPage> {
         centerTitle: true,
         title: Text('Indstillinger'),
       ),
+      drawer: DrawerMenu().drawerMenu(context),
     );
   }
 }

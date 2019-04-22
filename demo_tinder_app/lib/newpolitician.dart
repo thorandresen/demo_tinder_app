@@ -7,8 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'endscreen.dart';
 
 class NewPolitician {
-  List<String> _collectionList = new List(2);
-  List<String> _backgroundList = new List(2);
+  List<String> _collectionList = new List(3);
+  List<String> _backgroundList = new List(3);
   int newPoliticianInt;
   String newPoliticianCollection = '';
   String newPoliticianString = '';
@@ -22,14 +22,17 @@ class NewPolitician {
     // COLLECTION LIST
     _collectionList[0] = "Venstre";
     _collectionList[1] = "SocialDemokraterne";
+    _collectionList[2] = "RadikaleVenstre";
 
     // BACKGROUND LIST
     _backgroundList[0] = "graphics/Venstre_background.png";
     _backgroundList[1] = "graphics/SD_background.png";
+    _backgroundList[2] = "graphics/Radikal_background.png";
 
     // Populate politicians
       _populatePoliticians(_collectionList[0]);
       _populatePoliticians(_collectionList[1]);
+      _populatePoliticians(_collectionList[2]);
   }
 
   /// Method for chosing what collection to look into. This method takes finds a valid collection where there are still not seen politicians.
@@ -61,13 +64,14 @@ class NewPolitician {
           print('COLLECTION HOLDER LENGTH: ' +_politicianHolder.length.toString() );
         }
       }
+      print('LENTGH OF GOOD COLLECTION LIST: ' + _goodCollections.length.toString());
     }
 
     if(_goodCollections.length == 1){
       newPoliticianCollection = _goodCollections[0];
     }else if(_goodCollections.length > 1) {
       Random random = new Random();
-      newPoliticianCollection = _goodCollections[random.nextInt(_collectionList.length)];
+      newPoliticianCollection = _goodCollections[random.nextInt(_goodCollections.length)];
     }
     else{
       print('COLLECTION LIST WAS EMPTY AS FUCK IDIOT');
@@ -170,6 +174,11 @@ class NewPolitician {
           sdList[1] = '2FrankJensen';
           sdList[2] = '3JanJuulChristensen';
           _localHolder.addAll(sdList);
+          break;
+        case "RadikaleVenstre":
+          List<String> radikalList = new List(1);
+          radikalList[0] = '1ZeniaStampe';
+          _localHolder.addAll(radikalList);
           break;
       }
 
