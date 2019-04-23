@@ -176,17 +176,18 @@ class NewPolitician {
           _localHolder.addAll(sdList);
           break;
         case "RadikaleVenstre":
-          List<String> radikalList = new List(1);
+          List<String> radikalList = new List(2);
           radikalList[0] = '1ZeniaStampe';
+          radikalList[1] = '2AndreasSteenberg';
           _localHolder.addAll(radikalList);
           break;
       }
 
       await prefs.setString(collection+"Holder", json.encode(_localHolder));
-      print('POLITICIANHOLDER IS NOW POPULATED BISH: ' + _localHolder.length.toString());
+      print('POLITICIANHOLDER IS NOW POPULATED BISH ($collection): ' + _localHolder.length.toString());
     }
     else {
-      print('POLITICIANHOLDER HAS BEEN POPULATED BISH: ' + json
+      print('POLITICIANHOLDER HAS BEEN POPULATED BISH ($collection): ' + json
           .decode(prefs.getString(collection + "Holder"))
           .length
           .toString());
@@ -211,11 +212,14 @@ class NewPolitician {
     prefs.getString(collection+"Holder") == "" ||
     prefs.getString(collection+"Holder") == {}) {
 
-      List<String> _localHolder = [];
+      /*List<String> _localHolder = [];
       _localHolder.add('1gwa');
 
-      await prefs.setString(collection+"Holder", json.encode(_localHolder));
+      await prefs.setString(collection+"Holder", json.encode(_localHolder));*/
+
+      _populatePoliticians(collection);
       _iteratePolitician(collection);
+      print('HOLDER WASNT POPULATED CORRECT ($collection)');
       return;
     }
     else {
