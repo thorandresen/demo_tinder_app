@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'package:demo_tinder_app/newpolitician.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class StatsHolder {
+class StatsGenerator {
   List<String> _collectionList;
-  Map<String, int> _statsMap = new Map();
+  Map<String, double> _statsMap = new Map();
   NewPolitician np = new NewPolitician();
   SharedPreferences prefs;
 
-  StatsHolder() {
+  StatsGenerator() {
     _collectionList = np.collectionList;
     _generateStatsMap();
   }
@@ -19,7 +19,7 @@ class StatsHolder {
     // Get the shared preference.
     prefs = await SharedPreferences.getInstance();
     // Counter for liked politicians.
-    int counter = 0;
+    double counter = 0;
 
     // Find the collections to iterate over.
     for (int i = 0; i < _collectionList.length; i++) {
@@ -58,5 +58,8 @@ class StatsHolder {
         }
       }
     }
+    print('MAP DOES CONTAIN VENSTRE: ' + _statsMap.containsKey('Venstre').toString());
   }
+
+  Map<String, double> get statsMap => _statsMap;
 }
