@@ -14,12 +14,14 @@ class StatsHolder {
     _generateStatsMap();
   }
 
-  /// THERE IS NEED FOR ITERATING OVER THE SPECIFIC MAP AND RETRIEVING ONLY THE LIKED POLITICIANS IN THIS METHOD INSTEAD OF ALL POLITICIANS.
+  /// Method for generating the map with all of the liked politicians from each of the collections (parties).
   void _generateStatsMap() async {
     // Get the shared preference.
     prefs = await SharedPreferences.getInstance();
+    // Counter for liked politicians.
     int counter = 0;
 
+    // Find the collections to iterate over.
     for (int i = 0; i < _collectionList.length; i++) {
       if (prefs.getString(_collectionList[i] + "Map") == null ||
           prefs.getString(_collectionList[i] + "Map") == "" ||
@@ -31,8 +33,10 @@ class StatsHolder {
                 .decode(prefs.getString(_collectionList[i] + "Map") ?? "") ??
             {};
 
+        // Take the values of the given collection and save it as a list for easier iteration.
         var _polList = _politicianMap.values.toList();
 
+        // Iterate over the liked politicians.
         if (_polList.length != 0 || _polList.length != null || _polList != {}) {
           for (int j = 0; j < _polList.length; j++) {
             print('Value of politician is: ' + _polList[j].toString());
@@ -45,10 +49,9 @@ class StatsHolder {
                   _collectionList[i] +
                   " with length of: " +
                   counter.toString());
-            } else {
-              print('Poltician was not liked!');
             }
           }
+          // Reset counter for use in next collection.
           counter = 0;
         } else {
           print('STATSHOLDER: no liked polticians');
