@@ -14,6 +14,7 @@ class StatsHolder {
     _generateStatsMap();
   }
 
+  /// THERE IS NEED FOR ITERATING OVER THE SPECIFIC MAP AND RETRIEVING ONLY THE LIKED POLITICIANS IN THIS METHOD INSTEAD OF ALL POLITICIANS.
   void _generateStatsMap() async {
     // Get the shared preference.
     prefs = await SharedPreferences.getInstance();
