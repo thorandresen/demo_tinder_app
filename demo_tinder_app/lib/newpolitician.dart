@@ -264,4 +264,6 @@ class NewPolitician {
     Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (BuildContext _context) => HomePage(collection, newPoliticianString)));
   }
+
+  List<String> get collectionList => _collectionList;
 }
