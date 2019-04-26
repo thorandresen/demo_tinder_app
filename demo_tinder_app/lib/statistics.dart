@@ -30,7 +30,7 @@ class StatisticsPageState extends State<StatisticsPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'Partifordeling af likede politikkere',
+                'Fordeling af likede politikkere',
                 style: TextStyle(fontSize: 20.0),
               ),
               new FutureBuilder<void>(
@@ -46,6 +46,8 @@ class StatisticsPageState extends State<StatisticsPage> {
                   }
                 },
               ),
+              Text(''),
+              Text('Flere stastikker på vej...')
             ],
           )
         ],
