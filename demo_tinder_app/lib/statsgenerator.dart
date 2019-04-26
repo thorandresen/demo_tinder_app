@@ -11,11 +11,10 @@ class StatsGenerator {
 
   StatsGenerator() {
     _collectionList = np.collectionList;
-    _generateStatsMap();
   }
 
   /// Method for generating the map with all of the liked politicians from each of the collections (parties).
-  void _generateStatsMap() async {
+  Future<bool> generateStatsMap() async {
     // Get the shared preference.
     prefs = await SharedPreferences.getInstance();
     // Counter for liked politicians.
@@ -27,7 +26,6 @@ class StatsGenerator {
           prefs.getString(_collectionList[i] + "Map") == "" ||
           prefs.getString(_collectionList[i] + "Map") == {}) {
         print('STATSHOLDER: COLLECTION HAD NO LIKED PERSONS');
-        return;
       } else {
         final _politicianMap = await json
                 .decode(prefs.getString(_collectionList[i] + "Map") ?? "") ??
@@ -58,7 +56,8 @@ class StatsGenerator {
         }
       }
     }
-    print('MAP DOES CONTAIN VENSTRE: ' + _statsMap.containsKey('Venstre').toString());
+    print('MAP IS NOT EMPTY?: ' + _statsMap.isNotEmpty.toString());
+    return true;
   }
 
   Map<String, double> get statsMap => _statsMap;

@@ -35,19 +35,31 @@ class StatisticsPageState extends State<StatisticsPage> {
               ),
               new FutureBuilder<void>(
                 future: _calculator(),
-                builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
-                  switch (snapshot.connectionState) {
-                    case ConnectionState.waiting:
-                      return new CircularProgressIndicator();
-                    case ConnectionState.done:
-                      return chart();
-                    default:
-                      if (snapshot.hasError) return new Text('This fucked up');
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if(snapshot.data != null) {
+                    return chart();
+                  }
+                  else {
+                    return new Container(
+                      child: Column(
+                        children: <Widget>[
+                          Text(''),
+                          new CircularProgressIndicator(),
+                          Text(''),
+                        new Text('Ingen politkkere er liket endnu... Back to swiping!', style: TextStyle(
+                        fontSize: 18.0,
+                      ),),
+                        ],
+                      )
+                    );
                   }
                 },
               ),
               Text(''),
-              Text('Flere stastikker på vej...')
+              Text(''),
+              Text('Flere stastikker på vej...', style: TextStyle(
+                color: Colors.grey,
+              ),)
             ],
           )
         ],
@@ -57,19 +69,22 @@ class StatisticsPageState extends State<StatisticsPage> {
   }
 
   Future<void> _calculator() async {
-    if (map.containsKey('Venstre')) {
-      setState(() {
-        new AsyncSnapshot.withData(ConnectionState.done, null);
-      });
-    } else {
-      setState(() {
-        new AsyncSnapshot.withData(ConnectionState.waiting, null);
-      });
+    bool test = await sh.generateStatsMap();
+    map = sh.statsMap;
+
+    if (test && map.isNotEmpty) {
+      print('I am working!');
+      return map;
+    }
+    else{
+      print('I am not working!');
+      return null;
     }
   }
 
+
+
   Widget chart() {
-    print('MAP CONTAINS: ' + map.containsKey('Venstre').toString());
     return PieChart(
       dataMap: map,
       legendFontColor: Colors.blueGrey[900],
