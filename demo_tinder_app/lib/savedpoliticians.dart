@@ -35,12 +35,14 @@ class SavedPoliticiansPageState extends State<SavedPoliticiansPage> {
               }
             }
           ),
+
         ],
       ),
       drawer: DrawerMenu().drawerMenu(context),
     );
   }
 
+  /// Method used with the future builder for returning correct hint for the dropdown menu.
   Future<void> _calculator() async {
     bool test = await sh.generateStatsMap();
     _collections = sh.statsMap.keys.toList();
@@ -54,6 +56,7 @@ class SavedPoliticiansPageState extends State<SavedPoliticiansPage> {
 
   }
 
+  /// The method that actually builds the dropdown menu.
   Widget _buildList(String hint){
     return DropdownButton(
       hint: Text(hint), // Not necessary for Option 1
