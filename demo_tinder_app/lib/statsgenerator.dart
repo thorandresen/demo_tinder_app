@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class StatsGenerator {
   List<String> _collectionList;
   Map<String, double> _statsMap = new Map();
+  List<String> _likedPoliticiansList = [];
   NewPolitician np = new NewPolitician();
   SharedPreferences prefs;
 
@@ -60,5 +61,24 @@ class StatsGenerator {
     return true;
   }
 
+  Future<bool> generateLikedPoliticianMap(String collection) async {
+    // Get the shared preference.
+    prefs = await SharedPreferences.getInstance();
+
+    if (prefs.getString(collection + "Map") == null ||
+        prefs.getString(collection + "Map") == "" ||
+        prefs.getString(collection + "Map") == {}) {
+      return false;
+    }
+    else{
+      final _politicianMap = await json
+          .decode(prefs.getString(collection + "Map") ?? "") ??
+          {};
+
+      // FROM HERE, TAKE ALL THE POLITICIANS THAT ARE LIKE AND PUT THEM INTO A LIST WITH ID SO THAT CAN BE USED FOR ITERATING THE POLITICIANS BISH!
+    }
+  }
+
+  List<String> get likedPoliticiansList => _likedPoliticiansList;
   Map<String, double> get statsMap => _statsMap;
 }

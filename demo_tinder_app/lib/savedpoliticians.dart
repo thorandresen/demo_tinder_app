@@ -11,6 +11,7 @@ class SavedPoliticiansPageState extends State<SavedPoliticiansPage> {
   StatsGenerator sh = new StatsGenerator();
   String _selectedCollection;
   List<String> _collections = [];
+  Map<String, bool> _likedPoliticans;
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +46,12 @@ class SavedPoliticiansPageState extends State<SavedPoliticiansPage> {
   /// Method used with the future builder for returning correct hint for the dropdown menu.
   Future<void> _calculator() async {
     bool test = await sh.generateStatsMap();
-    _collections = sh.statsMap.keys.toList();
+    _collections = sh.statsMap.keys.toList(); // Retrieve all the collections with liked politicians.
 
     if(test && _collections.isNotEmpty){
+      // 1. CALL METHOD RETRIEVING ALL LIKED POLITICIANS WITHIN THE CHOSEN COLLECTION.
+      // 2. PUT THEM INTO A MAP.
+      // 3. USE THEM WITHIN STREAMBUILDER.
       return _collections;
     }
     else{
