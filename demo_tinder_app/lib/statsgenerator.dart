@@ -75,7 +75,19 @@ class StatsGenerator {
           .decode(prefs.getString(collection + "Map") ?? "") ??
           {};
 
-      // FROM HERE, TAKE ALL THE POLITICIANS THAT ARE LIKE AND PUT THEM INTO A LIST WITH ID SO THAT CAN BE USED FOR ITERATING THE POLITICIANS BISH!
+      var _polList = _politicianMap.values.toList();
+      List<String> _idList = _politicianMap.keys.toList();
+
+      for(int i = 0; i < _politicianMap.length; i++){
+        if(_polList[i]){
+          _likedPoliticiansList.add(_idList[i]);
+          print('Liked politician was added to list: ' + _idList[i]);
+        }
+        else{
+          print('Politician wasnt liked');
+        }
+      }
+      return true;
     }
   }
 

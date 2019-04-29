@@ -11,7 +11,7 @@ class SavedPoliticiansPageState extends State<SavedPoliticiansPage> {
   StatsGenerator sh = new StatsGenerator();
   String _selectedCollection;
   List<String> _collections = [];
-  Map<String, bool> _likedPoliticans;
+  List<int> _likedPoliticans = [];
 
   @override
   Widget build(BuildContext context) {
@@ -47,17 +47,32 @@ class SavedPoliticiansPageState extends State<SavedPoliticiansPage> {
   Future<void> _calculator() async {
     bool test = await sh.generateStatsMap();
     _collections = sh.statsMap.keys.toList(); // Retrieve all the collections with liked politicians.
-
     if(test && _collections.isNotEmpty){
-      // 1. CALL METHOD RETRIEVING ALL LIKED POLITICIANS WITHIN THE CHOSEN COLLECTION.
-      // 2. PUT THEM INTO A MAP.
-      // 3. USE THEM WITHIN STREAMBUILDER.
       return _collections;
     }
     else{
       return null;
     }
+  }
 
+  /// The method that retrieves the firestore number for all the correct politicians. This puts all the correct ints into the _likedPoliticans list.
+  Future<bool> _retrievePoliticians() async {
+    bool test = await sh.generateLikedPoliticianMap(_selectedCollection);
+    if (test) {
+     List<String> _likedPoliticansString = sh.likedPoliticiansList;
+
+     for(int i = 0; i < _likedPoliticansString.length; i++){
+       String cutString = _likedPoliticansString[i].substring(0,1);
+       int correctNumber = int.parse(cutString)-1;
+       _likedPoliticans.add(correctNumber);
+       print('This number was added to the list: ' + correctNumber.toString());
+     }
+     return true;
+    }
+    else{
+      print('Something went wrong in getting liked politcians.');
+      return false;
+    }
   }
 
   /// The method that actually builds the dropdown menu.
@@ -68,6 +83,7 @@ class SavedPoliticiansPageState extends State<SavedPoliticiansPage> {
       onChanged: (newValue) {
         setState(() {
           _selectedCollection = newValue;
+          _retrievePoliticians(); // Retrieve all liked politicians.
         });
       },
       items: _collections.map((location) {
