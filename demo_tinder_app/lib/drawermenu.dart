@@ -30,7 +30,7 @@ class DrawerMenu {
                         fit: BoxFit.fill,
                         image: new AssetImage(
                            'graphics/app_logo.png')))),
-      Text('Kend Din Politiker',style: TextStyle(
+      Text('Politikr',style: TextStyle(
         fontSize: 18.0,
         color: Colors.white,
       ),),
@@ -61,7 +61,7 @@ class DrawerMenu {
               children: <Widget>[
                 new Icon(Icons.account_circle),
                 Text('   '),
-                Text('Gemte politikere', style: TextStyle(
+                Text('Likede politikere', style: TextStyle(
                     fontSize: 15
                 ),),
               ],

@@ -71,6 +71,7 @@ class StatsGenerator {
       return false;
     }
     else{
+      _likedPoliticiansList.clear(); // Clearing the _likedpolitcianList before adding new values.
       final _politicianMap = await json
           .decode(prefs.getString(collection + "Map") ?? "") ??
           {};
