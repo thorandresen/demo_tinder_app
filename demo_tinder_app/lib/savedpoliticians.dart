@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:demo_tinder_app/drawermenu.dart';
+import 'package:demo_tinder_app/homepage.dart';
 import 'package:demo_tinder_app/statsgenerator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -131,8 +132,17 @@ class SavedPoliticiansPageState extends State<SavedPoliticiansPage> {
                   title: Text(item[_likedPoliticans[index]]['name']),
                   subtitle: Text(item[_likedPoliticans[index]]['partiName']),
                   trailing: new Icon(Icons.arrow_forward_ios),
+                  onTap: () {
+                      print('Index of this politician is: $index' + ' and number of politician in array is: ' + _likedPoliticans[index].toString());
+                      change(index);
+                  },
                 );
               });
         });
+  }
+
+  void change(int index){
+    Navigator.push(context,
+        MaterialPageRoute(builder: (BuildContext _context) => HomePage(_selectedCollection, (_likedPoliticans[index]+1).toString())));
   }
 }
