@@ -90,6 +90,7 @@ class HomePageState extends State<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
+                              _informationWidget(),
                               /// FØRSTE PRINCIP
                               _firstPrincipleWidget(),
                               /// ANDET PRNCIP
@@ -236,8 +237,8 @@ class HomePageState extends State<HomePage> {
               children: <Widget>[
                 new Container(
                     margin: EdgeInsets.all(10),
-                    width: 45 * (queryData.size.width/100),
-                    height: 45 * (queryData.size.width/100),
+                    width: 45 * (queryData.size.width/105),
+                    height: 45 * (queryData.size.width/105),
                     decoration: new BoxDecoration(
                         shape: BoxShape.circle,
                         image: new DecorationImage(
@@ -255,15 +256,106 @@ class HomePageState extends State<HomePage> {
     );
   }
 
-  /// Widget for showing the first principle.
-  Widget _firstPrincipleWidget() {
+  /// Widget that holds everything with the first information about the politician.
+  Widget _informationWidget(){
     return new Column(
       children: <Widget>[
         Text(''),
         new Text(
+          'Information',
+          style: new TextStyle(
+            fontSize: 8 * (queryData.size.width/110),
+          ),
+        ),
+
+        Text(''),
+        new Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Text(
+                'Parti: ',
+                style: new TextStyle(
+                  fontSize: 4.8 * (queryData.size.width/100),
+                  color: Colors.black54,
+                ),
+              ),
+
+              new Text(
+                item[_politicianNo]['partiName'],
+                style: new TextStyle(
+                  fontSize: 4.8 * (queryData.size.width/100),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ]
+        ),
+
+        Text(''),
+        new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Text(
+                'Storkreds: ',
+                style: new TextStyle(
+                  fontSize: 4.8 * (queryData.size.width/100),
+                  color: Colors.black54,
+                ),
+              ),
+
+              new Text(
+                item[_politicianNo]['storKreds'],
+                style: new TextStyle(
+                  fontSize: 4.8 * (queryData.size.width/100),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ]
+        ),
+
+        Text(''),
+        new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Text(
+                'By: ',
+                style: new TextStyle(
+                  fontSize: 4.8 * (queryData.size.width/100),
+                  color: Colors.black54,
+                ),
+              ),
+
+              new Text(
+                item[_politicianNo]['by'],
+                style: new TextStyle(
+                  fontSize: 4.8 * (queryData.size.width/100),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ]
+        ),
+
+
+        Container(
+          padding: EdgeInsets.all(10.0),
+          child: Divider(
+            height: 5.0,
+            color: Colors.black26,
+          ),
+        )
+      ],
+    );
+
+  }
+
+  /// Widget for showing the first principle.
+  Widget _firstPrincipleWidget() {
+    return new Column(
+      children: <Widget>[
+
+        new Text(
           'Kerne principper',
           style: new TextStyle(
-            fontSize: 8 * (queryData.size.width/100),
+            fontSize: 8 * (queryData.size.width/110),
           ),
         ),
 
@@ -535,6 +627,7 @@ class HomePageState extends State<HomePage> {
                 ),)),
           ],
         ),
+        Text(''),
         Text(''),
       ],
     );
