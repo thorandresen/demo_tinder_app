@@ -726,7 +726,7 @@ class HomePageState extends State<HomePage> {
             );
           },
         );
-      },
+      } ,
       child: new Image(
           image: AssetImage('graphics/sociale_medier.png'), fit: BoxFit.fill),
     );

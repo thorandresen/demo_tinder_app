@@ -58,6 +58,7 @@ flutter:
     - graphics/linkedIn_logo.png
     - graphics/Radikal_background.png
     - graphics/app_logo.png
+    - graphics/verificiation_logo.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
