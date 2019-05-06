@@ -143,6 +143,6 @@ class SavedPoliticiansPageState extends State<SavedPoliticiansPage> {
 
   void change(int index){
     Navigator.push(context,
-        MaterialPageRoute(builder: (BuildContext _context) => HomePage(_selectedCollection, (_likedPoliticans[index]+1).toString())));
+        MaterialPageRoute(builder: (BuildContext _context) => HomePage(_selectedCollection, (_likedPoliticans[index]+1).toString(), false)));
   }
 }

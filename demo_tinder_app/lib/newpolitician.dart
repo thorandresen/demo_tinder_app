@@ -262,7 +262,7 @@ class NewPolitician {
     // CHANGES THE ACTUAL ACTIVITY.
     print('ACTIVITY IS CHANGED WITH FOLLOWING ARGUMENTS: $collection and $newPoliticianString');
     Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (BuildContext _context) => HomePage(collection, newPoliticianString)));
+        MaterialPageRoute(builder: (BuildContext _context) => HomePage(collection, newPoliticianString, true)));
   }
 
   List<String> get collectionList => _collectionList;

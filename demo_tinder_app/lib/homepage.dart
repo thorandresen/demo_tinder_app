@@ -22,6 +22,7 @@ class HomePageState extends State<HomePage> {
   // VARIABLES.
   ScrollController _controller;
   bool _hideFAB; //
+  final bool _dismissible;
   int _politicianNo = 0;
   String _collectionName;
   String _partyName;
@@ -34,7 +35,7 @@ class HomePageState extends State<HomePage> {
   final String _politician;
   MediaQueryData queryData;
 
-  HomePageState(this._collection,this._politician);
+  HomePageState(this._collection,this._politician, this._dismissible);
 
 
   /// Method that inits shit when starting.
@@ -57,38 +58,8 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomPadding: false,
-      body: Dismissible(
-        key: new Key(dismissRemover[0]),
-        background: Container(
-          color: Colors.red,
-          child: Icon(
-            Icons.thumb_down,
-            color: Colors.white,
-            size: 150.0,
-          ),
-        ),
-        secondaryBackground: Container(
-          color: Colors.green,
-          child: Icon(
-            Icons.thumb_up,
-            color: Colors.white,
-            size: 150.0,
-          ),
-        ),
-        onDismissed: (direction) {
-          if (direction == DismissDirection.endToStart) {
-            setState(() {
-              _newPolitician.performPolitician(true, context, item[_politicianNo]['id'], _collectionName);
-              dismissRemover.removeAt(0);
-            });
-          } else {
-            setState(() {
-              _newPolitician.performPolitician(false, context, item[_politicianNo]['id'], _collectionName);
-              dismissRemover.removeAt(0);
-            });
-          }
-        },
-        child: StreamBuilder(
+      body: _isDismissible(
+        StreamBuilder(
             stream: Firestore.instance.collection(_collectionName).snapshots(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
@@ -111,7 +82,7 @@ class HomePageState extends State<HomePage> {
                 return CustomScrollView(
                   controller: _controller,
                   slivers: <Widget>[
-                   _sliverAppWidget(),
+                    _sliverAppWidget(),
                     SliverList(
                       delegate: SliverChildListDelegate(
                         [
@@ -122,7 +93,7 @@ class HomePageState extends State<HomePage> {
                               /// FØRSTE PRINCIP
                               _firstPrincipleWidget(),
                               /// ANDET PRNCIP
-                             _secondPrincipleWidget(),
+                              _secondPrincipleWidget(),
                               /// TREDJE PRINCIP
                               _thirdPrincipleWidget(),
                               /// FJERDE PRINCIP
@@ -146,7 +117,7 @@ class HomePageState extends State<HomePage> {
                                   /// SOCIAL MEDIA
                                   _socialMediaGestureDetectorWidget(),
                                   /// RELAVENT INFO
-                                 _relevantGestureDetectorWidget(),
+                                  _relevantGestureDetectorWidget(),
                                 ],
                               )
                             ],
@@ -160,16 +131,91 @@ class HomePageState extends State<HomePage> {
             }),
       ),
       /// FAB
-      floatingActionButton: _fabWidget(),
-      drawer: DrawerMenu().drawerMenu(context),
+      floatingActionButton: _showFabs(),
+      drawer: _showDrawer(),
     );
   }
 
   /// ## ---- WIDGETS ---- ## ///
+
+  /// Method for the dismissibleWidget.
+  Widget _dismissibleWidget(Widget child){
+    return Dismissible(
+      key: new Key(dismissRemover[0]),
+      background: Container(
+        color: Colors.red,
+        child: Icon(
+          Icons.thumb_down,
+          color: Colors.white,
+          size: 150.0,
+        ),
+      ),
+      secondaryBackground: Container(
+        color: Colors.green,
+        child: Icon(
+          Icons.thumb_up,
+          color: Colors.white,
+          size: 150.0,
+        ),
+      ),
+      child: child,
+      onDismissed: (direction) {
+        if (direction == DismissDirection.endToStart) {
+          setState(() {
+            _newPolitician.performPolitician(true, context, item[_politicianNo]['id'], _collectionName);
+            dismissRemover.removeAt(0);
+          });
+        } else {
+          setState(() {
+            _newPolitician.performPolitician(false, context, item[_politicianNo]['id'], _collectionName);
+            dismissRemover.removeAt(0);
+          });
+        }
+      },
+    );
+  }
+
+  /// Empty container widget
+  Widget _emptyContainerWidget(Widget child){
+    return Container(
+      child: child,
+    );
+  }
+
+  /// Chooses if dissmissible or not.
+  Widget _isDismissible(Widget child){
+    if(_dismissible){
+      return _dismissibleWidget(child);
+    }
+    else{
+      return _emptyContainerWidget(child);
+    }
+  }
+
+  /// Chooses if Fabs should be shown or not.
+  Widget _showFabs(){
+    if(_dismissible){
+      return _fabWidget();
+    }
+    else {
+      return null;
+    }
+  }
+
+  /// Chooses if the drawer menu should be there or not.
+  Widget _showDrawer(){
+    if(_dismissible){
+      return DrawerMenu().drawerMenu(context);
+    }
+    else {
+      return null;
+    }
+  }
+
   /// Widget for showing the SliverAppBar
   Widget _sliverAppWidget() {
     return SliverAppBar(
-      iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.white),
         floating: false,
         pinned: true,
         expandedHeight: 235,
@@ -673,8 +719,9 @@ class HomePageState extends State<HomePage> {
 class HomePage extends StatefulWidget {
   final String _collection;
   final String _politician;
+  final bool _dismissible;
 
-  HomePage(this._collection,this._politician);
+  HomePage(this._collection,this._politician, this._dismissible);
 
-  HomePageState createState() => new HomePageState(_collection,_politician);
+  HomePageState createState() => new HomePageState(_collection,_politician, _dismissible);
 }
