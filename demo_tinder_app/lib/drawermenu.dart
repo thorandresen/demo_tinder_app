@@ -8,6 +8,8 @@ import 'package:demo_tinder_app/statistics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'introduction.dart';
+
 class DrawerMenu {
 
   Widget drawerMenu(BuildContext context) {
@@ -99,6 +101,21 @@ class DrawerMenu {
             onTap: () {
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (BuildContext _context) => SettingsPage()));
+            },
+          ),
+          ListTile(
+            title: new Row(
+              children: <Widget>[
+                new Icon(Icons.help),
+                Text('   '),
+                Text('Hjælp', style: TextStyle(
+                    fontSize: 15
+                ),),
+              ],
+            ),
+            onTap: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (BuildContext _context) => IntroductionPage()));
             },
           ),
         ],
