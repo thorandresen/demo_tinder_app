@@ -90,6 +90,7 @@ class HomePageState extends State<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
+                              /// INFORMATION
                               _informationWidget(),
                               /// FØRSTE PRINCIP
                               _firstPrincipleWidget(),
@@ -260,14 +261,6 @@ class HomePageState extends State<HomePage> {
   Widget _informationWidget(){
     return new Column(
       children: <Widget>[
-        Text(''),
-        new Text(
-          'Information',
-          style: new TextStyle(
-            fontSize: 8 * (queryData.size.width/110),
-          ),
-        ),
-
         Text(''),
         new Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -686,41 +679,98 @@ class HomePageState extends State<HomePage> {
               content: new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  new Container(
-                      margin: EdgeInsets.all(10),
-                      width: 50.0,
-                      height: 50.0,
-                      decoration: new BoxDecoration(
-                          image: new DecorationImage(
-                              fit: BoxFit.fill,
-                              image: new AssetImage("graphics/fb_logo.png")))),
-                  new Container(
-                      margin: EdgeInsets.all(10),
-                      width: 50.0,
-                      height: 50.0,
-                      decoration: new BoxDecoration(
-                          image: new DecorationImage(
-                              fit: BoxFit.fill,
-                              image: new AssetImage(
-                                  "graphics/twitter_logo.png")))),
-                  new Container(
-                      margin: EdgeInsets.all(10),
-                      width: 50.0,
-                      height: 50.0,
-                      decoration: new BoxDecoration(
-                          image: new DecorationImage(
-                              fit: BoxFit.fill,
-                              image: new AssetImage(
-                                  "graphics/instagram_logo.png")))),
-                  new Container(
-                      margin: EdgeInsets.all(10),
-                      width: 50.0,
-                      height: 50.0,
-                      decoration: new BoxDecoration(
-                          image: new DecorationImage(
-                              fit: BoxFit.fill,
-                              image: new AssetImage(
-                                  "graphics/linkedIn_logo.png")))),
+
+                  GestureDetector(
+                    child: new Container(
+                        margin: EdgeInsets.all(10),
+                        width: 45 * (queryData.size.width / 400),
+                        height: 45 * (queryData.size.width / 400),
+                        decoration: new BoxDecoration(
+                            image: new DecorationImage(
+                                fit: BoxFit.fill,
+                                image: new AssetImage(
+                                    "graphics/fb_logo.png")))),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                WebViewPage(
+                                    'Facebook',
+                                    'https://www.facebook.com/larsloekke/?__tn__=%2Cd%2CP-R&eid=ARAlKexDxBySUpcZ1lsr_ZPUvFMKjfSn1anagcsEZkMEwhQrNm2tg1iFUH9KYaIxFYsD6aa1A7IFbCxt',
+                                    item[_politicianNo]['appBackgroundColor'])),
+                      );
+                    },
+                  ),
+
+                  GestureDetector(
+                    child: new Container(
+                        margin: EdgeInsets.all(10),
+                        width: 45 * (queryData.size.width / 400),
+                        height: 45 * (queryData.size.width / 400),
+                        decoration: new BoxDecoration(
+                            image: new DecorationImage(
+                                fit: BoxFit.fill,
+                                image: new AssetImage(
+                                    "graphics/twitter_logo.png")))),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                WebViewPage(
+                                    'Twitter',
+                                    'https://twitter.com/larsloekke',
+                                    item[_politicianNo]['appBackgroundColor'])),
+                      );
+                    },
+                  ),
+
+                  GestureDetector(
+                    child: new Container(
+                        margin: EdgeInsets.all(10),
+                        width: 45 * (queryData.size.width / 400),
+                        height: 45 * (queryData.size.width / 400),
+                        decoration: new BoxDecoration(
+                            image: new DecorationImage(
+                                fit: BoxFit.fill,
+                                image: new AssetImage(
+                                    "graphics/instagram_logo.png")))),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                WebViewPage(
+                                    'Instagram',
+                                    'https://www.instagram.com/larsloekke/',
+                                    item[_politicianNo]['appBackgroundColor'])),
+                      );
+                    },
+                  ),
+
+                  GestureDetector(
+                    child: new Container(
+                        margin: EdgeInsets.all(10),
+                        width: 45 * (queryData.size.width / 400),
+                        height: 45 * (queryData.size.width / 400),
+                        decoration: new BoxDecoration(
+                            image: new DecorationImage(
+                                fit: BoxFit.fill,
+                                image: new AssetImage(
+                                    "graphics/linkedIn_logo.png")))),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                WebViewPage(
+                                    'LinkedIn',
+                                    'https://www.linkedin.com/in/larsloekke/',
+                                    item[_politicianNo]['appBackgroundColor'])),
+                      );
+                    },
+                  ),
                 ],
               ),
             );
