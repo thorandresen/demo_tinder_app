@@ -35,8 +35,7 @@ class HomePageState extends State<HomePage> {
   final String _politician;
   MediaQueryData queryData;
 
-  HomePageState(this._collection,this._politician, this._dismissible);
-
+  HomePageState(this._collection, this._politician, this._dismissible);
 
   /// Method that inits shit when starting.
   @override
@@ -45,8 +44,8 @@ class HomePageState extends State<HomePage> {
     _controller.addListener(_scrollListener);
     _hideFAB = false;
     _collectionName = _collection;
-    String localPoli = _politician.substring(0,1);
-    _politicianNo = int.parse(localPoli)-1;
+    String localPoli = _politician.substring(0, 1);
+    _politicianNo = int.parse(localPoli) - 1;
 
     super.initState();
   }
@@ -92,14 +91,19 @@ class HomePageState extends State<HomePage> {
                             children: [
                               /// INFORMATION
                               _informationWidget(),
+
                               /// FØRSTE PRINCIP
                               _firstPrincipleWidget(),
+
                               /// ANDET PRNCIP
                               _secondPrincipleWidget(),
+
                               /// TREDJE PRINCIP
                               _thirdPrincipleWidget(),
+
                               /// FJERDE PRINCIP
                               _fourthPrincipleWidget(),
+
                               /// FEMTE PRINCIP
                               _fifthPrincipleWidget(),
 
@@ -114,10 +118,13 @@ class HomePageState extends State<HomePage> {
                                 children: <Widget>[
                                   /// MORE INFO
                                   _moreInfGestureDetectorWidget(),
+
                                   /// ABOUT PARTY
                                   _aboutPartyGestureDetectorWidget(),
+
                                   /// SOCIAL MEDIA
                                   _socialMediaGestureDetectorWidget(),
+
                                   /// RELAVENT INFO
                                   _relevantGestureDetectorWidget(),
                                 ],
@@ -132,6 +139,7 @@ class HomePageState extends State<HomePage> {
               }
             }),
       ),
+
       /// FAB
       floatingActionButton: _showFabs(),
       drawer: _showDrawer(),
@@ -141,7 +149,7 @@ class HomePageState extends State<HomePage> {
   /// ## ---- WIDGETS ---- ## ///
 
   /// Method for the dismissibleWidget.
-  Widget _dismissibleWidget(Widget child){
+  Widget _dismissibleWidget(Widget child) {
     return Dismissible(
       key: new Key(dismissRemover[0]),
       background: Container(
@@ -164,12 +172,14 @@ class HomePageState extends State<HomePage> {
       onDismissed: (direction) {
         if (direction == DismissDirection.endToStart) {
           setState(() {
-            _newPolitician.performPolitician(true, context, item[_politicianNo]['id'], _collectionName);
+            _newPolitician.performPolitician(
+                true, context, item[_politicianNo]['id'], _collectionName);
             dismissRemover.removeAt(0);
           });
         } else {
           setState(() {
-            _newPolitician.performPolitician(false, context, item[_politicianNo]['id'], _collectionName);
+            _newPolitician.performPolitician(
+                false, context, item[_politicianNo]['id'], _collectionName);
             dismissRemover.removeAt(0);
           });
         }
@@ -178,38 +188,35 @@ class HomePageState extends State<HomePage> {
   }
 
   /// Empty container widget
-  Widget _emptyContainerWidget(Widget child){
+  Widget _emptyContainerWidget(Widget child) {
     return Container(
       child: child,
     );
   }
 
   /// Chooses if dissmissible or not.
-  Widget _isDismissible(Widget child){
-    if(_dismissible){
+  Widget _isDismissible(Widget child) {
+    if (_dismissible) {
       return _dismissibleWidget(child);
-    }
-    else{
+    } else {
       return _emptyContainerWidget(child);
     }
   }
 
   /// Chooses if Fabs should be shown or not.
-  Widget _showFabs(){
-    if(_dismissible){
+  Widget _showFabs() {
+    if (_dismissible) {
       return _fabWidget();
-    }
-    else {
+    } else {
       return null;
     }
   }
 
   /// Chooses if the drawer menu should be there or not.
-  Widget _showDrawer(){
-    if(_dismissible){
+  Widget _showDrawer() {
+    if (_dismissible) {
       return DrawerMenu().drawerMenu(context);
-    }
-    else {
+    } else {
       return null;
     }
   }
@@ -221,14 +228,14 @@ class HomePageState extends State<HomePage> {
         floating: false,
         pinned: true,
         expandedHeight: 235,
-        backgroundColor: Color(int.parse(
-            item[_politicianNo]['appBackgroundColor'])),
+        backgroundColor:
+            Color(int.parse(item[_politicianNo]['appBackgroundColor'])),
         centerTitle: true,
         flexibleSpace: FlexibleSpaceBar(
           title: new Text(
             item[_politicianNo]['name'],
             style: new TextStyle(
-              fontSize: 5 * (queryData.size.width/100),
+              fontSize: 5 * (queryData.size.width / 100),
               color: Colors.white,
             ),
           ),
@@ -238,96 +245,80 @@ class HomePageState extends State<HomePage> {
               children: <Widget>[
                 new Container(
                     margin: EdgeInsets.all(10),
-                    width: 45 * (queryData.size.width/105),
-                    height: 45 * (queryData.size.width/105),
+                    width: 45 * (queryData.size.width / 105),
+                    height: 45 * (queryData.size.width / 105),
                     decoration: new BoxDecoration(
                         shape: BoxShape.circle,
                         image: new DecorationImage(
                             fit: BoxFit.fill,
-                            image: new NetworkImage(
-                                item[_politicianNo]['pb'])))),
+                            image:
+                                new NetworkImage(item[_politicianNo]['pb'])))),
               ],
             ),
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage(_newPolitician.background(item[_politicianNo]['backgroundImage'])),
+                    image: AssetImage(_newPolitician
+                        .background(item[_politicianNo]['backgroundImage'])),
                     fit: BoxFit.fill)),
           ),
-        )
-    );
+        ));
   }
 
   /// Widget that holds everything with the first information about the politician.
-  Widget _informationWidget(){
+  Widget _informationWidget() {
     return new Column(
       children: <Widget>[
         Text(''),
-        new Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new Text(
-                'Parti: ',
-                style: new TextStyle(
-                  fontSize: 4.8 * (queryData.size.width/100),
-                  color: Colors.black54,
-                ),
-              ),
-
-              new Text(
-                item[_politicianNo]['partiName'],
-                style: new TextStyle(
-                  fontSize: 4.8 * (queryData.size.width/100),
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ]
-        ),
-
+        new Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+          new Text(
+            'Parti: ',
+            style: new TextStyle(
+              fontSize: 4.8 * (queryData.size.width / 100),
+              color: Colors.black54,
+            ),
+          ),
+          new Text(
+            item[_politicianNo]['partiName'],
+            style: new TextStyle(
+              fontSize: 4.8 * (queryData.size.width / 100),
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ]),
         Text(''),
-        new Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new Text(
-                'Storkreds: ',
-                style: new TextStyle(
-                  fontSize: 4.8 * (queryData.size.width/100),
-                  color: Colors.black54,
-                ),
-              ),
-
-              new Text(
-                item[_politicianNo]['storKreds'],
-                style: new TextStyle(
-                  fontSize: 4.8 * (queryData.size.width/100),
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ]
-        ),
-
+        new Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+          new Text(
+            'Storkreds: ',
+            style: new TextStyle(
+              fontSize: 4.8 * (queryData.size.width / 100),
+              color: Colors.black54,
+            ),
+          ),
+          new Text(
+            item[_politicianNo]['storKreds'],
+            style: new TextStyle(
+              fontSize: 4.8 * (queryData.size.width / 100),
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ]),
         Text(''),
-        new Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new Text(
-                'By: ',
-                style: new TextStyle(
-                  fontSize: 4.8 * (queryData.size.width/100),
-                  color: Colors.black54,
-                ),
-              ),
-
-              new Text(
-                item[_politicianNo]['by'],
-                style: new TextStyle(
-                  fontSize: 4.8 * (queryData.size.width/100),
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ]
-        ),
-
-
+        new Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+          new Text(
+            'By: ',
+            style: new TextStyle(
+              fontSize: 4.8 * (queryData.size.width / 100),
+              color: Colors.black54,
+            ),
+          ),
+          new Text(
+            item[_politicianNo]['by'],
+            style: new TextStyle(
+              fontSize: 4.8 * (queryData.size.width / 100),
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ]),
         Container(
           padding: EdgeInsets.all(10.0),
           child: Divider(
@@ -337,18 +328,16 @@ class HomePageState extends State<HomePage> {
         )
       ],
     );
-
   }
 
   /// Widget for showing the first principle.
   Widget _firstPrincipleWidget() {
     return new Column(
       children: <Widget>[
-
         new Text(
           'Kerne principper',
           style: new TextStyle(
-            fontSize: 8 * (queryData.size.width/110),
+            fontSize: 8 * (queryData.size.width / 110),
           ),
         ),
 
@@ -356,44 +345,49 @@ class HomePageState extends State<HomePage> {
         new Text(
           _politikPrincip,
           style: new TextStyle(
-            fontSize: 4.8 * (queryData.size.width/100),
+            fontSize: 4.8 * (queryData.size.width / 100),
           ),
         ),
         new LinearPercentIndicator(
-          width:
-          MediaQuery.of(context).size.width - 100,
+          width: MediaQuery.of(context).size.width - 100,
           alignment: MainAxisAlignment.center,
           animation: true,
           lineHeight: 20.0,
           animationDuration: 2500,
-          percent: item[_politicianNo]
-          ['politikPrincipPercent']
-              .toDouble(),
-          center: Text((item[_politicianNo]
-          ['politikPrincipPercent'] *
-              10)
-              .toStringAsFixed(0) +
+          percent: item[_politicianNo]['politikPrincipPercent'].toDouble(),
+          center: Text((item[_politicianNo]['politikPrincipPercent'] * 10)
+                  .toStringAsFixed(0) +
               "/10"),
           linearStrokeCap: LinearStrokeCap.roundAll,
           padding: EdgeInsets.symmetric(),
-          progressColor: Color(int.parse(
-              item[_politicianNo]['politikColor'])),
+          progressColor: Color(int.parse(item[_politicianNo]['politikColor'])),
         ),
         new Row(
-          mainAxisAlignment:
-          MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            new Flexible(child: Text('Socialisme',style: TextStyle(
-              fontSize: 3.8 * (queryData.size.width/100),
-            ),)),
+            new Flexible(
+                child: Text(
+              'Socialisme',
+              style: TextStyle(
+                fontSize: 3.8 * (queryData.size.width / 100),
+              ),
+            )),
             new Flexible(child: Text('')),
-            new Flexible(child: Text('Sociallib.',style: TextStyle(
-              fontSize: 3.8 * (queryData.size.width/100),
-            ),)),
+            new Flexible(
+                child: Text(
+              'Sociallib.',
+              style: TextStyle(
+                fontSize: 3.8 * (queryData.size.width / 100),
+              ),
+            )),
             new Flexible(child: Text('')),
-            new Flexible(child: Text('Liberalisme',style: TextStyle(
-              fontSize: 3.8 * (queryData.size.width/100),
-            ),)),
+            new Flexible(
+                child: Text(
+              'Liberalisme',
+              style: TextStyle(
+                fontSize: 3.8 * (queryData.size.width / 100),
+              ),
+            )),
           ],
         ),
       ],
@@ -408,48 +402,45 @@ class HomePageState extends State<HomePage> {
         new Text(
           item[_politicianNo]['andetPrincipName'],
           style: new TextStyle(
-            fontSize: 4.8 * (queryData.size.width/100),
+            fontSize: 4.8 * (queryData.size.width / 100),
           ),
         ),
         new LinearPercentIndicator(
-          width:
-          MediaQuery.of(context).size.width - 100,
+          width: MediaQuery.of(context).size.width - 100,
           alignment: MainAxisAlignment.center,
           animation: true,
           lineHeight: 20.0,
           animationDuration: 2500,
-          percent: item[_politicianNo]
-          ['andetPrincipPercent']
-              .toDouble(),
-          center: Text((item[_politicianNo]
-          ['andetPrincipPercent'] *
-              10)
-              .toStringAsFixed(0) +
+          percent: item[_politicianNo]['andetPrincipPercent'].toDouble(),
+          center: Text((item[_politicianNo]['andetPrincipPercent'] * 10)
+                  .toStringAsFixed(0) +
               "/10"),
           linearStrokeCap: LinearStrokeCap.roundAll,
           padding: EdgeInsets.symmetric(),
-          progressColor: Color(int.parse(
-              item[_politicianNo]
-              ['andetPrincipColor'])),
+          progressColor:
+              Color(int.parse(item[_politicianNo]['andetPrincipColor'])),
         ),
         new Row(
-          mainAxisAlignment:
-          MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             new Flexible(
-                child: Text(item[_politicianNo]
-                ['andetPrincipLeft'],style: TextStyle(
-                  fontSize: 3.8 * (queryData.size.width/100),
-                ),)),
+                child: Text(
+              item[_politicianNo]['andetPrincipLeft'],
+              style: TextStyle(
+                fontSize: 3.8 * (queryData.size.width / 100),
+              ),
+            )),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(
-                child: Text(item[_politicianNo]
-                ['andetPrincipRight'],style: TextStyle(
-                  fontSize: 3.8 * (queryData.size.width/100),
-                ),)),
+                child: Text(
+              item[_politicianNo]['andetPrincipRight'],
+              style: TextStyle(
+                fontSize: 3.8 * (queryData.size.width / 100),
+              ),
+            )),
           ],
         ),
       ],
@@ -464,48 +455,45 @@ class HomePageState extends State<HomePage> {
         new Text(
           item[_politicianNo]['tredjePrincipName'],
           style: new TextStyle(
-            fontSize: 4.8 * (queryData.size.width/100),
+            fontSize: 4.8 * (queryData.size.width / 100),
           ),
         ),
         new LinearPercentIndicator(
-          width:
-          MediaQuery.of(context).size.width - 100,
+          width: MediaQuery.of(context).size.width - 100,
           alignment: MainAxisAlignment.center,
           animation: true,
           lineHeight: 20.0,
           animationDuration: 2500,
-          percent: item[_politicianNo]
-          ['tredjePrincipPercent']
-              .toDouble(),
-          center: Text((item[_politicianNo]
-          ['tredjePrincipPercent'] *
-              10)
-              .toStringAsFixed(0) +
+          percent: item[_politicianNo]['tredjePrincipPercent'].toDouble(),
+          center: Text((item[_politicianNo]['tredjePrincipPercent'] * 10)
+                  .toStringAsFixed(0) +
               "/10"),
           linearStrokeCap: LinearStrokeCap.roundAll,
           padding: EdgeInsets.symmetric(),
-          progressColor: Color(int.parse(
-              item[_politicianNo]
-              ['tredjePrincipColor'])),
+          progressColor:
+              Color(int.parse(item[_politicianNo]['tredjePrincipColor'])),
         ),
         new Row(
-          mainAxisAlignment:
-          MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             new Flexible(
-                child: Text(item[_politicianNo]
-                ['tredjePrincipLeft'],style: TextStyle(
-                  fontSize: 3.8 * (queryData.size.width/100),
-                ),)),
+                child: Text(
+              item[_politicianNo]['tredjePrincipLeft'],
+              style: TextStyle(
+                fontSize: 3.8 * (queryData.size.width / 100),
+              ),
+            )),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(
-                child: Text(item[_politicianNo]
-                ['tredjePrincipRight'],style: TextStyle(
-                  fontSize: 3.8 * (queryData.size.width/100),
-                ),)),
+                child: Text(
+              item[_politicianNo]['tredjePrincipRight'],
+              style: TextStyle(
+                fontSize: 3.8 * (queryData.size.width / 100),
+              ),
+            )),
           ],
         ),
       ],
@@ -520,48 +508,45 @@ class HomePageState extends State<HomePage> {
         new Text(
           item[_politicianNo]['fjerdePrincipName'],
           style: new TextStyle(
-            fontSize: 4.8 * (queryData.size.width/100),
+            fontSize: 4.8 * (queryData.size.width / 100),
           ),
         ),
         new LinearPercentIndicator(
-          width:
-          MediaQuery.of(context).size.width - 100,
+          width: MediaQuery.of(context).size.width - 100,
           alignment: MainAxisAlignment.center,
           animation: true,
           lineHeight: 20.0,
           animationDuration: 2500,
-          percent: item[_politicianNo]
-          ['fjerdePrincipPercent']
-              .toDouble(),
-          center: Text((item[_politicianNo]
-          ['fjerdePrincipPercent'] *
-              10)
-              .toStringAsFixed(0) +
+          percent: item[_politicianNo]['fjerdePrincipPercent'].toDouble(),
+          center: Text((item[_politicianNo]['fjerdePrincipPercent'] * 10)
+                  .toStringAsFixed(0) +
               "/10"),
           linearStrokeCap: LinearStrokeCap.roundAll,
           padding: EdgeInsets.symmetric(),
-          progressColor: Color(int.parse(
-              item[_politicianNo]
-              ['fjerdePrincipColor'])),
+          progressColor:
+              Color(int.parse(item[_politicianNo]['fjerdePrincipColor'])),
         ),
         new Row(
-          mainAxisAlignment:
-          MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             new Flexible(
-                child: Text(item[_politicianNo]
-                ['fjerdePrincipLeft'],style: TextStyle(
-                  fontSize: 3.8 * (queryData.size.width/100),
-                ),)),
+                child: Text(
+              item[_politicianNo]['fjerdePrincipLeft'],
+              style: TextStyle(
+                fontSize: 3.8 * (queryData.size.width / 100),
+              ),
+            )),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(
-                child: Text(item[_politicianNo]
-                ['fjerdePrincipRight'],style: TextStyle(
-                  fontSize: 3.8 * (queryData.size.width/100),
-                ),)),
+                child: Text(
+              item[_politicianNo]['fjerdePrincipRight'],
+              style: TextStyle(
+                fontSize: 3.8 * (queryData.size.width / 100),
+              ),
+            )),
           ],
         ),
       ],
@@ -576,48 +561,45 @@ class HomePageState extends State<HomePage> {
         new Text(
           item[_politicianNo]['femtePrincipName'],
           style: new TextStyle(
-            fontSize: 4.8 * (queryData.size.width/100),
+            fontSize: 4.8 * (queryData.size.width / 100),
           ),
         ),
         new LinearPercentIndicator(
-          width:
-          MediaQuery.of(context).size.width - 100,
+          width: MediaQuery.of(context).size.width - 100,
           alignment: MainAxisAlignment.center,
           animation: true,
           lineHeight: 20.0,
           animationDuration: 2500,
-          percent: item[_politicianNo]
-          ['femtePrincipPercent']
-              .toDouble(),
-          center: Text((item[_politicianNo]
-          ['femtePrincipPercent'] *
-              10)
-              .toStringAsFixed(0) +
+          percent: item[_politicianNo]['femtePrincipPercent'].toDouble(),
+          center: Text((item[_politicianNo]['femtePrincipPercent'] * 10)
+                  .toStringAsFixed(0) +
               "/10"),
           linearStrokeCap: LinearStrokeCap.roundAll,
           padding: EdgeInsets.symmetric(),
-          progressColor: Color(int.parse(
-              item[_politicianNo]
-              ['femtePrincipColor'])),
+          progressColor:
+              Color(int.parse(item[_politicianNo]['femtePrincipColor'])),
         ),
         new Row(
-          mainAxisAlignment:
-          MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             new Flexible(
-                child: Text(item[_politicianNo]
-                ['femtePrincipLeft'],style: TextStyle(
-                  fontSize: 3.8 * (queryData.size.width/100),
-                ),)),
+                child: Text(
+              item[_politicianNo]['femtePrincipLeft'],
+              style: TextStyle(
+                fontSize: 3.8 * (queryData.size.width / 100),
+              ),
+            )),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(
-                child: Text(item[_politicianNo]
-                ['femtePrincipRight'],style: TextStyle(
-                  fontSize: 3.8 * (queryData.size.width/100),
-                ),)),
+                child: Text(
+              item[_politicianNo]['femtePrincipRight'],
+              style: TextStyle(
+                fontSize: 3.8 * (queryData.size.width / 100),
+              ),
+            )),
           ],
         ),
         Text(''),
@@ -679,7 +661,6 @@ class HomePageState extends State<HomePage> {
               content: new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-
                   GestureDetector(
                     child: new Container(
                         margin: EdgeInsets.all(10),
@@ -688,21 +669,25 @@ class HomePageState extends State<HomePage> {
                         decoration: new BoxDecoration(
                             image: new DecorationImage(
                                 fit: BoxFit.fill,
-                                image: new AssetImage(
-                                    "graphics/fb_logo.png")))),
+                                image:
+                                    new AssetImage("graphics/fb_logo.png")))),
                     onTap: () {
+                      /// NULL CHECKING IF THE SOCIAL MEDIA EXSISTS!!
+                      if (item[_politicianNo]['fb'] == null ||
+                          item[_politicianNo]['fb'] == "") {
+                        return;
+                      }
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                WebViewPage(
-                                    'Facebook',
-                                    'https://www.facebook.com/larsloekke/?__tn__=%2Cd%2CP-R&eid=ARAlKexDxBySUpcZ1lsr_ZPUvFMKjfSn1anagcsEZkMEwhQrNm2tg1iFUH9KYaIxFYsD6aa1A7IFbCxt',
-                                    item[_politicianNo]['appBackgroundColor'])),
+                            builder: (context) => WebViewPage(
+                                'Facebook',
+                                item[_politicianNo]['fb'],
+                                item[_politicianNo]['appBackgroundColor'])),
                       );
                     },
                   ),
-
                   GestureDetector(
                     child: new Container(
                         margin: EdgeInsets.all(10),
@@ -714,18 +699,22 @@ class HomePageState extends State<HomePage> {
                                 image: new AssetImage(
                                     "graphics/twitter_logo.png")))),
                     onTap: () {
+                      /// NULL CHECKING IF THE SOCIAL MEDIA EXSISTS!!
+                      if (item[_politicianNo]['twitter'] == null ||
+                          item[_politicianNo]['twitter'] == "") {
+                        return;
+                      }
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                WebViewPage(
-                                    'Twitter',
-                                    'https://twitter.com/larsloekke',
-                                    item[_politicianNo]['appBackgroundColor'])),
+                            builder: (context) => WebViewPage(
+                                'Twitter',
+                                item[_politicianNo]['twitter'],
+                                item[_politicianNo]['appBackgroundColor'])),
                       );
                     },
                   ),
-
                   GestureDetector(
                     child: new Container(
                         margin: EdgeInsets.all(10),
@@ -737,18 +726,22 @@ class HomePageState extends State<HomePage> {
                                 image: new AssetImage(
                                     "graphics/instagram_logo.png")))),
                     onTap: () {
+                      /// NULL CHECKING IF THE SOCIAL MEDIA EXSISTS!!
+                      if (item[_politicianNo]['instagram'] == null ||
+                          item[_politicianNo]['instagram'] == "") {
+                        return;
+                      }
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                WebViewPage(
-                                    'Instagram',
-                                    'https://www.instagram.com/larsloekke/',
-                                    item[_politicianNo]['appBackgroundColor'])),
+                            builder: (context) => WebViewPage(
+                                'Instagram',
+                                item[_politicianNo]['instagram'],
+                                item[_politicianNo]['appBackgroundColor'])),
                       );
                     },
                   ),
-
                   GestureDetector(
                     child: new Container(
                         margin: EdgeInsets.all(10),
@@ -760,14 +753,19 @@ class HomePageState extends State<HomePage> {
                                 image: new AssetImage(
                                     "graphics/linkedIn_logo.png")))),
                     onTap: () {
+                      /// NULL CHECKING IF THE SOCIAL MEDIA EXSISTS!!
+                      if (item[_politicianNo]['linkedin'] == null ||
+                          item[_politicianNo]['linkedin'] == "") {
+                        return;
+                      }
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                WebViewPage(
-                                    'LinkedIn',
-                                    'https://www.linkedin.com/in/larsloekke/',
-                                    item[_politicianNo]['appBackgroundColor'])),
+                            builder: (context) => WebViewPage(
+                                'LinkedIn',
+                                item[_politicianNo]['linkedin'],
+                                item[_politicianNo]['appBackgroundColor'])),
                       );
                     },
                   ),
@@ -776,25 +774,23 @@ class HomePageState extends State<HomePage> {
             );
           },
         );
-      } ,
+      },
       child: new Image(
           image: AssetImage('graphics/sociale_medier.png'), fit: BoxFit.fill),
     );
   }
 
   /// Widget for showing relevant info GestureDetector.
-  Widget _relevantGestureDetectorWidget(){
+  Widget _relevantGestureDetectorWidget() {
     return GestureDetector(
       onTap: () {},
       child: new Image(
-          image: AssetImage(
-              'graphics/About_cases.png'),
-          fit: BoxFit.fill),
+          image: AssetImage('graphics/About_cases.png'), fit: BoxFit.fill),
     );
   }
 
   /// Widget for showing the two FAB's.
-  Widget _fabWidget(){
+  Widget _fabWidget() {
     return new AnimatedOpacity(
       opacity: _hideFAB ? 0.0 : 1.0,
       duration: Duration(milliseconds: 200),
@@ -809,7 +805,8 @@ class HomePageState extends State<HomePage> {
               heroTag: "btn1",
               onPressed: () {
                 if (!_hideFAB) {
-                  _newPolitician.performPolitician(false, context, item[_politicianNo]['id'],_collectionName);
+                  _newPolitician.performPolitician(false, context,
+                      item[_politicianNo]['id'], _collectionName);
                 }
               },
               backgroundColor: Colors.white,
@@ -824,7 +821,8 @@ class HomePageState extends State<HomePage> {
                 heroTag: "btn2",
                 onPressed: () {
                   if (!_hideFAB) {
-                    _newPolitician.performPolitician(true, context, item[_politicianNo]['id'],_collectionName);
+                    _newPolitician.performPolitician(true, context,
+                        item[_politicianNo]['id'], _collectionName);
                   }
                 },
                 backgroundColor: Colors.white,
@@ -857,14 +855,14 @@ class HomePageState extends State<HomePage> {
   }
 }
 
-
 /// The stateful class.
 class HomePage extends StatefulWidget {
   final String _collection;
   final String _politician;
   final bool _dismissible;
 
-  HomePage(this._collection,this._politician, this._dismissible);
+  HomePage(this._collection, this._politician, this._dismissible);
 
-  HomePageState createState() => new HomePageState(_collection,_politician, _dismissible);
+  HomePageState createState() =>
+      new HomePageState(_collection, _politician, _dismissible);
 }
