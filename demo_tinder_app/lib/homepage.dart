@@ -13,6 +13,7 @@ import 'webview.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'newpolitician.dart';
 import 'package:uuid/uuid.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 /// Homepage which has the swiping of politicians.
 /// @author Thor Garske Andresen
@@ -675,6 +676,8 @@ class HomePageState extends State<HomePage> {
                       /// NULL CHECKING IF THE SOCIAL MEDIA EXSISTS!!
                       if (item[_politicianNo]['fb'] == null ||
                           item[_politicianNo]['fb'] == "") {
+
+                        showBottomToast('Ikke tilgængelig...');
                         return;
                       }
 
@@ -702,6 +705,8 @@ class HomePageState extends State<HomePage> {
                       /// NULL CHECKING IF THE SOCIAL MEDIA EXSISTS!!
                       if (item[_politicianNo]['twitter'] == null ||
                           item[_politicianNo]['twitter'] == "") {
+
+                        showBottomToast('Ikke tilgængelig...');
                         return;
                       }
 
@@ -729,6 +734,8 @@ class HomePageState extends State<HomePage> {
                       /// NULL CHECKING IF THE SOCIAL MEDIA EXSISTS!!
                       if (item[_politicianNo]['instagram'] == null ||
                           item[_politicianNo]['instagram'] == "") {
+
+                        showBottomToast('Ikke tilgængelig...');
                         return;
                       }
 
@@ -756,6 +763,8 @@ class HomePageState extends State<HomePage> {
                       /// NULL CHECKING IF THE SOCIAL MEDIA EXSISTS!!
                       if (item[_politicianNo]['linkedin'] == null ||
                           item[_politicianNo]['linkedin'] == "") {
+
+                        showBottomToast('Ikke tilgængelig...');
                         return;
                       }
 
@@ -834,6 +843,18 @@ class HomePageState extends State<HomePage> {
   }
 
   /// ## ---- REGULAR METHODS ---- ## ///
+
+  void showBottomToast(String text){
+    Fluttertoast.showToast(
+        msg: text,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIos: 1,
+        backgroundColor: Colors.black87,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+  }
 
   /// Method for listening to scroll by the user.
   void _scrollListener() {

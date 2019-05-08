@@ -33,6 +33,8 @@ dependencies:
   shared_preferences: ^0.5.2
   uuid: ^2.0.1
   pie_chart: ^0.8.0
+  fluttertoast: ^3.0.4
+
 
 dev_dependencies:
   flutter_test:
