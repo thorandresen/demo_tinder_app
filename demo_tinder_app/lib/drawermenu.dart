@@ -88,7 +88,7 @@ class DrawerMenu {
                   MaterialPageRoute(builder: (BuildContext _context) => StatisticsPage()));
             },
           ),
-          ListTile(
+          /*ListTile(
             title: new Row(
               children: <Widget>[
                 new Icon(Icons.settings),
@@ -102,7 +102,7 @@ class DrawerMenu {
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (BuildContext _context) => SettingsPage()));
             },
-          ),
+          ),*/
           ListTile(
             title: new Row(
               children: <Widget>[

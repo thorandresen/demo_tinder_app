@@ -21,7 +21,9 @@ class IntroductionPageState extends State<StatefulWidget> {
         title: Text('Hjælp'),
         centerTitle: true,
       ),
-      body: new Row(
+      body:
+      SingleChildScrollView(
+        child: new Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           new Column(
@@ -35,7 +37,7 @@ class IntroductionPageState extends State<StatefulWidget> {
                 ),
               ),
 
-              Text(''),
+              /*Text(''),
 
               Container(
                 constraints: new BoxConstraints(
@@ -50,17 +52,41 @@ class IntroductionPageState extends State<StatefulWidget> {
                   style: TextStyle(fontSize: 4 * (queryData.size.width / 100)),
                   maxLines: 4,
                 ),
-              ),
+              ),*/
 
               Text(''),
 
               Container(
                 constraints: new BoxConstraints(
                     minWidth: 50,
-                    maxWidth: MediaQuery.of(context).size.width - 10
+                    maxWidth: MediaQuery.of(context).size.width - 20
                 ),
                 child: Text(
-                  'Swipe til venstre for at like og gemme en politiker!',
+                  'Swipe til højre for at like og gemme en politiker!',
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.left,
+                  softWrap: true,
+                  style: TextStyle(fontSize: 4 * (queryData.size.width / 100)),
+                  maxLines: 4,
+                ),
+              ),
+
+              new Icon(
+                Icons.arrow_forward,
+                size: 10 * (queryData.size.width / 100),
+                color: Colors.green,
+              ),
+
+              Text(''),
+              Text(''),
+
+              Container(
+                constraints: new BoxConstraints(
+                    minWidth: 50,
+                    maxWidth: MediaQuery.of(context).size.width - 20
+                ),
+                child: Text(
+                  'Swipe til venstre for at dislike.',
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   softWrap: true,
@@ -72,12 +98,162 @@ class IntroductionPageState extends State<StatefulWidget> {
               new Icon(
                 Icons.arrow_back,
                 size: 10 * (queryData.size.width / 100),
-              )
+                color: Colors.red,
+              ),
+
+              Text(''),
+              Text(''),
+
+              Container(
+                constraints: new BoxConstraints(
+                    minWidth: 50,
+                    maxWidth: MediaQuery.of(context).size.width - 20
+                ),
+                child: Text(
+                  'Knapperne kan bruges til like og dislike.',
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.left,
+                  softWrap: true,
+                  style: TextStyle(fontSize: 4 * (queryData.size.width / 100)),
+                  maxLines: 4,
+                ),
+              ),
+
+              new Row(
+                children: <Widget>[
+                  new Icon(
+                    Icons.thumb_down,
+                    size: 10 * (queryData.size.width / 100),
+                    color: Colors.red,
+                  ),
+                  Text('   '),
+
+                  new Icon(
+                    Icons.thumb_up,
+                    size: 10 * (queryData.size.width / 100),
+                    color: Colors.green,
+                  ),
+                ],
+              ),
+
+              Text(''),
+              Text(''),
+
+              Container(
+                constraints: new BoxConstraints(
+                    minWidth: 50,
+                    maxWidth: MediaQuery.of(context).size.width - 20
+                ),
+                child: Text(
+                  'Se alle gemte politikere under likede politikere i menuen.',
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.left,
+                  softWrap: true,
+                  style: TextStyle(fontSize: 4 * (queryData.size.width / 100)),
+                  maxLines: 4,
+                ),
+              ),
+
+              new Icon(
+                Icons.account_circle,
+                size: 10 * (queryData.size.width / 100),
+              ),
+
+              Text(''),
+              Text(''),
+
+              Container(
+                constraints: new BoxConstraints(
+                    minWidth: 50,
+                    maxWidth: MediaQuery.of(context).size.width - 20
+                ),
+                child: Text(
+                  'Statistikker omkring likede politikere og partier kan ses under statistikker i menuen.',
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.left,
+                  softWrap: true,
+                  style: TextStyle(fontSize: 4 * (queryData.size.width / 100)),
+                  maxLines: 4,
+                ),
+              ),
+
+              new Icon(
+                Icons.assessment,
+                size: 10 * (queryData.size.width / 100),
+              ),
+
+          Text(''),
+          Text(''),
+
+          GestureDetector(
+            child: Container(
+              constraints: new BoxConstraints(
+                  minWidth: 50,
+                  maxWidth: MediaQuery
+                      .of(context)
+                      .size
+                      .width - 20
+              ),
+              child: Text(
+                'Tryk her for credits.',
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.left,
+                softWrap: true,
+                style: TextStyle(
+                    fontSize: 4 * (queryData.size.width / 100)),
+                maxLines: 4,
+              ),
+            ),
+            onTap: () {
+              _creditTab();
+            },
+          ),
+
+          Divider(
+            color: Colors.black,
+            height: 5.0,
+          ),
+
+          GestureDetector(
+            child: new Icon(
+              Icons.supervisor_account,
+              size: 10 * (queryData.size.width / 100),
+            ),
+            onTap: (){
+              _creditTab();
+            },
+          ),
+
+              Text(''),
+
+              Container(
+                constraints: new BoxConstraints(
+                    minWidth: 50,
+                    maxWidth: MediaQuery.of(context).size.width - 20
+                ),
+                child: Text(
+                  'Ved yderligere spørgsmål og henvendelser, skriv på mail: Politikrapp@gmail.com',
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.left,
+                  softWrap: true,
+                  style: TextStyle(fontSize: 4 * (queryData.size.width / 100)),
+                  maxLines: 4,
+                ),
+              ),
+
+
+
+
             ],
           ),
         ],
       ),
+      ),
       drawer: DrawerMenu().drawerMenu(context),
     );
+  }
+
+  void _creditTab(){
+    /// SHIFT TO CREDIT PAGE...
   }
 }

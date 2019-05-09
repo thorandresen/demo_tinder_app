@@ -326,7 +326,7 @@ class HomePageState extends State<HomePage> {
             height: 5.0,
             color: Colors.black26,
           ),
-        )
+        ),
       ],
     );
   }
@@ -336,7 +336,7 @@ class HomePageState extends State<HomePage> {
     return new Column(
       children: <Widget>[
         new Text(
-          'Kerne principper',
+          'Kerneværdier',
           style: new TextStyle(
             fontSize: 8 * (queryData.size.width / 110),
           ),
