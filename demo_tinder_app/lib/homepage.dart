@@ -153,7 +153,7 @@ class HomePageState extends State<HomePage> {
   Widget _dismissibleWidget(Widget child) {
     return Dismissible(
       key: new Key(dismissRemover[0]),
-      background: Container(
+      secondaryBackground: Container(
         color: Colors.red,
         child: Icon(
           Icons.thumb_down,
@@ -161,7 +161,7 @@ class HomePageState extends State<HomePage> {
           size: 150.0,
         ),
       ),
-      secondaryBackground: Container(
+      background: Container(
         color: Colors.green,
         child: Icon(
           Icons.thumb_up,
@@ -174,13 +174,13 @@ class HomePageState extends State<HomePage> {
         if (direction == DismissDirection.endToStart) {
           setState(() {
             _newPolitician.performPolitician(
-                true, context, item[_politicianNo]['id'], _collectionName);
+                false, context, item[_politicianNo]['id'], _collectionName);
             dismissRemover.removeAt(0);
           });
         } else {
           setState(() {
             _newPolitician.performPolitician(
-                false, context, item[_politicianNo]['id'], _collectionName);
+                true, context, item[_politicianNo]['id'], _collectionName);
             dismissRemover.removeAt(0);
           });
         }
