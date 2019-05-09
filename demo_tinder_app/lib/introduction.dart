@@ -5,11 +5,14 @@ import 'package:flutter/material.dart';
 
 import 'drawermenu.dart';
 
-class IntroductionPage extends StatefulWidget{
+class IntroductionPage extends StatefulWidget {
   IntroductionPageState createState() => new IntroductionPageState();
 }
 
-class IntroductionPageState extends State<StatefulWidget>{
+class IntroductionPageState extends State<StatefulWidget> {
+  String _longString =
+      "Konceptet er simpelt. Swipe dig igennem de forskellige politikere fra Østjyllands storkreds.";
+
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData = MediaQuery.of(context);
@@ -24,26 +27,27 @@ class IntroductionPageState extends State<StatefulWidget>{
           new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-                Text(
-                    'Velkommen til Politikr!',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 7 * (queryData.size.width / 100),
-                  ),
-                ),
-
-              /*Text(
-                'Konceptet er simpelt. Swipe dig igennem de forskellige politikere fra Østjyllands storkreds.',
-                textAlign: TextAlign.left,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 3,
-              ),*/
-
               Text(
-                "Konceptet er simpelt. Swipe dig igennem de forskellige politikere fra Østjyllands storkreds.",
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 12.0),
-                maxLines: 4,
+                'Velkommen til Politikr!',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 7 * (queryData.size.width / 100),
+                ),
+              ),
+
+              Text(''),
+
+              Container(
+                constraints: new BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width - 10),
+
+                child: Text(
+                  _longString,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: true,
+                  style: TextStyle(fontSize: 4 * (queryData.size.width / 100)),
+                  maxLines: 4,
+                ),
               ),
 
             ],
@@ -53,5 +57,4 @@ class IntroductionPageState extends State<StatefulWidget>{
       drawer: DrawerMenu().drawerMenu(context),
     );
   }
-
 }
