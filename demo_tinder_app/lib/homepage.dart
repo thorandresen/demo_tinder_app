@@ -363,7 +363,7 @@ class HomePageState extends State<HomePage> {
                       builder: (BuildContext context) {
                         return AlertDialog(
                           title: Text('Kerneværdier'),
-                          content: Text('Kerneværdier er baseret på data fra politikerens hjemmeside, hvis ikke politikeren har et blåt flueben ikon ud fra deres navn! Hvis ikke er det derfor ikke sikkert at informationen afspejler politikerens holdning 100%. Vi prøver dog vores bedste.'),
+                          content: Text('Hvis der ingen kerneværdier er givet er det desværre fordi politikeren ikke har haft mulighed for at afgive nogen til Politikr.'),
                         );
                       }
                     );
