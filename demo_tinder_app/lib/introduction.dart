@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'credit.dart';
 import 'drawermenu.dart';
@@ -242,7 +243,50 @@ class IntroductionPageState extends State<StatefulWidget> {
                 ),
               ),
 
+              Text(''),
+              Text(''),
+              Text(''),
+              Text(''),
 
+              GestureDetector(
+                child: Container(
+                  constraints: new BoxConstraints(
+                      minWidth: 50,
+                      maxWidth: MediaQuery
+                          .of(context)
+                          .size
+                          .width - 20
+                  ),
+                  child: Text(
+                    'OBS! Tryk her for at nulstille alt!',
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.left,
+                    softWrap: true,
+                    style: TextStyle(
+                        fontSize: 4 * (queryData.size.width / 100)),
+                    maxLines: 4,
+                  ),
+                ),
+                onTap: () {
+                  _resetStats();
+                },
+              ),
+
+              Divider(
+                color: Colors.black,
+                height: 5.0,
+              ),
+
+              GestureDetector(
+                child: new Icon(
+                  Icons.delete,
+                  size: 10 * (queryData.size.width / 100),
+                  color: Colors.red,
+                ),
+                onTap: (){
+                  _resetStats();
+                },
+              ),
 
 
             ],
@@ -260,6 +304,34 @@ class IntroductionPageState extends State<StatefulWidget> {
       context,
       MaterialPageRoute(
           builder: (context) => CreditPage())
+    );
+  }
+
+  void _resetStats() async {
+    SharedPreferences prefs;
+    prefs = await SharedPreferences.getInstance();
+
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Nulstil'),
+            content: Text('Er du sikker på du ønsker at nulstille alt?'),
+            actions: <Widget>[
+              new FlatButton(child: Text('Nej'),
+                  onPressed: () {
+                  Navigator.of(context).pop();
+                }
+              ),
+              new FlatButton(child: Text('Ja'),
+                  onPressed: () {
+                      prefs.clear();
+                      Navigator.of(context).pop();
+                  }
+              ),
+            ],
+          );
+        }
     );
   }
 }
