@@ -345,6 +345,7 @@ class HomePageState extends State<HomePage> {
         new Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+
             new Text(
               'Kerneværdier',
               style: new TextStyle(
@@ -371,6 +372,7 @@ class HomePageState extends State<HomePage> {
           ],
         ),
 
+        Text(''),
 
         /// Politik
         new Text(
@@ -634,7 +636,10 @@ class HomePageState extends State<HomePage> {
           ],
         ),
         Text(''),
-        Text('For uddybelse se \'Mere information\' nedenstående...'),
+        Text('For uddybende svar se \'Mere information\' nedenstående...',style:
+          TextStyle(
+            fontSize: 3 * (queryData.size.width / 100),
+          ),),
         Text(''),
       ],
     );
@@ -823,7 +828,9 @@ class HomePageState extends State<HomePage> {
   /// Widget for showing relevant info GestureDetector.
   Widget _relevantGestureDetectorWidget() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        showBottomToast('Ikke tilgængelig på dette tidspunkt...');
+      },
       child: new Image(
           image: AssetImage('graphics/About_cases.png'), fit: BoxFit.fill),
     );
@@ -873,6 +880,7 @@ class HomePageState extends State<HomePage> {
     );
   }
 
+  /// Method for showing either a verified logo of the politician or nothing at all depending on firebase
   Widget _verifiedWidget(){
     if(item[_politicianNo]['verified'] == "true"){
       return new GestureDetector(
