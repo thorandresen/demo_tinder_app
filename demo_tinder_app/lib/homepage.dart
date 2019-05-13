@@ -335,12 +335,35 @@ class HomePageState extends State<HomePage> {
   Widget _firstPrincipleWidget() {
     return new Column(
       children: <Widget>[
-        new Text(
-          'Kerneværdier',
-          style: new TextStyle(
-            fontSize: 8 * (queryData.size.width / 110),
-          ),
+        new Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new Text(
+              'Kerneværdier',
+              style: new TextStyle(
+                fontSize: 8 * (queryData.size.width / 110),
+              ),
+            ),
+
+            Text('  '),
+
+            new GestureDetector(
+              child: new Icon(Icons.help_outline, color: Colors.grey),
+              onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Kerneværdier'),
+                          content: Text('Kerneværdier er baseret på data fra politikerens hjemmeside, hvis ikke politikeren har et blåt flueben ikon ud fra deres navn! Hvis ikke er det derfor ikke sikkert at informationen afspejler politikerens holdning 100%. Vi prøver dog vores bedste.'),
+                        );
+                      }
+                    );
+              },
+            ),
+          ],
         ),
+
 
         /// Politik
         new Text(
