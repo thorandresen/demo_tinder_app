@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'credit.dart';
 import 'drawermenu.dart';
 
 class IntroductionPage extends StatefulWidget {
@@ -253,7 +254,12 @@ class IntroductionPageState extends State<StatefulWidget> {
     );
   }
 
+  /// Method for changing to credit tab.
   void _creditTab(){
-    /// SHIFT TO CREDIT PAGE...
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => CreditPage())
+    );
   }
 }

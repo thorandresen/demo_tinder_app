@@ -233,12 +233,19 @@ class HomePageState extends State<HomePage> {
             Color(int.parse(item[_politicianNo]['appBackgroundColor'])),
         centerTitle: true,
         flexibleSpace: FlexibleSpaceBar(
-          title: new Text(
-            item[_politicianNo]['name'],
-            style: new TextStyle(
-              fontSize: 5 * (queryData.size.width / 100),
-              color: Colors.white,
-            ),
+          title:new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Text(
+                item[_politicianNo]['name'],
+                style: new TextStyle(
+                  fontSize: 5 * (queryData.size.width / 100),
+                  color: Colors.white,
+                ),
+              ),
+              Text(' '),
+              _verifiedWidget(),
+            ],
           ),
           centerTitle: true,
           background: DecoratedBox(
@@ -627,6 +634,7 @@ class HomePageState extends State<HomePage> {
           ],
         ),
         Text(''),
+        Text('For uddybelse se \'Mere information\' nedenstående...'),
         Text(''),
       ],
     );
@@ -863,6 +871,29 @@ class HomePageState extends State<HomePage> {
         ],
       ),
     );
+  }
+
+  Widget _verifiedWidget(){
+    if(item[_politicianNo]['verified'] == "true"){
+      return new GestureDetector(
+          child: new Image(
+          image: AssetImage('graphics/verification_logo.png'), fit: BoxFit.fill,height: 4 * (queryData.size.width / 100), width: 4 * (queryData.size.width / 100),),
+        onTap: () {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text('Verificeret politiker!'),
+                  content: Text('Denne politiker har selv afgivet sine kerneværdier afgivet nedenstående.'),
+                );
+              }
+          );
+        },
+      );
+    }
+    else{
+      return new Text('');
+    }
   }
 
   /// ## ---- REGULAR METHODS ---- ## ///
