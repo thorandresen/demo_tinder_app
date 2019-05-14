@@ -233,7 +233,7 @@ class HomePageState extends State<HomePage> {
             Color(int.parse(item[_politicianNo]['appBackgroundColor'])),
         centerTitle: true,
         flexibleSpace: FlexibleSpaceBar(
-          title:new Row(
+          title: new Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Text(
@@ -345,28 +345,25 @@ class HomePageState extends State<HomePage> {
         new Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
             new Text(
               'Kerneværdier',
               style: new TextStyle(
                 fontSize: 8 * (queryData.size.width / 110),
               ),
             ),
-
             Text('  '),
-
             new GestureDetector(
               child: new Icon(Icons.help_outline, color: Colors.grey),
               onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Text('Kerneværdier'),
-                          content: Text('Hvis der ingen kerneværdier er givet er det desværre fordi politikeren ikke har haft mulighed for at afgive nogen til Politikr.'),
-                        );
-                      }
-                    );
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Kerneværdier'),
+                        content: Text(
+                            'Hvis politikeren ikke er verificeret med et blåt flueben ud fra sit navn, er dette et skøn lavet ud fra offentlig ressourcer. Er der intet, kunne vi intet finde på politikeren.'),
+                      );
+                    });
               },
             ),
           ],
@@ -636,10 +633,12 @@ class HomePageState extends State<HomePage> {
           ],
         ),
         Text(''),
-        Text('For uddybende svar se \'Mere information\' nedenstående...',style:
-          TextStyle(
+        Text(
+          'For uddybende svar se \'Mere information\' nedenstående...',
+          style: TextStyle(
             fontSize: 3 * (queryData.size.width / 100),
-          ),),
+          ),
+        ),
         Text(''),
       ],
     );
@@ -712,7 +711,6 @@ class HomePageState extends State<HomePage> {
                       /// NULL CHECKING IF THE SOCIAL MEDIA EXSISTS!!
                       if (item[_politicianNo]['fb'] == null ||
                           item[_politicianNo]['fb'] == "") {
-
                         showBottomToast('Ikke tilgængelig...');
                         return;
                       }
@@ -741,7 +739,6 @@ class HomePageState extends State<HomePage> {
                       /// NULL CHECKING IF THE SOCIAL MEDIA EXSISTS!!
                       if (item[_politicianNo]['twitter'] == null ||
                           item[_politicianNo]['twitter'] == "") {
-
                         showBottomToast('Ikke tilgængelig...');
                         return;
                       }
@@ -770,7 +767,6 @@ class HomePageState extends State<HomePage> {
                       /// NULL CHECKING IF THE SOCIAL MEDIA EXSISTS!!
                       if (item[_politicianNo]['instagram'] == null ||
                           item[_politicianNo]['instagram'] == "") {
-
                         showBottomToast('Ikke tilgængelig...');
                         return;
                       }
@@ -799,7 +795,6 @@ class HomePageState extends State<HomePage> {
                       /// NULL CHECKING IF THE SOCIAL MEDIA EXSISTS!!
                       if (item[_politicianNo]['linkedin'] == null ||
                           item[_politicianNo]['linkedin'] == "") {
-
                         showBottomToast('Ikke tilgængelig...');
                         return;
                       }
@@ -881,32 +876,35 @@ class HomePageState extends State<HomePage> {
   }
 
   /// Method for showing either a verified logo of the politician or nothing at all depending on firebase
-  Widget _verifiedWidget(){
-    if(item[_politicianNo]['verified'] == "true"){
+  Widget _verifiedWidget() {
+    if (item[_politicianNo]['verified'] == "true") {
       return new GestureDetector(
-          child: new Image(
-          image: AssetImage('graphics/verification_logo.png'), fit: BoxFit.fill,height: 4 * (queryData.size.width / 100), width: 4 * (queryData.size.width / 100),),
+        child: new Image(
+          image: AssetImage('graphics/verification_logo.png'),
+          fit: BoxFit.fill,
+          height: 4 * (queryData.size.width / 100),
+          width: 4 * (queryData.size.width / 100),
+        ),
         onTap: () {
           showDialog(
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
                   title: Text('Verificeret politiker!'),
-                  content: Text('Denne politiker har selv afgivet sine kerneværdier afgivet nedenstående.'),
+                  content: Text(
+                      'Denne politiker har selv afgivet sine kerneværdier afgivet nedenstående.'),
                 );
-              }
-          );
+              });
         },
       );
-    }
-    else{
+    } else {
       return new Text('');
     }
   }
 
   /// ## ---- REGULAR METHODS ---- ## ///
 
-  void showBottomToast(String text){
+  void showBottomToast(String text) {
     Fluttertoast.showToast(
         msg: text,
         toastLength: Toast.LENGTH_SHORT,
@@ -914,8 +912,7 @@ class HomePageState extends State<HomePage> {
         timeInSecForIos: 1,
         backgroundColor: Colors.black87,
         textColor: Colors.white,
-        fontSize: 16.0
-    );
+        fontSize: 16.0);
   }
 
   /// Method for listening to scroll by the user.
