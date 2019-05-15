@@ -45,8 +45,20 @@ class HomePageState extends State<HomePage> {
     _controller.addListener(_scrollListener);
     _hideFAB = false;
     _collectionName = _collection;
-    String localPoli = _politician.substring(0, 1);
-    _politicianNo = int.parse(localPoli) - 1;
+
+    try{
+      String localPoli = _politician.substring(0, 2);
+      _politicianNo = int.parse(localPoli) - 1;
+    } on FormatException catch(e){
+      String localPoli = _politician.substring(0, 1);
+      _politicianNo = int.parse(localPoli) - 1;
+    }
+    catch(e){
+      print(e);
+    }
+
+    /*String localPoli = _politician.substring(0, 1);
+    _politicianNo = int.parse(localPoli) - 1;*/
 
     super.initState();
   }
@@ -60,7 +72,7 @@ class HomePageState extends State<HomePage> {
       resizeToAvoidBottomPadding: false,
       body: _isDismissible(
         StreamBuilder(
-            stream: Firestore.instance.collection(_collectionName).snapshots(),
+            stream: Firestore.instance.collection(_collectionName).orderBy("sort",descending: false).snapshots(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return new Row(
@@ -258,7 +270,7 @@ class HomePageState extends State<HomePage> {
                     decoration: new BoxDecoration(
                         shape: BoxShape.circle,
                         image: new DecorationImage(
-                            fit: BoxFit.fill,
+                            fit: BoxFit.cover,
                             image:
                                 new NetworkImage(item[_politicianNo]['pb'])))),
               ],
@@ -361,7 +373,7 @@ class HomePageState extends State<HomePage> {
                       return AlertDialog(
                         title: Text('Kerneværdier'),
                         content: Text(
-                            'Hvis politikeren ikke er verificeret med et blåt flueben ud fra sit navn, er dette et skøn lavet ud fra offentlig ressourcer. Er der intet, kunne vi intet finde på politikeren.'),
+                            'Hvis politikeren ikke er verificeret med et blåt flueben ud fra sit navn, er dette et skøn lavet ud fra offentlig ressourcer. Står der INGEN INFORMATION, kunne vi intet finde på politikeren.'),
                       );
                     });
               },

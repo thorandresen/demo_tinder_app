@@ -176,9 +176,17 @@ class NewPolitician {
           _localHolder.addAll(sdList);
           break;
         case "RadikaleVenstre":
-          List<String> radikalList = new List(2);
-          radikalList[0] = '1ZeniaStampe';
-          radikalList[1] = '2AndreasSteenberg';
+          List<String> radikalList = new List(10);
+          radikalList[0] = '1KarenMelchior';
+          radikalList[1] = '2TomBrøcherJakobsen';
+          radikalList[2] = '3SørenBoPedersen';
+          radikalList[3] = '4MichaelSkaaningJohansen';
+          radikalList[4] = '5AnneSophieCallesen';
+          radikalList[5] = '6SusanKronborg';
+          radikalList[6] = '7HenrikVintherOlesen';
+          radikalList[7] = '8KatrineRobsøe';
+          radikalList[8] = '9MortenØstergaard';
+          radikalList[9] = '10BassamEl-Daoud';
           _localHolder.addAll(radikalList);
           break;
       }

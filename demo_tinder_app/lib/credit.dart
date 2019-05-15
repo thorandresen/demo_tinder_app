@@ -55,6 +55,16 @@ class CreditPage extends StatelessWidget {
                 ),
                 Text('Everyone at the flutterdev discord for helping out.'),
 
+                Text(''),
+                Text(
+                  'Information: ',
+                  style: TextStyle(
+                    fontSize: 7 * (queryData.size.width / 100),
+                  ),
+                ),
+                Text('All information is gathered from public '),
+                Text('websites or direct contact with politicians.'),
+
               ],
             )
           ],
