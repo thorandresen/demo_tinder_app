@@ -411,7 +411,7 @@ class HomePageState extends State<HomePage> {
                 child: Text(
               'Socialisme',
               style: TextStyle(
-                fontSize: 3.8 * (queryData.size.width / 100),
+                fontSize: 3.3 * (queryData.size.width / 100),
               ),
             )),
             new Flexible(child: Text('')),
@@ -419,7 +419,7 @@ class HomePageState extends State<HomePage> {
                 child: Text(
               'Sociallib.',
               style: TextStyle(
-                fontSize: 3.8 * (queryData.size.width / 100),
+                fontSize: 3.3 * (queryData.size.width / 100),
               ),
             )),
             new Flexible(child: Text('')),
@@ -427,7 +427,7 @@ class HomePageState extends State<HomePage> {
                 child: Text(
               'Liberalisme',
               style: TextStyle(
-                fontSize: 3.8 * (queryData.size.width / 100),
+                fontSize: 3.3 * (queryData.size.width / 100),
               ),
             )),
           ],
@@ -469,10 +469,9 @@ class HomePageState extends State<HomePage> {
                 child: Text(
               item[_politicianNo]['andetPrincipLeft'],
               style: TextStyle(
-                fontSize: 3.8 * (queryData.size.width / 100),
+                fontSize: 3.3 * (queryData.size.width / 100),
               ),
             )),
-            new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
@@ -480,7 +479,7 @@ class HomePageState extends State<HomePage> {
                 child: Text(
               item[_politicianNo]['andetPrincipRight'],
               style: TextStyle(
-                fontSize: 3.8 * (queryData.size.width / 100),
+                fontSize: 3.3 * (queryData.size.width / 100),
               ),
             )),
           ],
@@ -522,10 +521,9 @@ class HomePageState extends State<HomePage> {
                 child: Text(
               item[_politicianNo]['tredjePrincipLeft'],
               style: TextStyle(
-                fontSize: 3.8 * (queryData.size.width / 100),
+                fontSize: 3.3 * (queryData.size.width / 100),
               ),
             )),
-            new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
@@ -533,7 +531,7 @@ class HomePageState extends State<HomePage> {
                 child: Text(
               item[_politicianNo]['tredjePrincipRight'],
               style: TextStyle(
-                fontSize: 3.8 * (queryData.size.width / 100),
+                fontSize: 3.3 * (queryData.size.width / 100),
               ),
             )),
           ],
@@ -575,10 +573,9 @@ class HomePageState extends State<HomePage> {
                 child: Text(
               item[_politicianNo]['fjerdePrincipLeft'],
               style: TextStyle(
-                fontSize: 3.8 * (queryData.size.width / 100),
+                fontSize: 3.3 * (queryData.size.width / 100),
               ),
             )),
-            new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
@@ -586,7 +583,7 @@ class HomePageState extends State<HomePage> {
                 child: Text(
               item[_politicianNo]['fjerdePrincipRight'],
               style: TextStyle(
-                fontSize: 3.8 * (queryData.size.width / 100),
+                fontSize: 3.3 * (queryData.size.width / 100),
               ),
             )),
           ],
@@ -628,10 +625,9 @@ class HomePageState extends State<HomePage> {
                 child: Text(
               item[_politicianNo]['femtePrincipLeft'],
               style: TextStyle(
-                fontSize: 3.8 * (queryData.size.width / 100),
+                fontSize: 3.3 * (queryData.size.width / 100),
               ),
             )),
-            new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
             new Flexible(child: Text('')),
@@ -639,7 +635,7 @@ class HomePageState extends State<HomePage> {
                 child: Text(
               item[_politicianNo]['femtePrincipRight'],
               style: TextStyle(
-                fontSize: 3.8 * (queryData.size.width / 100),
+                fontSize: 3.3 * (queryData.size.width / 100),
               ),
             )),
           ],

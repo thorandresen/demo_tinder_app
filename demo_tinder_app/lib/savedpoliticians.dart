@@ -84,8 +84,22 @@ class SavedPoliticiansPageState extends State<SavedPoliticiansPage> {
       List<String> _likedPoliticansString = sh.likedPoliticiansList;
 
       for (int i = 0; i < _likedPoliticansString.length; i++) {
-        String cutString = _likedPoliticansString[i].substring(0, 1);
-        int correctNumber = int.parse(cutString) - 1;
+        int correctNumber;
+
+        /*String cutString = _likedPoliticansString[i].substring(0, 1);
+        correctNumber = int.parse(cutString) - 1;*/
+
+        try{
+          String localPoli = _likedPoliticansString[i].substring(0, 2);
+          correctNumber = int.parse(localPoli) - 1;
+        } on FormatException catch(e){
+          String localPoli = _likedPoliticansString[i].substring(0, 1);
+          correctNumber = int.parse(localPoli) - 1;
+        }
+        catch(e){
+          print(e);
+        }
+
         _likedPoliticans.add(correctNumber);
         print('This number was added to the list: ' + correctNumber.toString());
       }
@@ -120,7 +134,10 @@ class SavedPoliticiansPageState extends State<SavedPoliticiansPage> {
   /// For building the list.
   Widget _buildList() {
     return new StreamBuilder(
-        stream: Firestore.instance.collection(_selectedCollection).snapshots(),
+        stream: Firestore.instance
+            .collection(_selectedCollection)
+            .orderBy("sort", descending: false)
+            .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) return new CircularProgressIndicator();
           return new ListView.builder(
@@ -133,16 +150,21 @@ class SavedPoliticiansPageState extends State<SavedPoliticiansPage> {
                   subtitle: Text(item[_likedPoliticans[index]]['partiName']),
                   trailing: new Icon(Icons.arrow_forward_ios),
                   onTap: () {
-                      print('Index of this politician is: $index' + ' and number of politician in array is: ' + _likedPoliticans[index].toString());
-                      change(index);
+                    print('Index of this politician is: $index' +
+                        ' and number of politician in array is: ' +
+                        _likedPoliticans[index].toString());
+                    change(index);
                   },
                 );
               });
         });
   }
 
-  void change(int index){
-    Navigator.push(context,
-        MaterialPageRoute(builder: (BuildContext _context) => HomePage(_selectedCollection, (_likedPoliticans[index]+1).toString(), false)));
+  void change(int index) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext _context) => HomePage(_selectedCollection,
+                (_likedPoliticans[index] + 1).toString()+"hej", false)));
   }
 }
