@@ -140,7 +140,9 @@ class SavedPoliticiansPageState extends State<SavedPoliticiansPage> {
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) return new CircularProgressIndicator();
-          return new ListView.builder(
+          return new Expanded(
+            child:
+            new ListView.builder(
               shrinkWrap: true,
               itemCount: _likedPoliticans.length,
               itemBuilder: (BuildContext context, int index) {
@@ -156,8 +158,10 @@ class SavedPoliticiansPageState extends State<SavedPoliticiansPage> {
                     change(index);
                   },
                 );
-              });
+              }),
+          );
         });
+
   }
 
   void change(int index) {
