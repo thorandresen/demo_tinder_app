@@ -9,6 +9,7 @@ import 'endscreen.dart';
 class NewPolitician {
   List<String> _collectionList = new List(3);
   List<String> _backgroundList = new List(3);
+  List<String> _logoList = new List(3);
   int newPoliticianInt;
   String newPoliticianCollection = '';
   String newPoliticianString = '';
@@ -25,9 +26,13 @@ class NewPolitician {
     _collectionList[2] = "RadikaleVenstre";
 
     // BACKGROUND LIST
-    _backgroundList[0] = "graphics/Venstre_background.png";
-    _backgroundList[1] = "graphics/SD_background.png";
-    _backgroundList[2] = "graphics/Radikal_background.png";
+    _backgroundList[0] = "graphics/VenstreBackground_NY.png";
+    _backgroundList[1] = "graphics/SDbackground_NY.png";
+    _backgroundList[2] = "graphics/RadikalBackground_NY.png";
+
+    _logoList[0] = "graphics/venstrelogo.png";
+    _logoList[1] = "graphics/sdlogo.png";
+    _logoList[2] = "graphics/radikallogo.png";
 
     // Populate politicians
       _populatePoliticians(_collectionList[0]);
@@ -89,6 +94,10 @@ class NewPolitician {
   /// Method for chosing what collection to look into.
   String background(int bg) {
     return _backgroundList.elementAt(bg);
+  }
+
+  String logo(int logo){
+    return _logoList.elementAt(logo);
   }
 
   /// The method for calculating what to do with liked politician
@@ -275,4 +284,5 @@ class NewPolitician {
   }
 
   List<String> get collectionList => _collectionList;
+  List<String> get logoList => _logoList;
 }

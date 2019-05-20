@@ -263,6 +263,7 @@ class HomePageState extends State<HomePage> {
           background: DecoratedBox(
             child: new Column(
               children: <Widget>[
+                Text(''),
                 new Container(
                     margin: EdgeInsets.all(10),
                     width: 45 * (queryData.size.width / 105),
@@ -303,6 +304,17 @@ class HomePageState extends State<HomePage> {
               fontSize: 4.8 * (queryData.size.width / 100),
               fontWeight: FontWeight.bold,
             ),
+          ),
+          Text('  '),
+          new Container(
+            width: 10 * (queryData.size.width / 105),
+            height: 10 * (queryData.size.width / 105),
+            decoration: new BoxDecoration(
+                image: new DecorationImage(
+                    fit: BoxFit.fill,
+                    image: new AssetImage(
+                        _newPolitician
+                            .logo(item[_politicianNo]['backgroundImage'])))),
           ),
         ]),
         Text(''),

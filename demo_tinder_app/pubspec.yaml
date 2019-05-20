@@ -55,12 +55,16 @@ flutter:
     - graphics/twitter_logo.png
     - graphics/instagram_logo.png
     - graphics/About_cases.png
-    - graphics/Venstre_background.png
-    - graphics/SD_background.png
     - graphics/linkedIn_logo.png
-    - graphics/Radikal_background.png
     - graphics/app_logo.png
     - graphics/verification_logo.png
+    - graphics/RadikalBackground_NY.png
+    - graphics/radikallogo.png
+    - graphics/venstrelogo.png
+    - graphics/sdlogo.png
+    - graphics/VenstreBackground_NY.png
+    - graphics/SDbackground_NY.png
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
