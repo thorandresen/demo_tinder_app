@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'endscreen.dart';
 
 class NewPolitician {
-  List<String> _collectionList = new List(6);
+  List<String> _collectionList = new List(7);
   List<String> _backgroundList = new List(7);
   List<String> _logoList = new List(7);
   int newPoliticianInt;
@@ -27,6 +27,7 @@ class NewPolitician {
     _collectionList[3] = "Alternativet";
     _collectionList[4] = "SF";
     _collectionList[5] = "Enhedslisten";
+    _collectionList[6] = "LiberalAlliance";
 
     // BACKGROUND LIST
     _backgroundList[0] = "graphics/VenstreBackground_NY.png";
@@ -228,6 +229,11 @@ class NewPolitician {
           List<String> EnhedslistenList = new List(1);
           EnhedslistenList[0] = '1AnneHegelund';
           _localHolder.addAll(EnhedslistenList);
+          break;
+        case "LiberalAlliance":
+          List<String> LAList = new List(1);
+          LAList[0] = '1OleBirkOlesen';
+          _localHolder.addAll(LAList);
           break;
       }
 
