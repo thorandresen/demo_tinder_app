@@ -7,9 +7,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'endscreen.dart';
 
 class NewPolitician {
-  List<String> _collectionList = new List(4);
-  List<String> _backgroundList = new List(4);
-  List<String> _logoList = new List(4);
+  List<String> _collectionList = new List(5);
+  List<String> _backgroundList = new List(5);
+  List<String> _logoList = new List(5);
   int newPoliticianInt;
   String newPoliticianCollection = '';
   String newPoliticianString = '';
@@ -25,24 +25,28 @@ class NewPolitician {
     _collectionList[1] = "SocialDemokraterne";
     _collectionList[2] = "RadikaleVenstre";
     _collectionList[3] = "Alternativet";
+    _collectionList[4] = "SF";
 
     // BACKGROUND LIST
     _backgroundList[0] = "graphics/VenstreBackground_NY.png";
     _backgroundList[1] = "graphics/SDbackground_NY.png";
     _backgroundList[2] = "graphics/RadikalBackground_NY.png";
     _backgroundList[3] = "graphics/AlternativetBackground_NY.png";
+    _backgroundList[4] = "graphics/SFbackground_NY.png";
 
     // LOGO LIST
     _logoList[0] = "graphics/venstrelogo.png";
     _logoList[1] = "graphics/sdlogo.png";
     _logoList[2] = "graphics/radikallogo.png";
     _logoList[3] = "graphics/alternativetlogo.png";
+    _logoList[4] = "graphics/sflogo.png";
 
     // Populate politicians
       _populatePoliticians(_collectionList[0]);
       _populatePoliticians(_collectionList[1]);
       _populatePoliticians(_collectionList[2]);
       _populatePoliticians(_collectionList[3]);
+      _populatePoliticians(_collectionList[4]);
   }
 
   /// Method for chosing what collection to look into. This method takes finds a valid collection where there are still not seen politicians.
@@ -208,6 +212,11 @@ class NewPolitician {
           List<String> alternativetList = new List(1);
           alternativetList[0] = '1TorstenGejl';
           _localHolder.addAll(alternativetList);
+          break;
+        case "SF":
+          List<String> SFList = new List(1);
+          SFList[0] = '1KirstenNormannAndersen';
+          _localHolder.addAll(SFList);
           break;
       }
 
