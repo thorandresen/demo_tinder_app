@@ -68,6 +68,10 @@ flutter:
     - graphics/alternativetlogo.png
     - graphics/sfbackground_NY.png
     - graphics/sflogo.png
+    - graphics/EnhedslistenBackground_NY.png
+    - graphics/enhedslistenlogo.png
+    - graphics/LABackground_NY.png
+    - graphics/lalogo.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

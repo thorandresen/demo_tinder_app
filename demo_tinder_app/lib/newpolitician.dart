@@ -7,9 +7,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'endscreen.dart';
 
 class NewPolitician {
-  List<String> _collectionList = new List(5);
-  List<String> _backgroundList = new List(5);
-  List<String> _logoList = new List(5);
+  List<String> _collectionList = new List(6);
+  List<String> _backgroundList = new List(7);
+  List<String> _logoList = new List(7);
   int newPoliticianInt;
   String newPoliticianCollection = '';
   String newPoliticianString = '';
@@ -26,6 +26,7 @@ class NewPolitician {
     _collectionList[2] = "RadikaleVenstre";
     _collectionList[3] = "Alternativet";
     _collectionList[4] = "SF";
+    _collectionList[5] = "Enhedslisten";
 
     // BACKGROUND LIST
     _backgroundList[0] = "graphics/VenstreBackground_NY.png";
@@ -33,6 +34,8 @@ class NewPolitician {
     _backgroundList[2] = "graphics/RadikalBackground_NY.png";
     _backgroundList[3] = "graphics/AlternativetBackground_NY.png";
     _backgroundList[4] = "graphics/SFbackground_NY.png";
+    _backgroundList[5] = "graphics/EnhedslistenBackground_NY.png";
+    _backgroundList[6] = "graphics/LABackground_NY.png";
 
     // LOGO LIST
     _logoList[0] = "graphics/venstrelogo.png";
@@ -40,6 +43,8 @@ class NewPolitician {
     _logoList[2] = "graphics/radikallogo.png";
     _logoList[3] = "graphics/alternativetlogo.png";
     _logoList[4] = "graphics/sflogo.png";
+    _logoList[5] = "graphics/enhedslistenlogo.png";
+    _logoList[6] = "graphics/lalogo.png";
 
     // Populate politicians
       _populatePoliticians(_collectionList[0]);
@@ -47,6 +52,7 @@ class NewPolitician {
       _populatePoliticians(_collectionList[2]);
       _populatePoliticians(_collectionList[3]);
       _populatePoliticians(_collectionList[4]);
+      _populatePoliticians(_collectionList[5]);
   }
 
   /// Method for chosing what collection to look into. This method takes finds a valid collection where there are still not seen politicians.
@@ -217,6 +223,11 @@ class NewPolitician {
           List<String> SFList = new List(1);
           SFList[0] = '1KirstenNormannAndersen';
           _localHolder.addAll(SFList);
+          break;
+        case "Enhedslisten":
+          List<String> EnhedslistenList = new List(1);
+          EnhedslistenList[0] = '1AnneHegelund';
+          _localHolder.addAll(EnhedslistenList);
           break;
       }
 
