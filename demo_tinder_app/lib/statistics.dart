@@ -102,4 +102,6 @@ class StatisticsPageState extends State<StatisticsPage> {
       chartValuesColor: Colors.blueGrey[900].withOpacity(0.9),
     );
   }
+
+
 }
