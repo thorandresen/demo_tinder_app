@@ -34,21 +34,22 @@ dependencies:
   uuid: ^2.0.1
   pie_chart: ^0.8.0
   fluttertoast: ^3.0.4
-
+  flutter_launcher_icons: ^0.7.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
 
-flutter_launcher_icons: ^0.7.0
+dependency_overrides:
+  image: 2.0.7
 
 flutter_icons:
   android: "launcher_icon"
-  image_path: "assets/graphics/app_logo.png"
+  ios: true
+  image_path: "graphics/app_logo.png"
 
 
 # The following section is specific to Flutter.
