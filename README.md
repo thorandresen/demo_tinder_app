@@ -19,4 +19,6 @@ Applikationen nåede aldrig at  blive færdig på grund af deadline til valget. 
 KOMMER SNART!
 
 ## Video og billeder
-KOMMER SNART!
+* [Billede 1](https://drive.google.com/open?id=1-1iUHj9Qgty-y2qjAmTrr7qp8ubdZQRx)
+* [Billede 2](https://drive.google.com/open?id=1-O50oli3JAyYwepspMsrHbs-h4rUA7yx)
+VIDEO KOMMER SNART!
