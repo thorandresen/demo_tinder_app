@@ -14,3 +14,6 @@ Applikationen nåede aldrig at  blive færdig på grund af deadline til valget. 
 
 ## Beta
 KOMMER SNART!
+
+## Video og billeder
+KOMMER SNART!
