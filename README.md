@@ -1,7 +1,7 @@
 # Politikr
 En applikation til nem tilgang af forskellige politikere til folketingsvalget 2019.
 
-Applikationen nåede aldrig at  blive færdig på grund af deadline til valget. Dog virker applikationen som den skal, bare uden information på mange politikere. Applikationen blev brugt til at lære Google's cross platform framework Flutter.
+Applikationen nåede aldrig at  blive færdig på grund af deadline til valget. Dog virker applikationen som den skal, bare uden information på mange politikere. Applikationen blev brugt som et springbræt til at lære og blive bedre til Googles framework 'Flutter'.
 
 ## Features
 * Swipe for at like/dislike politikere.
@@ -11,6 +11,9 @@ Applikationen nåede aldrig at  blive færdig på grund af deadline til valget. 
 * Hjælpeside med guide til hvordan applikationen fungere.
 * Mulighed for at reset alt, så du kan se alle politikere forfra.
 * Credits side.
+
+## Bugs
+* Hvis man liker politikere fra mere end 6 partier, stopper piechart med at virke.
 
 ## Beta
 KOMMER SNART!
