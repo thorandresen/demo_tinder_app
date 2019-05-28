@@ -3,6 +3,8 @@ En applikation til nem tilgang af forskellige politikere til folketingsvalget 20
 
 Applikationen nåede aldrig at  blive færdig på grund af deadline til valget. Dog virker applikationen som den skal, bare uden information på størstedelen af politikerne. Applikationen blev brugt som springbræt til at lære og blive bedre til Googles framework 'Flutter'.
 
+Applikationen er kun testet og kørt på Android, men IOS build er testet flere gange i løbet af processen ved hjælp af Codemagic.io.
+
 ## Features
 * Swipe for at like/dislike politikere.
 * Se information på forskellige politikere, bl.a. link til sociale medier, partihjemmeside, 5 kerneværdier og hjemmeside med mere information om politiker.
