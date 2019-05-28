@@ -23,4 +23,4 @@ KOMMER SNART!
 ## Video og billeder
 * [Billede 1](https://drive.google.com/open?id=1-1iUHj9Qgty-y2qjAmTrr7qp8ubdZQRx)
 * [Billede 2](https://drive.google.com/open?id=1-O50oli3JAyYwepspMsrHbs-h4rUA7yx)
-VIDEO KOMMER SNART!
+* VIDEO KOMMER SNART!
