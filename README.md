@@ -17,8 +17,8 @@ Applikationen er kun testet og kørt på Android, men IOS build er testet flere 
 ## Bugs
 * Hvis man liker politikere fra mere end 6 partier, stopper piechart med at virke.
 
-## Beta
-[Beta](https://play.google.com/store/apps/details?id=com.testdomain.demo_tinder_app)
+## Android download link
+[Beta](https://drive.google.com/file/d/1UvSaPuxu2QmbNXohgq86IJNX6bHH0JQA/view?usp=sharing)
 
 ## Video og billeder
 * [Billede 1](https://drive.google.com/open?id=1-1iUHj9Qgty-y2qjAmTrr7qp8ubdZQRx)
