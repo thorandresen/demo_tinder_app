@@ -24,3 +24,6 @@ Applikationen er kun testet og kørt på Android, men IOS build er testet flere 
 * [Billede 1](https://drive.google.com/open?id=1-1iUHj9Qgty-y2qjAmTrr7qp8ubdZQRx)
 * [Billede 2](https://drive.google.com/open?id=1-O50oli3JAyYwepspMsrHbs-h4rUA7yx)
 * [Video](https://drive.google.com/file/d/18OAf765j2zFJtLSPp3QMvXjZ_UsHXtjH/view?usp=sharing)
+
+## Privacy policy
+[Privacy policy](https://docs.google.com/document/d/1lyQyrIc52y-a_MCw5dx632yi9XPqS6TdWg83b3Qf2_Y/edit?usp=sharing)
