@@ -25,5 +25,8 @@ Applikationen er kun testet og kørt på Android, men IOS build er testet flere 
 * [Billede 2](https://drive.google.com/open?id=1-O50oli3JAyYwepspMsrHbs-h4rUA7yx)
 * [Video](https://drive.google.com/file/d/18OAf765j2zFJtLSPp3QMvXjZ_UsHXtjH/view?usp=sharing)
 
+## Trello
+[Trello](https://trello.com/b/7IRcDzJs/politician-tinder)
+
 ## Privacy policy
 [Privacy policy](https://docs.google.com/document/d/1lyQyrIc52y-a_MCw5dx632yi9XPqS6TdWg83b3Qf2_Y/edit?usp=sharing)
